@@ -1,0 +1,14 @@
+.card {
+  border-radius: 16px;
+  /* background: #17141d; */
+  background: #ffffff;
+
+  box-shadow: -1rem 0 1rem #000;
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+  margin: 0;
+  scroll-snap-align: start;
+  clear: both;
+  position: relative;
+}
