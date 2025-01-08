@@ -64,7 +64,7 @@ const skills = [
 ];
 const Skills = () => {
   return (
-    <div className='flex flex-col gap-4 my-10 gap-3 max-w-[100%]'>
+    <div className='flex flex-col my-10 gap-3 max-w-[100%]'>
       <h1 className='xs:text-sm lg:text-xl'>Skills I'm good at</h1>
       <div className='flex flex-wrap gap-5 lg:gap-8'>
         {skills.map((skill) => (
