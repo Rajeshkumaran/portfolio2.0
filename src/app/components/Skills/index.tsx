@@ -65,7 +65,7 @@ const skills = [
 const Skills = () => {
   return (
     <div className='flex flex-col my-10 gap-3 max-w-[100%]'>
-      <h1 className='xs:text-sm lg:text-xl'>Skills I'm good at</h1>
+      <h1 className='xs:text-sm lg:text-xl'>{`Skills I'm good at`}</h1>
       <div className='flex flex-wrap gap-5 lg:gap-8'>
         {skills.map((skill) => (
           <div key={skill.name} className='flex items-center gap-2 min-w-[100px] lg:min-w-[200px]'>
