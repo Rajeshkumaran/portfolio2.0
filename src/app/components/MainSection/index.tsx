@@ -7,7 +7,7 @@ import Twitter from '../../assets/twitter.png';
 
 const MainSection = () => {
   return (
-    <div className='flex mt-10 flex-col-reverse lg:flex-row'>
+    <div className='flex mt-10 flex-col-reverse lg:flex-row text-white'>
       <div className='flex-1 flex flex-col gap-4 pt-4 lg:pt-10'>
         <h3>Hello, my name is </h3>
         <h1 className='text-3xl lg:text-5xl'>Rajesh K</h1>

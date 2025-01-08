@@ -40,7 +40,7 @@ const Blogs = () => {
                 />
               </div>
               <div className='flex p-4 items-center gap-3'>
-                <p className='text-black'>{blog.name}</p>
+                <p className='text-black xs:text-xs'>{blog.name}</p>
                 <Image
                   src={linkIcon}
                   alt='link'
