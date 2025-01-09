@@ -7,7 +7,7 @@ import Projects from './components/Projects';
 export default function Home() {
   return (
     <div className='min-h-screen font-[family-name:var(--font-poppins)]'>
-      <main className='px-6 lg:px-10'>
+      <main className='px-6 lg:px-10 text-white'>
         <MainSection />
         <Divider className='lg:hidden' />
         <Skills />
