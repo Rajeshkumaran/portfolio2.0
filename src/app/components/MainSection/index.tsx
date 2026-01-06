@@ -9,18 +9,21 @@ const MainSection = () => {
   return (
     <div className="flex mt-10 flex-col-reverse lg:flex-row text-white">
       <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-10">
-        <h3>Hello, my name is </h3>
-        <h1 className="text-3xl lg:text-5xl">Rajesh K</h1>
+        <h3>👋 Hey there! I'm </h3>
+        <h1 className="text-3xl lg:text-5xl font-bold text-amber-600">
+          Rajesh K
+        </h1>
         <div className="flex items-center gap-3">
           <p className="inline-block w-[30px] h-1 bg-amber-600 " />
           <span className="text-lg lg:text-xl"> Software Engineer</span>
         </div>
         <span className="text-sm text-gray-200">
-          As a passionate and enthusiastic engineer, I thrive on solving
-          challenging problems and exploring new technologies. My contributions
-          to open sources such as Npm and Stack Overflow reflect my love for
-          learning and sharing knowledge. In my free time, I enjoy playing
-          cricket and watching movies.
+          As a passionate software engineer with 7.5+ years of experience, I
+          specialize in building scalable applications and solving complex
+          technical challenges. I actively contribute to the open-source
+          community through NPM packages and Stack Overflow, sharing knowledge
+          and best practices with fellow developers. When I'm not coding, I
+          watch movies, play badminton, travel, and more.
         </span>
         <div className="flex flex-col gap-3 mt-3">
           <p className="inline-block w-[100%] h-[1px] bg-amber-600 lg:bg-gray-300" />

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import blogGitBasics from '../../assets/blogGitBasics.webp';
 import pursuitOfHappiness from '../../assets/pursuitOfHappiness.webp';
+import blogPersonalAssistant from '../../assets/blogPersonalAssistant.webp';
 import linkIcon from '../../assets/linkIcon.png';
 
 import './index.css';
@@ -17,35 +18,43 @@ const blogs = [
     image: blogGitBasics,
     link: 'https://rajeshkumaran1996.medium.com/git-basics-for-beginners-fcf762304bcc',
   },
+  {
+    name: 'Building a Personal Assistant with Multi-Agent Architecture',
+    image: blogPersonalAssistant,
+    link: 'https://rajeshkumaran1996.medium.com/building-a-personal-assistant-with-multi-agent-architecture-using-langchain-f8066383f9b3',
+  },
 ];
 const Blogs = () => {
   return (
-    <div className='flex mb-5'>
-      <div className='flex-1 flex flex-col gap-4 pt-4 lg:pt-10'>
-        <h3 className='xs:text-sm lg:text-xl'>Blogs</h3>
-        <div className='flex gap-6 mt-3'>
+    <div className="flex mb-5">
+      <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-10">
+        <h3 className="xs:text-sm lg:text-xl">Blogs</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-3 pb-4">
           {blogs.map((blog, index) => (
             <div
               key={`blog-img-${index}`}
-              className='card'
+              className="card flex flex-col h-full"
               onClick={() => {
                 window.open(blog.link);
               }}
             >
-              <div>
+              <div className="flex-1">
                 <Image
                   src={blog.image}
                   alt={blog.name}
-                  className='min-w-[150px] min-h-[150px] lg:w-[300px] lg:h-[300px] rounded-t-lg'
+                  className="w-full h-[120px] sm:h-[150px] lg:h-[180px] rounded-t-lg object-cover"
                 />
               </div>
-              <div className='flex p-4 items-center gap-3'>
-                <p className='text-black xs:text-xs'>{blog.name}</p>
+              <div className="flex p-4 items-center gap-3 mt-auto">
+                <p className="text-black text-xs flex-1 line-clamp-2">
+                  {blog.name}
+                </p>
                 <Image
                   src={linkIcon}
-                  alt='link'
-                  className='w-[16px] h-[16px] cursor-pointer'
-                  onClick={() => {
+                  alt="link"
+                  className="w-[16px] h-[16px] cursor-pointer flex-shrink-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
                     window.open(blog.link);
                   }}
                 />

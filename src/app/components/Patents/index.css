@@ -1,0 +1,26 @@
+.patent-card {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: -1rem 0 1rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  margin: 0;
+  scroll-snap-align: start;
+  clear: both;
+  position: relative;
+  overflow: hidden;
+}
+
+.patent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.15);
+}
+
+.patent-card:hover .patent-icon {
+  transform: scale(1.1);
+}
+
+.patent-icon {
+  transition: transform 0.3s ease;
+}
