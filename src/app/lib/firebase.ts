@@ -26,6 +26,20 @@ if (typeof window !== 'undefined') {
     hasProjectId: !!firebaseConfig.projectId,
     environment: process.env.NODE_ENV,
   });
+
+  // Enable debug mode for testing
+  if (process.env.NODE_ENV === 'development') {
+    (window as any).gtag =
+      (window as any).gtag ||
+      function () {
+        ((window as any).dataLayer = (window as any).dataLayer || []).push(
+          arguments
+        );
+      };
+    (window as any).gtag('config', firebaseConfig.measurementId, {
+      debug_mode: true,
+    });
+  }
 }
 
 try {
@@ -58,5 +72,17 @@ try {
   console.error('Firebase initialization failed:', error);
 }
 
-export { analytics };
+export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
+  if (typeof window === 'undefined') return null;
+  if (analytics) return analytics;
+
+  const supported = await isSupported();
+  if (!supported) return null;
+
+  const analyticsInstance = getAnalytics(app);
+  console.log('✅ Firebase Analytics initialized');
+  analytics = analyticsInstance;
+  return analyticsInstance;
+};
+
 export default app;
