@@ -4,6 +4,8 @@ import blogGitBasics from '../../assets/blogGitBasics.webp';
 import pursuitOfHappiness from '../../assets/pursuitOfHappiness.webp';
 import blogPersonalAssistant from '../../assets/blogPersonalAssistant.webp';
 import linkIcon from '../../assets/linkIcon.png';
+import { trackSectionClick } from '../../lib/analytics';
+import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
 import './index.css';
 
@@ -35,6 +37,10 @@ const Blogs = () => {
               key={`blog-img-${index}`}
               className="card flex flex-col h-full"
               onClick={() => {
+                trackSectionClick(
+                  ANALYTICS_SECTIONS.BLOGS,
+                  blog.name.toLowerCase().replace(/\s+/g, '_')
+                );
                 window.open(blog.link);
               }}
             >
@@ -55,6 +61,10 @@ const Blogs = () => {
                   className="w-[16px] h-[16px] cursor-pointer flex-shrink-0"
                   onClick={(e) => {
                     e.stopPropagation();
+                    trackSectionClick(
+                      ANALYTICS_SECTIONS.BLOGS,
+                      blog.name.toLowerCase().replace(/\s+/g, '_')
+                    );
                     window.open(blog.link);
                   }}
                 />

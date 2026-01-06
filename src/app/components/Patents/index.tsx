@@ -1,7 +1,8 @@
 'use client';
 import Image from 'next/image';
-import patentIcon from '../../assets/patent.png';
 import linkIcon from '../../assets/linkIcon.png';
+import { trackSectionClick } from '../../lib/analytics';
+import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
 import './index.css';
 
@@ -26,6 +27,10 @@ const Patents = () => {
               key={`patent-${index}`}
               className="patent-card flex flex-col h-full cursor-pointer"
               onClick={() => {
+                trackSectionClick(
+                  ANALYTICS_SECTIONS.PATENT_AND_AWARDS,
+                  patent.patentNumber
+                );
                 window.open(patent.link, '_blank');
               }}
             >

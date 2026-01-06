@@ -4,12 +4,14 @@ import Photo from '../../assets/photo2.png';
 import Linkedin from '../../assets/linkedIn.png';
 import Github from '../../assets/github.png';
 import Twitter from '../../assets/twitter.png';
+import { trackSocialClick } from '../../lib/analytics';
+import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
 const MainSection = () => {
   return (
     <div className="flex mt-10 flex-col-reverse lg:flex-row text-white">
       <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-10">
-        <h3>👋 Hey there! I'm </h3>
+        <h3>👋 Hey there!</h3>
         <h1 className="text-3xl lg:text-5xl font-bold text-amber-600">
           Rajesh K
         </h1>
@@ -22,7 +24,7 @@ const MainSection = () => {
           specialize in building scalable applications and solving complex
           technical challenges. I actively contribute to the open-source
           community through NPM packages and Stack Overflow, sharing knowledge
-          and best practices with fellow developers. When I'm not coding, I
+          and best practices with fellow developers. When I am not coding, I
           watch movies, play badminton, travel, and more.
         </span>
         <div className="flex flex-col gap-3 mt-3">
@@ -53,22 +55,26 @@ const MainSection = () => {
                   {
                     image: Linkedin,
                     link: 'https://www.linkedin.com/in/rajeshk07/',
+                    platform: 'linkedin',
                   },
                   {
                     image: Github,
                     link: 'https://github.com/Rajeshkumaran',
+                    platform: 'github',
                   },
                   {
                     image: Twitter,
                     link: 'https://x.com/Rajeshrajk07',
+                    platform: 'twitter',
                   },
-                ].map(({ image, link }, index) => (
+                ].map(({ image, link, platform }, index) => (
                   <Image
                     src={image}
                     alt="Rajesh"
-                    className="w-[32px] h-[32px]"
+                    className="w-[32px] h-[32px] cursor-pointer hover:opacity-80 transition-opacity"
                     key={index}
                     onClick={() => {
+                      trackSocialClick(platform);
                       window.open(link);
                     }}
                   />

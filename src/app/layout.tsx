@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Poppins } from 'next/font/google';
 import './globals.css';
+import Analytics from './components/Analytics';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,11 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
       </head>
-      <body className={`${geistSans.variable} ${poppins.variable} antialiased bg-customGray1`}>
+      <body
+        className={`${geistSans.variable} ${poppins.variable} antialiased bg-customGray1`}
+      >
+        <Analytics />
         {children}
       </body>
     </html>
