@@ -1,14 +1,39 @@
 import { logEvent } from 'firebase/analytics';
 import { analytics } from './firebase';
 
+// Wait for analytics to be ready with timeout
+const waitForAnalytics = (timeout = 3000): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const startTime = Date.now();
+
+    const checkAnalytics = () => {
+      if (analytics) {
+        console.log('✅ Analytics ready after', Date.now() - startTime, 'ms');
+        resolve(true);
+      } else if (Date.now() - startTime > timeout) {
+        console.log('⏰ Analytics timeout after', timeout, 'ms');
+        resolve(false);
+      } else {
+        setTimeout(checkAnalytics, 100);
+      }
+    };
+
+    checkAnalytics();
+  });
+};
+
 // Track page views
-export const trackPageView = (pageName: string, pageTitle?: string) => {
+export const trackPageView = async (pageName: string, pageTitle?: string) => {
   console.log('📊 Attempting to track page view:', {
     pageName,
     pageTitle,
     analyticsExists: !!analytics,
   });
-  if (analytics) {
+
+  // Wait for analytics to be ready
+  const analyticsReady = await waitForAnalytics();
+
+  if (analytics && analyticsReady) {
     logEvent(analytics, 'page_view', {
       page_title: pageTitle || pageName,
       page_location: window.location.href,
@@ -16,7 +41,7 @@ export const trackPageView = (pageName: string, pageTitle?: string) => {
     });
     console.log('✅ Page view tracked successfully');
   } else {
-    console.log('❌ Analytics not initialized, page view not tracked');
+    console.log('❌ Analytics not ready, page view not tracked');
   }
 };
 
@@ -41,30 +66,41 @@ export const trackClick = (elementName: string, elementType?: string) => {
 };
 
 // Track social media clicks
-export const trackSocialClick = (platform: string) => {
+export const trackSocialClick = async (platform: string) => {
   console.log('📊 Attempting to track social click:', {
     platform,
     analyticsExists: !!analytics,
   });
-  if (analytics) {
+
+  // Wait for analytics to be ready
+  const analyticsReady = await waitForAnalytics();
+
+  if (analytics && analyticsReady) {
     logEvent(analytics, 'click', {
       content_type: 'social_link',
       item_name: platform,
     });
     console.log('✅ Social click tracked successfully');
   } else {
-    console.log('❌ Analytics not initialized, social click not tracked');
+    console.log('❌ Analytics not ready, social click not tracked');
   }
 };
 
 // Track section clicks (blogs, patents, projects)
-export const trackSectionClick = (sectionName: string, itemName?: string) => {
+export const trackSectionClick = async (
+  sectionName: string,
+  itemName?: string
+) => {
   console.log('📊 Attempting to track section click:', {
     sectionName,
     itemName,
     analyticsExists: !!analytics,
   });
-  if (analytics) {
+
+  // Wait for analytics to be ready
+  const analyticsReady = await waitForAnalytics();
+
+  if (analytics && analyticsReady) {
     logEvent(analytics, 'click', {
       content_type: 'section',
       section_name: sectionName,
@@ -72,6 +108,6 @@ export const trackSectionClick = (sectionName: string, itemName?: string) => {
     });
     console.log('✅ Section click tracked successfully');
   } else {
-    console.log('❌ Analytics not initialized, section click not tracked');
+    console.log('❌ Analytics not ready, section click not tracked');
   }
 };
