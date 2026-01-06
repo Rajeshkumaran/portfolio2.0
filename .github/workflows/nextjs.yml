@@ -81,6 +81,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Debug environment variables
+        run: |
+          echo "Firebase Project ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}"
+          echo "API Key length: ${#NEXT_PUBLIC_FIREBASE_API_KEY}"
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact

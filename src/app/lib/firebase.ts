@@ -17,6 +17,16 @@ const firebaseConfig = {
 let app: FirebaseApp | undefined = undefined;
 let analytics: Analytics | null = null;
 
+// Debug logging for production
+if (typeof window !== 'undefined') {
+  console.log('Firebase config check:', {
+    hasApiKey: !!firebaseConfig.apiKey,
+    apiKeyLength: firebaseConfig.apiKey?.length || 0,
+    hasProjectId: !!firebaseConfig.projectId,
+    environment: process.env.NODE_ENV
+  });
+}
+
 try {
   // Only initialize if we have a valid API key
   if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 20) {
