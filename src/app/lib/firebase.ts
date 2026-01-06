@@ -20,6 +20,7 @@ let analytics: Analytics | null = null;
 // Debug logging for production
 if (typeof window !== 'undefined') {
   console.log('Firebase config check:', {
+    firebaseConfig,
     hasApiKey: !!firebaseConfig.apiKey,
     apiKeyLength: firebaseConfig.apiKey?.length || 0,
     hasProjectId: !!firebaseConfig.projectId,
