@@ -66,6 +66,9 @@ export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
   if (!supported) return null;
 
   const analyticsInstance = getAnalytics(app);
+  window.gtag('consent', 'default', {
+    analytics_storage: 'granted',
+  });
   console.log('✅ Firebase Analytics initialized');
   analytics = analyticsInstance;
   return analyticsInstance;

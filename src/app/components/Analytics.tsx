@@ -3,6 +3,12 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { trackPageView, testAnalytics } from '../lib/analytics';
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
 export default function Analytics() {
   const pathname = usePathname();
 
