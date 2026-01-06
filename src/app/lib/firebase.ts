@@ -26,20 +26,6 @@ if (typeof window !== 'undefined') {
     hasProjectId: !!firebaseConfig.projectId,
     environment: process.env.NODE_ENV,
   });
-
-  // Enable debug mode for testing
-  if (process.env.NODE_ENV === 'development') {
-    (window as any).gtag =
-      (window as any).gtag ||
-      function () {
-        ((window as any).dataLayer = (window as any).dataLayer || []).push(
-          arguments
-        );
-      };
-    (window as any).gtag('config', firebaseConfig.measurementId, {
-      debug_mode: true,
-    });
-  }
 }
 
 try {
