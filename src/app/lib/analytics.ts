@@ -15,7 +15,7 @@ export const trackPageView = (pageName: string, pageTitle?: string) => {
 // Track custom events
 export const trackEvent = (
   eventName: string,
-  parameters?: { [key: string]: any }
+  parameters?: { [key: string]: unknown }
 ) => {
   if (analytics) {
     logEvent(analytics, eventName, parameters);

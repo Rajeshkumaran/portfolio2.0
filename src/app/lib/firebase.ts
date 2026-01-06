@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAnalytics, isSupported } from 'firebase/analytics';
+import { initializeApp, FirebaseApp } from 'firebase/app';
+import { getAnalytics, isSupported, Analytics } from 'firebase/analytics';
 
 // Your web app's Firebase configuration
 // Replace these with your actual Firebase project configuration
@@ -14,8 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase with error handling
-let app: any = null;
-let analytics: any = null;
+let app: FirebaseApp | undefined = undefined;
+let analytics: Analytics | null = null;
 
 try {
   // Only initialize if we have a valid API key

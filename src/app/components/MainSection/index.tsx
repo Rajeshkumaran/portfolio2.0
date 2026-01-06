@@ -5,7 +5,6 @@ import Linkedin from '../../assets/linkedIn.png';
 import Github from '../../assets/github.png';
 import Twitter from '../../assets/twitter.png';
 import { trackSocialClick } from '../../lib/analytics';
-import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
 const MainSection = () => {
   return (
