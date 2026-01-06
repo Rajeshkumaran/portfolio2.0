@@ -23,7 +23,7 @@ if (typeof window !== 'undefined') {
     hasApiKey: !!firebaseConfig.apiKey,
     apiKeyLength: firebaseConfig.apiKey?.length || 0,
     hasProjectId: !!firebaseConfig.projectId,
-    environment: process.env.NODE_ENV
+    environment: process.env.NODE_ENV,
   });
 }
 
@@ -38,11 +38,14 @@ try {
         .then((supported) => {
           if (supported) {
             analytics = getAnalytics(app);
+            console.log('✅ Firebase Analytics initialized successfully');
+          } else {
+            console.log('❌ Firebase Analytics not supported');
           }
         })
         .catch((error) => {
           console.log(
-            'Analytics not supported or failed to initialize:',
+            '❌ Analytics not supported or failed to initialize:',
             error
           );
         });
