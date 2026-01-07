@@ -84,10 +84,7 @@ jobs:
       - name: Debug environment variables
         run: |
           echo "Firebase Project ID: $NEXT_PUBLIC_FIREBASE_PROJECT_ID"
-          echo "API Key (first 10 chars): ${NEXT_PUBLIC_FIREBASE_API_KEY:0:10}..."
           echo "API Key length: ${#NEXT_PUBLIC_FIREBASE_API_KEY}"
-          echo "Firebase Auth Domain: $NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"
-          echo "Firebase Storage Bucket: $NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact

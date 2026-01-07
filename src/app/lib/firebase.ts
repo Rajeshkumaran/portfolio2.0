@@ -28,19 +28,6 @@ const isValidFirebaseConfig = () => {
   );
 };
 
-// Debug logging for production
-if (typeof window !== 'undefined') {
-  console.log('🔧 Firebase config check:', {
-    hasApiKey: !!firebaseConfig.apiKey,
-    apiKeyLength: firebaseConfig.apiKey?.length || 0,
-    hasProjectId: !!firebaseConfig.projectId,
-    hasAppId: !!firebaseConfig.appId,
-    hasMeasurementId: !!firebaseConfig.measurementId,
-    environment: process.env.NODE_ENV,
-    configValid: isValidFirebaseConfig(),
-  });
-}
-
 // Initialize Firebase App
 const initializeFirebaseApp = (): FirebaseApp | null => {
   if (app) return app;
@@ -48,14 +35,11 @@ const initializeFirebaseApp = (): FirebaseApp | null => {
   try {
     if (isValidFirebaseConfig()) {
       app = initializeApp(firebaseConfig);
-      console.log('✅ Firebase App initialized successfully');
       return app;
     } else {
-      console.error('❌ Invalid Firebase configuration');
       return null;
     }
-  } catch (error) {
-    console.error('❌ Firebase App initialization failed:', error);
+  } catch {
     return null;
   }
 };
@@ -75,16 +59,12 @@ export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
       // Initialize Firebase app first
       const firebaseApp = initializeFirebaseApp();
       if (!firebaseApp) {
-        console.error('❌ Firebase app not available for analytics');
         return null;
       }
 
       // Check if analytics is supported
       const supported = await isSupported();
       if (!supported) {
-        console.log(
-          '❌ Firebase Analytics not supported on this browser/environment'
-        );
         return null;
       }
 
@@ -99,10 +79,8 @@ export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
       const analyticsInstance = getAnalytics(firebaseApp);
       analytics = analyticsInstance;
 
-      console.log('✅ Firebase Analytics initialized successfully');
       return analyticsInstance;
-    } catch (error) {
-      console.error('❌ Failed to initialize Firebase Analytics:', error);
+    } catch {
       return null;
     }
   })();

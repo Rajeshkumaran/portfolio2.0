@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Geist, Poppins } from 'next/font/google';
 import './globals.css';
 import Analytics from './components/Analytics';
-import AnalyticsDebug from './components/AnalyticsDebug';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -51,7 +50,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${poppins.variable} antialiased bg-customGray1`}
       >
         <Analytics />
-        <AnalyticsDebug />
         {children}
       </body>
     </html>
