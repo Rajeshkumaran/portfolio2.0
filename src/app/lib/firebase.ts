@@ -14,64 +14,101 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase with error handling
-let app: FirebaseApp | undefined = undefined;
+let app: FirebaseApp | null = null;
 let analytics: Analytics | null = null;
+let analyticsPromise: Promise<Analytics | null> | null = null;
+
+// Validate Firebase configuration
+const isValidFirebaseConfig = () => {
+  return (
+    firebaseConfig.apiKey &&
+    firebaseConfig.apiKey.length > 20 &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+  );
+};
 
 // Debug logging for production
 if (typeof window !== 'undefined') {
-  console.log('Firebase config check:', {
-    firebaseConfig,
+  console.log('🔧 Firebase config check:', {
     hasApiKey: !!firebaseConfig.apiKey,
     apiKeyLength: firebaseConfig.apiKey?.length || 0,
     hasProjectId: !!firebaseConfig.projectId,
+    hasAppId: !!firebaseConfig.appId,
+    hasMeasurementId: !!firebaseConfig.measurementId,
     environment: process.env.NODE_ENV,
+    configValid: isValidFirebaseConfig(),
   });
 }
 
-try {
-  // Only initialize if we have a valid API key
-  if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 20) {
-    app = initializeApp(firebaseConfig);
+// Initialize Firebase App
+const initializeFirebaseApp = (): FirebaseApp | null => {
+  if (app) return app;
 
-    // Initialize Analytics on client side
-    if (typeof window !== 'undefined') {
-      isSupported()
-        .then((supported) => {
-          if (supported) {
-            analytics = getAnalytics(app);
-            console.log('✅ Firebase Analytics initialized successfully');
-          } else {
-            console.log('❌ Firebase Analytics not supported');
-          }
-        })
-        .catch((error) => {
-          console.log(
-            '❌ Analytics not supported or failed to initialize:',
-            error
-          );
-        });
+  try {
+    if (isValidFirebaseConfig()) {
+      app = initializeApp(firebaseConfig);
+      console.log('✅ Firebase App initialized successfully');
+      return app;
+    } else {
+      console.error('❌ Invalid Firebase configuration');
+      return null;
     }
-  } else {
-    console.log('Firebase not initialized: Invalid or missing API key');
+  } catch (error) {
+    console.error('❌ Firebase App initialization failed:', error);
+    return null;
   }
-} catch (error) {
-  console.error('Firebase initialization failed:', error);
-}
-
-export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
-  if (typeof window === 'undefined') return null;
-  if (analytics) return analytics;
-
-  const supported = await isSupported();
-  if (!supported) return null;
-
-  const analyticsInstance = getAnalytics(app);
-  window.gtag('consent', 'default', {
-    analytics_storage: 'granted',
-  });
-  console.log('✅ Firebase Analytics initialized');
-  analytics = analyticsInstance;
-  return analyticsInstance;
 };
 
-export default app;
+export const getFirebaseAnalytics = async (): Promise<Analytics | null> => {
+  // Return null for server-side rendering
+  if (typeof window === 'undefined') return null;
+
+  // Return cached analytics instance
+  if (analytics) return analytics;
+
+  // Return existing promise to avoid multiple initializations
+  if (analyticsPromise) return analyticsPromise;
+
+  analyticsPromise = (async () => {
+    try {
+      // Initialize Firebase app first
+      const firebaseApp = initializeFirebaseApp();
+      if (!firebaseApp) {
+        console.error('❌ Firebase app not available for analytics');
+        return null;
+      }
+
+      // Check if analytics is supported
+      const supported = await isSupported();
+      if (!supported) {
+        console.log(
+          '❌ Firebase Analytics not supported on this browser/environment'
+        );
+        return null;
+      }
+
+      // Set up gtag consent before initializing analytics
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'default', {
+          analytics_storage: 'granted',
+        });
+      }
+
+      // Initialize analytics
+      const analyticsInstance = getAnalytics(firebaseApp);
+      analytics = analyticsInstance;
+
+      console.log('✅ Firebase Analytics initialized successfully');
+      return analyticsInstance;
+    } catch (error) {
+      console.error('❌ Failed to initialize Firebase Analytics:', error);
+      return null;
+    }
+  })();
+
+  return analyticsPromise;
+};
+
+export { initializeFirebaseApp };
+export default initializeFirebaseApp;
