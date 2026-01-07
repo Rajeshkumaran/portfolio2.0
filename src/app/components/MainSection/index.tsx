@@ -1,5 +1,10 @@
 'use client';
 import Image from 'next/image';
+import {
+  RESUME_LINK,
+  SOCIAL_LINKS,
+  PROFILE_SUMMARY,
+} from '@/app/lib/constants';
 import Photo from '../../assets/photo2.png';
 import Linkedin from '../../assets/linkedIn.png';
 import Github from '../../assets/github.png';
@@ -18,14 +23,18 @@ const MainSection = () => {
           <p className="inline-block w-[30px] h-1 bg-amber-600 " />
           <span className="text-lg lg:text-xl"> Software Engineer</span>
         </div>
-        <span className="text-sm text-gray-200">
-          As a passionate software engineer with 7.5+ years of experience, I
-          specialize in building scalable applications and solving complex
-          technical challenges. I actively contribute to the open-source
-          community through NPM packages and Stack Overflow, sharing knowledge
-          and best practices with fellow developers. When I am not coding, I
-          watch movies, play badminton, travel, and more.
-        </span>
+        <span className="text-sm text-gray-200">{PROFILE_SUMMARY}</span>
+        <div className="mt-2">
+          <a
+            href={RESUME_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-amber-600 hover:bg-amber-700 text-white text-sm px-4 py-2 rounded transition-colors inline-block"
+            onClick={() => trackSocialClick('resume')}
+          >
+            📄 Download Resume
+          </a>
+        </div>
         <div className="flex flex-col gap-3 mt-3">
           <p className="inline-block w-[100%] h-[1px] bg-amber-600 lg:bg-gray-300" />
           <div className="flex gap-4">
@@ -49,21 +58,21 @@ const MainSection = () => {
                   rajeshkumaran1996@gmail.com
                 </span>
               </div>
-              <div className="flex gap-3 ">
+              <div className="flex gap-3">
                 {[
                   {
                     image: Linkedin,
-                    link: 'https://www.linkedin.com/in/rajeshk07/',
+                    link: SOCIAL_LINKS.LINKEDIN,
                     platform: 'linkedin',
                   },
                   {
                     image: Github,
-                    link: 'https://github.com/Rajeshkumaran',
+                    link: SOCIAL_LINKS.GITHUB,
                     platform: 'github',
                   },
                   {
                     image: Twitter,
-                    link: 'https://x.com/Rajeshrajk07',
+                    link: SOCIAL_LINKS.TWITTER,
                     platform: 'twitter',
                   },
                 ].map(({ image, link, platform }, index) => (
