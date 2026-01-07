@@ -86,10 +86,7 @@ export default function AnalyticsDebug() {
       }
     };
 
-    // Run debug in development and when pressing Ctrl+Shift+D
-    if (process.env.NODE_ENV === 'development') {
-      runDebug();
-    }
+    runDebug();
 
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'D') {
@@ -101,11 +98,6 @@ export default function AnalyticsDebug() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [showDebug]);
-
-  // Only show in development or when debug is toggled
-  if (!showDebug && process.env.NODE_ENV !== 'development') {
-    return null;
-  }
 
   return (
     <div
