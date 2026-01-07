@@ -32,7 +32,7 @@ const MainSection = () => {
             className="bg-amber-600 hover:bg-amber-700 text-white text-sm px-4 py-2 rounded transition-colors inline-block"
             onClick={() => trackSocialClick('resume')}
           >
-            📄 Download Resume
+            📄 View Resume
           </a>
         </div>
         <div className="flex flex-col gap-3 mt-3">
