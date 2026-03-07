@@ -1,14 +1,13 @@
-.card {
-  border-radius: 16px;
-  /* background: #17141d; */
-  background: #ffffff;
+/* Project card image hover */
+.project-card .project-image-wrapper {
+  overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
+}
 
-  box-shadow: -1rem 0 1rem #000;
-  display: flex;
-  flex-direction: column;
-  transition: 0.2s;
-  margin: 0;
-  scroll-snap-align: start;
-  clear: both;
-  position: relative;
+.project-card .project-image-wrapper img {
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image-wrapper img {
+  transform: scale(1.05);
 }

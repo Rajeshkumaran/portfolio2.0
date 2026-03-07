@@ -1,15 +1,26 @@
 'use client';
 import Image from 'next/image';
+import AnimatedSection from '../AnimatedSection';
 import blogGitBasics from '../../assets/blogGitBasics.webp';
 import pursuitOfHappiness from '../../assets/pursuitOfHappiness.webp';
 import blogPersonalAssistant from '../../assets/blogPersonalAssistant.webp';
-import linkIcon from '../../assets/linkIcon.png';
+import secondBrainThumbnail from '../../assets/secondBrainThumbnail.png';
 import { trackSectionClick } from '../../lib/analytics';
 import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
 import './index.css';
 
 const blogs = [
+  {
+    name: 'From Scattered Data to a Second Brain',
+    image: secondBrainThumbnail,
+    link: 'https://rajeshkumaran1996.medium.com/from-scattered-data-to-a-second-brain-ee3896e25f0f',
+  },
+  {
+    name: 'Building a Personal Assistant with Multi-Agent Architecture',
+    image: blogPersonalAssistant,
+    link: 'https://rajeshkumaran1996.medium.com/building-a-personal-assistant-with-multi-agent-architecture-using-langchain-f8066383f9b3',
+  },
   {
     name: 'Pursuit of happiness',
     image: pursuitOfHappiness,
@@ -20,22 +31,19 @@ const blogs = [
     image: blogGitBasics,
     link: 'https://rajeshkumaran1996.medium.com/git-basics-for-beginners-fcf762304bcc',
   },
-  {
-    name: 'Building a Personal Assistant with Multi-Agent Architecture',
-    image: blogPersonalAssistant,
-    link: 'https://rajeshkumaran1996.medium.com/building-a-personal-assistant-with-multi-agent-architecture-using-langchain-f8066383f9b3',
-  },
 ];
+
 const Blogs = () => {
   return (
-    <div className="flex mb-5">
-      <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-10">
-        <h3 className="xs:text-sm lg:text-xl">Blogs</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-3 pb-4">
-          {blogs.map((blog, index) => (
+    <AnimatedSection>
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+        Blogs
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {blogs.map((blog, index) => (
+          <AnimatedSection key={`blog-${index}`} delay={index * 0.1}>
             <div
-              key={`blog-img-${index}`}
-              className="card flex flex-col h-full"
+              className="blog-card glass-card cursor-pointer h-full flex flex-col"
               onClick={() => {
                 trackSectionClick(
                   ANALYTICS_SECTIONS.BLOGS,
@@ -44,36 +52,31 @@ const Blogs = () => {
                 window.open(blog.link);
               }}
             >
-              <div className="flex-1">
+              <div className="blog-image-wrapper">
                 <Image
                   src={blog.image}
                   alt={blog.name}
-                  className="w-full h-[120px] sm:h-[150px] lg:h-[180px] rounded-t-lg object-cover"
+                  className="w-full h-[140px] sm:h-[160px] lg:h-[180px] object-cover"
                 />
               </div>
-              <div className="flex p-4 items-center gap-3 mt-auto">
-                <p className="text-black text-xs flex-1 line-clamp-2">
+              <div className="flex items-center gap-3 p-4 mt-auto">
+                <p className="text-zinc-200 text-xs flex-1 line-clamp-2 font-[family-name:var(--font-inter)]">
                   {blog.name}
                 </p>
-                <Image
-                  src={linkIcon}
-                  alt="link"
-                  className="w-[16px] h-[16px] cursor-pointer flex-shrink-0"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    trackSectionClick(
-                      ANALYTICS_SECTIONS.BLOGS,
-                      blog.name.toLowerCase().replace(/\s+/g, '_')
-                    );
-                    window.open(blog.link);
-                  }}
-                />
+                <svg
+                  className="w-4 h-4 text-violet-400 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </div>
             </div>
-          ))}
-        </div>
+          </AnimatedSection>
+        ))}
       </div>
-    </div>
+    </AnimatedSection>
   );
 };
 

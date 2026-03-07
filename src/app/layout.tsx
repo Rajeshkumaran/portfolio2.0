@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Geist, Poppins } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import Analytics from './components/Analytics';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 const poppins = Poppins({
@@ -47,7 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${poppins.variable} antialiased bg-customGray1`}
+        className={`${inter.variable} ${poppins.variable} antialiased`}
       >
         <Analytics />
         {children}

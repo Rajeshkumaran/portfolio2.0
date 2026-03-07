@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
+import AnimatedSection from '../AnimatedSection';
 import npm from '../../assets/npm.webp';
-import linkIcon from '../../assets/linkIcon.png';
 import { trackSectionClick } from '../../lib/analytics';
 import { ANALYTICS_SECTIONS } from '../../lib/constants';
 
@@ -19,16 +19,18 @@ const projects = [
     link: 'https://www.npmjs.com/package/custom-reactdatepicker',
   },
 ];
+
 const Projects = () => {
   return (
-    <div className="flex mb-5">
-      <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-10">
-        <h3 className="xs:text-sm lg:text-xl">Projects</h3>
-        <div className="flex gap-6 mt-3">
-          {projects.map((project, index) => (
+    <AnimatedSection>
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+        Open source projects
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {projects.map((project, index) => (
+          <AnimatedSection key={`project-${index}`} delay={index * 0.1}>
             <div
-              key={`project-img-${index}`}
-              className="card"
+              className="project-card glass-card cursor-pointer h-full flex flex-col"
               onClick={() => {
                 trackSectionClick(
                   ANALYTICS_SECTIONS.PROJECTS,
@@ -37,34 +39,36 @@ const Projects = () => {
                 window.open(project.link);
               }}
             >
-              <div>
+              <div className="project-image-wrapper">
                 <Image
                   src={project.image}
                   alt={project.name}
-                  className="min-w-[150px] min-h-[150px] lg:w-[300px] lg:h-[300px] rounded-t-lg"
+                  className="w-full h-[160px] lg:h-[200px] object-cover"
                 />
               </div>
-              <div className="flex p-4 items-center gap-3">
-                <p className="text-black xs:text-xs">{project.name}</p>
-                <Image
-                  src={linkIcon}
-                  alt="link"
-                  className="w-[16px] h-[16px] cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    trackSectionClick(
-                      ANALYTICS_SECTIONS.PROJECTS,
-                      project.name.toLowerCase().replace(/\s+/g, '_')
-                    );
-                    window.open(project.link);
-                  }}
-                />
+              <div className="flex items-center gap-3 p-4 mt-auto">
+                <p className="text-zinc-200 text-sm flex-1 font-[family-name:var(--font-inter)]">
+                  {project.name}
+                </p>
+                <svg
+                  className="w-4 h-4 text-violet-400 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
               </div>
             </div>
-          ))}
-        </div>
+          </AnimatedSection>
+        ))}
       </div>
-    </div>
+    </AnimatedSection>
   );
 };
 
