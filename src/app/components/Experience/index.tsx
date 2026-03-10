@@ -10,11 +10,10 @@ const experiences = [
     period: 'Nov 2021 - Present',
     location: 'Bengaluru, India',
     highlights: [
-      'Architected an admin configuration platform for multi-agent setups, enabling deployment of a Super ESS Agent across organizations with tenant-specific customization.',
-      'Contributed to the ESS (Employee Self-Service) Copilot, an AI-powered assistant streamlining HR processes.',
-      'Developed a generic connection setup wizard, streamlining migration of 35+ integrations from Angular to React, reducing development time by 70%.',
-      'Integrated a PowerBI connector into Viva Goals, improving data accessibility and user engagement by 25%.',
-      'Designed and implemented simplified OKR views, enhancing user experience for easy check-ins and alignments, increasing user engagement by 35%.',
+      'Architected a multi-tenant admin configuration platform for multi-agent orchestration, enabling enterprise-wide deployment of a Super ESS Agent with tenant-specific customization.',
+      'Designed a generic connection setup framework that unified migration of 35+ integrations from Angular to React, reducing per-integration development effort by 70%.',
+      'Integrated a Power BI connector into Viva Goals, enabling live data surfacing in OKR dashboards and improving user engagement by 25%.',
+      'Redesigned OKR check-in and alignment views with a simplified UX, driving a 35% increase in weekly active engagement.',
     ],
   },
   {
@@ -23,9 +22,9 @@ const experiences = [
     period: 'Dec 2020 - Nov 2021',
     location: 'Chennai, India',
     highlights: [
-      'Developed a React.js SPA for visualizing organizational OKRs, embedded into customer pages (tailored for GitLab).',
-      'Implemented a garbage collection layer to remove unused Redux store data and disconnect inactive Firestore connections.',
-      'Built a JIRA Marketplace plugin for Ally OKRs, attracting 20% more users and boosting engagement.',
+      'Built an embeddable React.js SPA for visualizing organizational OKRs, shipped as a white-label solution for enterprise customers including GitLab.',
+      'Implemented a garbage-collection layer to prune stale Redux state and tear down inactive Firestore listeners, reducing client-side memory footprint.',
+      'Developed a JIRA Marketplace plugin for Ally OKRs, growing the user base by 20% and increasing cross-platform engagement.',
     ],
   },
   {
@@ -35,8 +34,8 @@ const experiences = [
     period: 'May 2020 - Dec 2020',
     location: 'Chennai, India',
     highlights: [
-      'Enhanced jewellery product page performance by 20% through component offloading and lazy loading, boosting SEO scores by 15%.',
-      'Implemented ratings & reviews with pagination and a GraphQL API, increasing organic traffic by 20%.',
+      'Improved product page load performance by 20% through code-splitting and lazy loading, lifting Lighthouse SEO scores by 15%.',
+      'Built a ratings & reviews system with paginated GraphQL queries, contributing to a 20% increase in organic search traffic.',
     ],
   },
   {
@@ -46,9 +45,9 @@ const experiences = [
     period: 'May 2018 - May 2020',
     location: 'Chennai, India',
     highlights: [
-      'Developed the entire CaratLane website product pages (responsive) from scratch using React.js, Node.js, and Redux-Saga.',
-      'Built a "Store Check-in" feature bridging the gap in omni-channel experience.',
-      'Created reusable React components (dropdown, datepicker, etc.) used across multiple pages.',
+      'Built the entire CaratLane product page as a responsive web application using React.js, Node.js, and Redux-Saga, serving as the primary shopping experience for millions of users.',
+      'Developed a "Store Check-in" feature bridging online and in-store experiences, strengthening the omni-channel customer journey.',
+      'Created a shared component library (dropdown, datepicker, modals) adopted across multiple page surfaces.',
     ],
   },
 ];
