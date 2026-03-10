@@ -37,7 +37,7 @@ const Blogs = () => {
   return (
     <AnimatedSection>
       <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
-        Blogs
+        Writing
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {blogs.map((blog, index) => (
