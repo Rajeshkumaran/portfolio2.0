@@ -1,0 +1,248 @@
+{
+  "2jT0PMDYVkQ": {
+    "title": "Introduction to Data Structures",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "7mF3fyCmuB4": {
+    "title": "What is a Singly Linked List?",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "0aXttHlP_xU": {
+    "title": "Learn Singly Linked List — JS implementation",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "Oa1GcyPUtzo": {
+    "title": "Detect cycle in linked list — Hare & tortoise algorithm",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "lMIi1KhDexE": {
+    "title": "What is a Stack?",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "lwDruQLFVmk": {
+    "title": "Stack data structure — JS implementation",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "mry08d4q52Y": {
+    "title": "Queue — JS implementation",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "BZGVYEOgxvQ": {
+    "title": "Recursion in 2 minutes",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "Z6TCcmnMeSw": {
+    "title": "How algorithms scale as data grows — Time complexity",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "zpK3YvX6xrs": {
+    "title": "LRU cache explained in 60s",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "-wDPfySPMJ0": {
+    "title": "System Design: LRU cache implementation using JS",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "ENFQjNEFT-A": {
+    "title": "Why React.js is popular — declarative programming & virtual DOM",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "YTJgKGQcp0g": {
+    "title": "Is React a library or a framework? — library vs framework",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "cXdeaL_rS6s": {
+    "title": "Every developer should know this script tag trick — async vs defer",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "-t3mdAgKjkQ": {
+    "title": "Polyfills in JavaScript",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "8Mrq-MEqlIQ": {
+    "title": "What is a database actually? — Cricbuzz example",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "8RSlNSxPYJI": {
+    "title": "How database indexing actually works",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "60Qx70429Jk": {
+    "title": "What is Redis — in-memory database introduction",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "l2CUUfWVc84": {
+    "title": "Authentication vs Authorization",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "wRsvA0viTTA": {
+    "title": "JWT explained",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "YzvlqHmNvUc": {
+    "title": "Your password is just a hash",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "LO9Ou-oiCh8": {
+    "title": "What is idempotency? — explained with an Amazon example",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "-hVX8ippYRY": {
+    "title": "IP address in simple terms",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "Sa2xsyIDMBw": {
+    "title": "What happens after you type google.com — how the web & DNS work",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "QxDnEX2ZTak": {
+    "title": "How Zee5 streams FIFA to millions without buffering — CDN explained",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "4EqdFhmdrBc": {
+    "title": "LLMs (Large Language Models) — introduction",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "JTqK000By5A": {
+    "title": "From school vectors to embeddings",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "fXDEe1_QAR8": {
+    "title": "How AI agents connect to Gmail, Notion & GitHub — MCP explained",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "MD0ktIwhK4Y": {
+    "title": "Webpack vs Vite — build tools",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "Bn0QpSxWW2E": {
+    "title": "Getting started with Git — SSH setup + basic commands",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "ugXtnH0FKiE": {
+    "title": "Git vs GitHub — explained",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "fFfWCpImsM0": {
+    "title": "Git mistake I made early in my career — rebase vs plain pull",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "wnfD2y0c3DE": {
+    "title": "How does a computer actually work",
+    "format": "long",
+    "description": "",
+    "links": []
+  },
+  "RneCFiuqglA": {
+    "title": "How torrent actually works",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "YPy3oKnOJ4g": {
+    "title": "Why Netflix built fast.com",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "j3I5HPnFrXc": {
+    "title": "The OG OnePlus dream",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "R_vmadF-U4k": {
+    "title": "The watch that refused to break — G-Shock engineering",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "gsRDcDF-lBU": {
+    "title": "College to Corporate — the journey",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "Clv4w1Q1_V4": {
+    "title": "Where curiosity takes you — index, Nifty, BSE & NSE",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "ucRtej2tjPI": {
+    "title": "What is CAGR — computing your portfolio net worth",
+    "format": "short",
+    "description": "",
+    "links": []
+  },
+  "e2ALW3GsyvE": {
+    "title": "How I use RD for big expenses — a finance trick",
+    "format": "short",
+    "description": "",
+    "links": []
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "tech": {
+    "title": "Tech",
+    "tagline": "Concepts, code and curiosities — the engineering I love, explained simply.",
+    "categories": [
+      {
+        "id": "dsa",
+        "slug": "ds-and-algorithms",
+        "name": "Algorithms & Data Structures",
+        "blurb": "Fundamentals, implemented from scratch.",
+        "videos": [
+          "2jT0PMDYVkQ",
+          "7mF3fyCmuB4",
+          "0aXttHlP_xU",
+          "Oa1GcyPUtzo",
+          "lMIi1KhDexE",
+          "lwDruQLFVmk",
+          "mry08d4q52Y",
+          "BZGVYEOgxvQ",
+          "Z6TCcmnMeSw",
+          "zpK3YvX6xrs",
+          "-wDPfySPMJ0"
+        ]
+      },
+      {
+        "id": "frontend",
+        "slug": "frontend",
+        "name": "Frontend",
+        "blurb": "React, the browser and everything you see.",
+        "videos": ["ENFQjNEFT-A", "YTJgKGQcp0g", "cXdeaL_rS6s", "-t3mdAgKjkQ"]
+      },
+      {
+        "id": "backend",
+        "slug": "backend",
+        "name": "Backend",
+        "blurb": "Databases, systems, security and the web under the hood.",
+        "videos": [
+          "8Mrq-MEqlIQ",
+          "8RSlNSxPYJI",
+          "60Qx70429Jk",
+          "l2CUUfWVc84",
+          "wRsvA0viTTA",
+          "YzvlqHmNvUc",
+          "LO9Ou-oiCh8",
+          "-hVX8ippYRY",
+          "Sa2xsyIDMBw",
+          "QxDnEX2ZTak",
+          "4EqdFhmdrBc",
+          "JTqK000By5A",
+          "fXDEe1_QAR8"
+        ]
+      },
+      {
+        "id": "system-design",
+        "slug": "system-design",
+        "name": "System Design",
+        "blurb": "How real systems scale — caching, storage, delivery and reliability, from first principles.",
+        "videos": ["-wDPfySPMJ0"]
+      },
+      {
+        "id": "build-tools",
+        "slug": "build-tools",
+        "name": "Build Tools",
+        "blurb": "The tooling that ships your code.",
+        "videos": ["MD0ktIwhK4Y"]
+      },
+      {
+        "id": "git",
+        "slug": "git-and-github",
+        "name": "Git & GitHub",
+        "blurb": "Version control, the right way.",
+        "videos": ["Bn0QpSxWW2E", "ugXtnH0FKiE", "fFfWCpImsM0"]
+      },
+      {
+        "id": "stories",
+        "slug": "tech-stories",
+        "name": "Tech Stories",
+        "blurb": "The curious 'why' behind the tech we use.",
+        "videos": [
+          "wnfD2y0c3DE",
+          "RneCFiuqglA",
+          "YPy3oKnOJ4g",
+          "j3I5HPnFrXc",
+          "R_vmadF-U4k",
+          "gsRDcDF-lBU"
+        ]
+      }
+    ]
+  },
+  "finance": {
+    "title": "Finance",
+    "tagline": "Markets, money and the small habits that compound over time.",
+    "categories": [
+      {
+        "id": "markets",
+        "slug": "markets-and-investing",
+        "name": "Markets & Investing",
+        "blurb": "Indices, returns and how markets work.",
+        "videos": ["Clv4w1Q1_V4", "ucRtej2tjPI"]
+      },
+      {
+        "id": "personal",
+        "slug": "personal-finance",
+        "name": "Personal Finance",
+        "blurb": "Simple money habits that compound.",
+        "videos": ["e2ALW3GsyvE"]
+      }
+    ]
+  }
+}
