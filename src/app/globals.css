@@ -3,13 +3,40 @@
 @tailwind utilities;
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --accent: #a78bfa;
-  --accent-secondary: #818cf8;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glow-color: rgba(167, 139, 250, 0.15);
+  /* Light iOS 26 "Liquid Glass" palette */
+  --background: #ffffff;
+  --foreground: #1d1d1f;
+  --muted: #6b7280;
+  --accent: #e11d48;
+  --accent-secondary: #9f1239;
+
+  /* Liquid glass tiers (clear + glossy; depth from rim light + shadow) */
+  --glass-thin: rgba(255, 255, 255, 0.28);
+  --glass-regular: rgba(255, 255, 255, 0.42);
+  --glass-thick: rgba(255, 255, 255, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-border-strong: rgba(255, 255, 255, 1);
+
+  /* Specular highlight + very soft color hint */
+  --specular: rgba(255, 255, 255, 1);
+  --bloom-violet: rgba(251, 113, 133, 0.20);
+  --bloom-indigo: rgba(244, 63, 94, 0.16);
+  --glow-color: rgba(225, 29, 72, 0.12);
+
+  /* Radii + shadows (glossy, floating lozenge depth) */
+  --radius-glass: 1.75rem;
+  --shadow-glass: 0 14px 44px rgba(17, 24, 60, 0.16),
+    0 4px 12px rgba(17, 24, 60, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -10px 26px rgba(255, 255, 255, 0.35);
+  --shadow-glass-hover: 0 24px 60px rgba(17, 24, 60, 0.22),
+    0 0 44px rgba(225, 29, 72, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -10px 26px rgba(255, 255, 255, 0.45);
+
+  /* Pointer position (updated by cursor / tilt layers) */
+  --pointer-x: 50%;
+  --pointer-y: 50%;
 }
 
 html {
@@ -22,57 +49,400 @@ body {
   min-height: 100vh;
 }
 
-/* Gradient mesh background */
+::selection {
+  background: rgba(225, 29, 72, 0.18);
+  color: #1d1d1f;
+}
+
+/* Near-white base with only a whisper of cool tint in the corners */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background:
-    radial-gradient(ellipse 80% 50% at 80% 20%, rgba(167, 139, 250, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(129, 140, 248, 0.05), transparent),
-    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(99, 102, 241, 0.03), transparent);
+    radial-gradient(ellipse 60% 40% at 85% 8%, rgba(251, 113, 133, 0.08), transparent),
+    radial-gradient(ellipse 55% 40% at 10% 92%, rgba(244, 63, 94, 0.06), transparent),
+    linear-gradient(180deg, #ffffff, #f7f8fb);
   pointer-events: none;
 }
 
-/* Glass card utility */
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* ===== Liquid glass primitives ===== */
+
+/* Core liquid-glass surface: clear, glossy, refractive */
+.liquid-glass {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.22)),
+    var(--glass-regular);
+  backdrop-filter: blur(14px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.08);
   border: 1px solid var(--glass-border);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-glass);
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+  isolation: isolate;
+}
+
+/* Bright glossy specular top edge + corner sheen */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.05) 42%,
+    rgba(255, 255, 255, 0.35) 78%,
+    rgba(255, 255, 255, 0.9)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Pointer-reactive inner bloom */
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--pointer-x) var(--pointer-y),
+    rgba(225, 29, 72, 0.14),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquid-glass:hover {
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+.liquid-glass:hover::after {
+  opacity: 1;
+}
+
+/* Soft colored light bloom behind an element */
+.glass-bloom {
+  position: relative;
+}
+
+.glass-bloom::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background: radial-gradient(circle at 30% 30%, var(--bloom-violet), transparent 60%),
+    radial-gradient(circle at 70% 70%, var(--bloom-indigo), transparent 60%);
+  filter: blur(44px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Backwards-compatible glass card, now built on liquid glass */
+.glass-card {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.28)),
+    var(--glass-regular);
+  backdrop-filter: blur(14px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.06);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-glass);
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.4) 22%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.3) 80%,
+    rgba(255, 255, 255, 0.85)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.85;
+  pointer-events: none;
 }
 
 .glass-card:hover {
-  border-color: rgba(167, 139, 250, 0.2);
-  box-shadow: 0 0 30px rgba(167, 139, 250, 0.08);
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--shadow-glass-hover);
   transform: translateY(-4px);
+}
+
+/* Small interactive glass chip (glossy pill) */
+.glass-chip {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35)),
+    var(--glass-thick);
+  backdrop-filter: blur(12px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(12px) saturate(180%) brightness(1.08);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(17, 24, 60, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-chip:hover {
+  border-color: var(--glass-border-strong);
+  box-shadow: 0 8px 22px rgba(225, 29, 72, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Nav item: reveals a translucent liquid-glass pill on hover */
+.nav-glass {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: background 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease, color 0.2s ease;
+}
+
+.nav-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.05) 42%,
+    rgba(255, 255, 255, 0.35) 78%,
+    rgba(255, 255, 255, 0.9)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.nav-glass:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.18)),
+    var(--glass-thin);
+  backdrop-filter: blur(12px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(12px) saturate(180%) brightness(1.06);
+  box-shadow: 0 4px 14px rgba(17, 24, 60, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.4);
+}
+
+.nav-glass:hover::before {
+  opacity: 0.9;
 }
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  background: linear-gradient(135deg, #e11d48, #be123c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* ===== Skills: logos rise out of an open box and settle on the ground ===== */
+.skill-stage {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  aspect-ratio: 1536 / 1024;
+}
+
+/* The box PNG sits between the emerging point and the resting logos */
+.skill-box-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 15;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 30px rgba(17, 24, 60, 0.14));
+}
+
+/* Warm light glowing out of the box opening */
+.skill-box__aura {
+  position: absolute;
+  left: 50%;
+  top: 16%;
+  width: 66%;
+  height: 40%;
+  transform: translateX(-50%);
+  z-index: 14;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 80% at 50% 90%,
+    rgba(255, 240, 224, 0.98),
+    rgba(255, 196, 128, 0.6) 30%,
+    rgba(244, 63, 94, 0.24) 52%,
+    transparent 72%
+  );
+  filter: blur(8px);
+  animation: auraPulse 3.6s ease-in-out infinite;
+}
+
+/* Light rays fanning from the opening */
+.skill-box__rays {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 74%;
+  height: 44%;
+  transform: translateX(-50%);
+  z-index: 13;
+  pointer-events: none;
+  background: conic-gradient(
+    from 180deg at 50% 100%,
+    transparent 0deg,
+    rgba(255, 206, 150, 0.32) 12deg,
+    transparent 22deg,
+    rgba(255, 206, 150, 0.24) 40deg,
+    transparent 52deg,
+    rgba(255, 206, 150, 0.32) 72deg,
+    transparent 84deg,
+    rgba(255, 206, 150, 0.22) 104deg,
+    transparent 118deg,
+    rgba(255, 206, 150, 0.3) 140deg,
+    transparent 156deg,
+    rgba(255, 206, 150, 0.24) 172deg,
+    transparent 180deg
+  );
+  -webkit-mask: radial-gradient(ellipse 70% 100% at 50% 100%, #000 15%, transparent 72%);
+  mask: radial-gradient(ellipse 70% 100% at 50% 100%, #000 15%, transparent 72%);
+  opacity: 0.7;
+  animation: raysShimmer 4.5s ease-in-out infinite;
+}
+
+/* A logo — position driven by framer-motion, sits in front of the box */
+.skill-logo {
+  position: absolute;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: left, bottom, opacity;
+}
+
+.skill-logo__badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.42)),
+    var(--glass-thick);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 16px rgba(17, 24, 60, 0.14),
+    0 0 18px rgba(225, 29, 72, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* Skill name shown as a tooltip above the badge on hover */
+.skill-logo__name {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 9px;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #3f3f46;
+  white-space: nowrap;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 14px rgba(17, 24, 60, 0.14);
+}
+
+@keyframes auraPulse {
+  0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
+}
+
+@keyframes raysShimmer {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+
+/* Focus-visible ring for keyboard users */
+:focus-visible {
+  outline: 2px solid rgba(225, 29, 72, 0.7);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(167, 139, 250, 0.3);
-  border-radius: 3px;
+  background: rgba(225, 29, 72, 0.28);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(167, 139, 250, 0.5);
+  background: rgba(225, 29, 72, 0.45);
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .liquid-glass,
+  .glass-card {
+    transform: none !important;
+  }
 }

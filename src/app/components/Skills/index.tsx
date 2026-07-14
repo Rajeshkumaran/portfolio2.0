@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import AnimatedSection from '../AnimatedSection';
+import { usePrefersReducedMotion } from '../../lib/hooks';
+import skillBox from '../../assets/skillBox.png';
 import ReactLogo from '../../assets/react.png';
 import Redux from '../../assets/redux.png';
 import NodeJs from '../../assets/nodejs.png';
@@ -13,56 +15,123 @@ import RoR from '../../assets/RoR.png';
 import TailwindCss from '../../assets/tailwindcss.webp';
 import openAI from '../../assets/openAI.webp';
 import vite from '../../assets/vite.png';
+import Github from '../../assets/github.png';
+import CSharp from '../../assets/csharp.png';
+import ReactQuery from '../../assets/reactQuery.png';
+import AzureDevops from '../../assets/azureDevops.png';
 
 const skills = [
-  { name: 'React', rating: 5, logo: ReactLogo },
-  { name: 'Redux', rating: 5, logo: Redux },
-  { name: 'Node.js', rating: 4, logo: NodeJs },
-  { name: 'Javascript', rating: 5, logo: Js },
-  { name: 'Typescript', rating: 4, logo: Ts },
-  { name: 'GraphQL', rating: 4, logo: Graphql },
-  { name: 'Tailwind CSS', rating: 4, logo: TailwindCss },
-  { name: 'Ruby on Rails', rating: 3, logo: RoR },
-  { name: 'Vite', rating: 4, logo: vite },
-  { name: 'Generative AI', rating: 4, logo: openAI },
+  { name: 'React', logo: ReactLogo },
+  { name: 'Redux', logo: Redux },
+  { name: 'Node.js', logo: NodeJs },
+  { name: 'Javascript', logo: Js },
+  { name: 'Typescript', logo: Ts },
+  { name: 'GraphQL', logo: Graphql },
+  { name: 'Tailwind', logo: TailwindCss },
+  { name: 'Ruby on Rails', logo: RoR },
+  { name: 'Vite', logo: vite },
+  { name: 'Generative AI', logo: openAI },
+  { name: 'GitHub', logo: Github },
+  { name: 'C#', logo: CSharp },
+  { name: 'React Query', logo: ReactQuery },
+  { name: 'Azure DevOps', logo: AzureDevops },
 ];
 
-const SkillBar = ({ skill, index }: { skill: typeof skills[0]; index: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const percentage = (skill.rating / 5) * 100;
-
-  return (
-    <div ref={ref} className="flex items-center gap-3">
-      <Image src={skill.logo} alt={skill.name} className="w-[28px] h-[28px] flex-shrink-0" />
-      <div className="flex-1 min-w-0">
-        <div className="flex justify-between items-center mb-1.5">
-          <span className="text-sm text-zinc-200 font-[family-name:var(--font-inter)]">{skill.name}</span>
-          <span className="text-xs text-zinc-500 font-[family-name:var(--font-inter)]">{percentage}%</span>
-        </div>
-        <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-          <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-violet-500 to-indigo-400"
-            initial={{ width: 0 }}
-            animate={isInView ? { width: `${percentage}%` } : { width: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.08, ease: 'easeOut' }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
+// Scattered resting spots on both sides of the box (x%, bottom%). No order.
+const restPositions = [
+  { x: 9, bottom: 14 },
+  { x: 91, bottom: 18 },
+  { x: 21, bottom: 24 },
+  { x: 79, bottom: 30 },
+  { x: 5, bottom: 38 },
+  { x: 94, bottom: 44 },
+  { x: 17, bottom: 48 },
+  { x: 82, bottom: 54 },
+  { x: 11, bottom: 62 },
+  { x: 90, bottom: 66 },
+  { x: 22, bottom: 72 },
+  { x: 77, bottom: 74 },
+  { x: 7, bottom: 80 },
+  { x: 85, bottom: 12 },
+];
 
 const Skills = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const reduced = usePrefersReducedMotion();
+
+  if (reduced) {
+    return (
+      <AnimatedSection>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-6 font-[family-name:var(--font-inter)]">
+          Skills
+        </h2>
+        <div className="flex flex-wrap gap-3">
+          {skills.map((skill) => (
+            <div key={skill.name} className="glass-chip flex items-center gap-2 px-3 py-2">
+              <Image src={skill.logo} alt={skill.name} className="w-5 h-5 object-contain" />
+              <span className="text-sm text-zinc-700 font-[family-name:var(--font-inter)]">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </AnimatedSection>
+    );
+  }
+
   return (
     <AnimatedSection>
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-2 text-center font-[family-name:var(--font-inter)]">
         Skills
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-4 sm:gap-y-5">
-        {skills.map((skill, index) => (
-          <SkillBar key={skill.name} skill={skill} index={index} />
-        ))}
+      <div ref={ref} className="skill-stage">
+        <span aria-hidden className="skill-box__rays" />
+        <span aria-hidden className="skill-box__aura" />
+
+        <Image
+          src={skillBox}
+          alt="Open box of skills"
+          className="skill-box-img"
+          sizes="440px"
+          priority
+        />
+
+        {skills.map((skill, i) => {
+          const delay = 0.4 + i * 0.12;
+          const { x, bottom } = restPositions[i];
+          return (
+            <motion.div
+              key={skill.name}
+              className="skill-logo group"
+              style={{ transform: 'translateX(-50%)' }}
+              initial={{ left: '50%', bottom: '34%', opacity: 0 }}
+              animate={
+                isInView
+                  ? {
+                      left: ['50%', '50%', `${x}%`],
+                      bottom: ['34%', '78%', `${bottom}%`],
+                      opacity: [0, 1, 1],
+                    }
+                  : {}
+              }
+              transition={{ duration: 1.5, delay, times: [0, 0.4, 1], ease: 'easeInOut' }}
+            >
+              <motion.span
+                className="skill-logo__badge"
+                initial={{ scale: 0.4 }}
+                animate={isInView ? { scale: [0.4, 1, 1] } : {}}
+                transition={{ duration: 1.5, delay, times: [0, 0.4, 1], ease: 'easeInOut' }}
+                whileHover={{ y: -5 }}
+              >
+                <Image src={skill.logo} alt={skill.name} className="w-6 h-6 object-contain" />
+              </motion.span>
+              <span className="skill-logo__name opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                {skill.name}
+              </span>
+            </motion.div>
+          );
+        })}
       </div>
     </AnimatedSection>
   );

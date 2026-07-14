@@ -69,14 +69,14 @@ const TimelineItem = ({
       {/* Timeline line + dot */}
       <div className="flex flex-col items-center flex-shrink-0">
         <motion.div
-          className="w-3 h-3 rounded-full bg-gradient-to-br from-violet-400 to-indigo-400 ring-4 ring-violet-400/10 z-10"
+          className="w-3 h-3 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 ring-4 ring-rose-400/10 z-10"
           initial={{ scale: 0 }}
           animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.3, delay: index * 0.1 }}
         />
         {!isLast && (
           <motion.div
-            className="w-[1px] flex-1 bg-gradient-to-b from-violet-400/30 to-transparent"
+            className="w-[1px] flex-1 bg-gradient-to-b from-rose-400/30 to-transparent"
             initial={{ scaleY: 0, originY: 0 }}
             animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
@@ -93,10 +93,10 @@ const TimelineItem = ({
       >
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4 mb-3">
           <div>
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-100 font-[family-name:var(--font-inter)]">
+            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 font-[family-name:var(--font-inter)]">
               {experience.role}
             </h3>
-            <p className="text-sm text-violet-400 font-medium font-[family-name:var(--font-inter)]">
+            <p className="text-sm text-rose-600 font-medium font-[family-name:var(--font-inter)]">
               {experience.company}
               {experience.subtitle && (
                 <span className="text-zinc-500 font-normal">
@@ -110,7 +110,7 @@ const TimelineItem = ({
             <span className="text-xs text-zinc-500 font-[family-name:var(--font-inter)] whitespace-nowrap">
               {experience.period}
             </span>
-            <span className="text-xs text-zinc-600 font-[family-name:var(--font-inter)]">
+            <span className="text-xs text-zinc-400 font-[family-name:var(--font-inter)]">
               {experience.location}
             </span>
           </div>
@@ -119,9 +119,9 @@ const TimelineItem = ({
           {experience.highlights.map((highlight, i) => (
             <li
               key={i}
-              className="text-xs sm:text-sm text-zinc-400 leading-relaxed flex gap-2"
+              className="text-xs sm:text-sm text-zinc-600 leading-relaxed flex gap-2"
             >
-              <span className="text-violet-400/60 mt-1 flex-shrink-0">
+              <span className="text-rose-500/70 mt-1 flex-shrink-0">
                 &bull;
               </span>
               <span>{highlight}</span>
@@ -136,7 +136,7 @@ const TimelineItem = ({
 const Experience = () => {
   return (
     <AnimatedSection>
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
         Experience
       </h2>
       <div className="ml-1">

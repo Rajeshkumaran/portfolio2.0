@@ -18,7 +18,7 @@ const patents = [
 const Patents = () => {
   return (
     <AnimatedSection>
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
         Patents
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -35,9 +35,9 @@ const Patents = () => {
             }}
           >
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-violet-500/20 to-indigo-500/20 flex items-center justify-center">
+              <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-gradient-to-br from-rose-500/20 to-rose-700/20 flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-violet-400"
+                  className="w-6 h-6 text-rose-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -45,16 +45,16 @@ const Patents = () => {
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-violet-400 font-mono mb-1 font-[family-name:var(--font-inter)]">
+                <p className="text-xs text-rose-600 font-mono mb-1 font-[family-name:var(--font-inter)]">
                   {patent.patentNumber}
                 </p>
-                <h3 className="text-sm font-semibold text-zinc-100 mb-2">
+                <h3 className="text-sm font-semibold text-zinc-900 mb-2">
                   {patent.title}
                 </h3>
                 <p className="text-xs text-zinc-500 leading-relaxed">
                   {patent.description}
                 </p>
-                <div className="flex items-center gap-1 mt-3 text-violet-400">
+                <div className="flex items-center gap-1 mt-3 text-rose-600">
                   <span className="text-xs font-medium font-[family-name:var(--font-inter)]">View Patent</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

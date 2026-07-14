@@ -23,7 +23,7 @@ const projects = [
 const Projects = () => {
   return (
     <AnimatedSection>
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-100 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
         Open source projects
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -47,11 +47,11 @@ const Projects = () => {
                 />
               </div>
               <div className="flex items-center gap-3 p-4 mt-auto">
-                <p className="text-zinc-200 text-sm flex-1 font-[family-name:var(--font-inter)]">
+                <p className="text-zinc-800 text-sm flex-1 font-[family-name:var(--font-inter)]">
                   {project.name}
                 </p>
                 <svg
-                  className="w-4 h-4 text-violet-400 flex-shrink-0"
+                  className="w-4 h-4 text-rose-600 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

@@ -8,10 +8,11 @@ import Projects from './components/Projects';
 import Hobbies from './components/Hobbies';
 import CursorSpotlight from './components/CursorSpotlight';
 import BackToTop from './components/BackToTop';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-50">
+    <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
       <CursorSpotlight />
       <BackToTop />
       <Navbar />
@@ -38,6 +39,7 @@ export default function Home() {
           <Hobbies />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

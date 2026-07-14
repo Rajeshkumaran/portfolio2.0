@@ -1,6 +1,14 @@
 'use client';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+// import Link from 'next/link'; // TODO: Re-enable with Videos link
+import { useRef } from 'react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+} from 'framer-motion';
 import {
   RESUME_LINK,
   SOCIAL_LINKS,
@@ -8,19 +16,58 @@ import {
 } from '@/app/lib/constants';
 import Photo from '../../assets/photo2.png';
 import { trackSocialClick } from '../../lib/analytics';
+import { usePrefersReducedMotion, useIsDesktop } from '@/app/lib/hooks';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
+    filter: 'blur(0px)',
     transition: { duration: 0.5, delay: i * 0.15, ease: 'easeOut' as const },
   }),
 };
 
 const MainSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
+  const isDesktop = useIsDesktop();
+  const interactive = isDesktop && !prefersReduced;
+
+  // Scroll-driven parallax for the photo
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const photoScrollY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+
+  // Pointer-driven tilt/parallax for the photo
+  const pointerX = useMotionValue(0.5);
+  const pointerY = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(pointerY, [0, 1], [8, -8]), {
+    stiffness: 150,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(pointerX, [0, 1], [-8, 8]), {
+    stiffness: 150,
+    damping: 18,
+  });
+
+  const handlePointerMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!interactive) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width);
+    pointerY.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handlePointerLeave = () => {
+    pointerX.set(0.5);
+    pointerY.set(0.5);
+  };
+
   return (
-    <div className="min-h-screen flex items-center pt-16">
+    <div ref={sectionRef} className="min-h-screen flex items-center pt-16">
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 w-full py-12">
         {/* Photo - shows on top on mobile */}
         <motion.div
@@ -28,21 +75,35 @@ const MainSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          style={interactive ? { y: photoScrollY } : undefined}
         >
-          <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-br from-violet-400/20 to-indigo-400/20 rounded-full lg:rounded-2xl blur-2xl" />
+          <motion.div
+            className="relative"
+            onMouseMove={handlePointerMove}
+            onMouseLeave={handlePointerLeave}
+            style={
+              interactive
+                ? {
+                    rotateX,
+                    rotateY,
+                    transformPerspective: 900,
+                    transformStyle: 'preserve-3d',
+                  }
+                : undefined
+            }
+          >
             <Image
               src={Photo}
               alt="Rajesh K"
-              className="relative w-[140px] h-[140px] lg:w-[340px] lg:h-[340px] rounded-full lg:rounded-2xl object-cover ring-1 ring-white/10"
+              className="relative w-[140px] h-[140px] lg:w-[340px] lg:h-[340px] rounded-full object-cover ring-1 ring-white/60 shadow-[0_20px_50px_rgba(31,38,80,0.18)]"
             />
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Content */}
         <div className="lg:order-1 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-5">
           <motion.p
-            className="text-zinc-400 text-sm font-[family-name:var(--font-inter)]"
+            className="text-zinc-600 text-sm font-[family-name:var(--font-inter)]"
             variants={fadeUp}
             initial="hidden"
             animate="visible"
@@ -68,14 +129,14 @@ const MainSection = () => {
             animate="visible"
             custom={2}
           >
-            <span className="inline-block w-8 h-[2px] bg-violet-400" />
-            <span className="text-base sm:text-lg text-zinc-300 font-[family-name:var(--font-inter)]">
-              Engineer
+            <span className="inline-block w-8 h-[2px] bg-rose-500" />
+            <span className="text-base sm:text-lg text-zinc-700 font-[family-name:var(--font-inter)]">
+              Software Engineer
             </span>
           </motion.div>
 
           <motion.p
-            className="text-zinc-400 text-sm leading-relaxed max-w-md"
+            className="text-zinc-600 text-sm leading-relaxed max-w-md"
             variants={fadeUp}
             initial="hidden"
             animate="visible"
@@ -95,18 +156,31 @@ const MainSection = () => {
               href={RESUME_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-violet-500 to-indigo-500 hover:from-violet-400 hover:to-indigo-400 text-white text-sm px-6 py-2.5 rounded-full transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.3)] font-medium font-[family-name:var(--font-inter)]"
+              className="bg-gradient-to-r from-rose-500 to-rose-700 hover:from-rose-400 hover:to-rose-600 text-white text-sm px-6 py-2.5 rounded-full transition-all hover:shadow-[0_0_20px_rgba(225,29,72,0.35)] font-medium font-[family-name:var(--font-inter)]"
               onClick={() => trackSocialClick('resume')}
             >
               View Resume
             </a>
 
+            {/* TODO: Re-enable when videos page goes live
+            <Link
+              href="/videos"
+              className="glass-chip text-rose-700 hover:text-rose-800 text-sm px-5 py-2.5 flex items-center gap-2 font-medium font-[family-name:var(--font-inter)]"
+              onClick={() => trackSocialClick('videos')}
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              Watch my videos
+            </Link>
+            */}
+
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-1 text-zinc-400">
-                <span className="text-3xl font-bold text-zinc-100 font-[family-name:var(--font-inter)]">
-                  7.5
+              <div className="flex items-center gap-1 text-zinc-600">
+                <span className="text-3xl font-bold text-zinc-900 font-[family-name:var(--font-inter)]">
+                  8
                 </span>
-                <span className="text-lg text-violet-400 font-bold">+</span>
+                <span className="text-lg text-rose-500 font-bold">+</span>
                 <span className="text-xs ml-1 max-w-[60px] leading-tight">
                   Years of experience
                 </span>
@@ -164,7 +238,7 @@ const MainSection = () => {
             ].map(({ link, platform, icon }) => (
               <button
                 key={platform}
-                className="text-zinc-500 hover:text-violet-400 transition-colors cursor-pointer"
+                className="text-zinc-500 hover:text-rose-600 transition-colors cursor-pointer"
                 onClick={() => {
                   trackSocialClick(platform);
                   window.open(link);
@@ -184,12 +258,13 @@ const MainSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
+        style={interactive ? { opacity: indicatorOpacity } : undefined}
       >
         <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-[family-name:var(--font-inter)]">
           Scroll
         </span>
         <motion.div
-          className="w-[1px] h-6 bg-gradient-to-b from-violet-400/60 to-transparent"
+          className="w-[1px] h-6 bg-gradient-to-b from-rose-400/60 to-transparent"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />

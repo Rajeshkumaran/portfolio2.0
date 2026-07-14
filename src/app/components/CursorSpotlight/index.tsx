@@ -39,7 +39,7 @@ const CursorSpotlight = () => {
           left: position.x,
           top: position.y,
           background:
-            'radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(225, 29, 72, 0.08) 0%, transparent 70%)',
         }}
       />
     </div>

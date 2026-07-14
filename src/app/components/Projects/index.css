@@ -1,7 +1,7 @@
 /* Project card image hover */
 .project-card .project-image-wrapper {
   overflow: hidden;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: calc(var(--radius-glass) - 1px) calc(var(--radius-glass) - 1px) 0 0;
 }
 
 .project-card .project-image-wrapper img {
