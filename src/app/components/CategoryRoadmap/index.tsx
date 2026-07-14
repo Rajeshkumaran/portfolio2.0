@@ -9,7 +9,8 @@ import {
   youtubeThumbnail,
   type TopicKey,
 } from '@/app/lib/learning';
-import { trackPageView } from '@/app/lib/analytics';
+import { trackPageView, trackSectionClick } from '@/app/lib/analytics';
+import { ANALYTICS_SECTIONS } from '@/app/lib/constants';
 
 const CategoryRoadmap = ({
   topicKey,
@@ -126,6 +127,9 @@ const CategoryRoadmap = ({
                 {active.videos[0] && (
                   <Link
                     href={`/learning/${topicKey}/${active.slug}/${active.videos[0].id}`}
+                    onClick={() =>
+                      trackSectionClick(ANALYTICS_SECTIONS.LEARNING, `start_${active.slug}`)
+                    }
                     className="group shrink-0 inline-flex items-center gap-2.5 rounded-full bg-gradient-to-br from-rose-600 to-rose-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(190,24,60,0.3)] hover:shadow-[0_10px_30px_rgba(190,24,60,0.4)] transition-all font-[family-name:var(--font-inter)]"
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/25 group-hover:scale-110 transition-transform">
@@ -160,6 +164,9 @@ const CategoryRoadmap = ({
 
                     <Link
                       href={`/learning/${topicKey}/${active.slug}/${video.id}`}
+                      onClick={() =>
+                        trackSectionClick(ANALYTICS_SECTIONS.LEARNING, `roadmap_${video.id}`)
+                      }
                       className="group glass-card flex items-center gap-4 p-3 pr-4 cursor-pointer"
                     >
                       <div className="relative w-28 sm:w-32 aspect-video shrink-0 rounded-xl overflow-hidden bg-zinc-900/5">

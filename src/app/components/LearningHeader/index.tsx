@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import AazhAayvuLogo from '../../assets/AazhAayvuLogo.jpeg';
 import { SOCIAL_LINKS } from '../../lib/constants';
+import { trackSocialClick } from '../../lib/analytics';
 
 const LearningHeader = ({
   backHref = '/',
@@ -47,6 +48,7 @@ const LearningHeader = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with me on Instagram"
+            onClick={() => trackSocialClick('instagram_chat')}
             className="group inline-flex items-center gap-1.5 rounded-full border border-rose-200/70 bg-white/60 px-3 py-1.5 text-xs sm:text-[13px] font-medium text-rose-700 hover:bg-rose-50 hover:border-rose-300 transition-colors font-[family-name:var(--font-inter)]"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
