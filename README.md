@@ -20,6 +20,46 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Learning hub content
+
+Videos live in two data files under `src/app/data/`:
+
+- **`videos.json`** — the flat catalog, keyed by the 11-character YouTube id. Holds each video's `title`, `format` (`short` | `long`), `description`, `publishedAt`, and optional links.
+- **`learning.json`** — topics (`tech`, `finance`) → categories → an ordered `videos` array of ids.
+
+A video only appears on the site (page, sitemap, and SEO metadata/JSON-LD) when it's in **both** files: the catalog entry supplies the metadata, and the id must be referenced in a category's `videos` array — that reference is what actually renders it (see `src/app/lib/learning.ts`).
+
+### Publishing a new video
+
+Use the helper script, which updates both files, validates the topic/category, prevents duplicates, and preserves formatting:
+
+```bash
+npm run video:add -- \
+  --id VIDEO_ID \
+  --title "Video title" \
+  --format short \            # or long
+  --topic tech \              # tech | finance
+  --category system-design \  # a category id or slug
+  --description "One or two sentences summarising the video." \
+  --published 2026-07-15      # optional, defaults to today
+```
+
+Then regenerate the static output:
+
+```bash
+npm run build
+```
+
+Extra flags: `--position N` places the video at a 1-based step in the roadmap (default: append); `--instagram`, `--youtube`, and `--github` add links. For an Instagram-only video, pass a non-YouTube id together with `--instagram <url>`.
+
+The `description` feeds both the page's `<meta description>` (clamped to 160 characters) and the JSON-LD `VideoObject.description` (full text) — write a unique, keyword-led summary so crawlers grasp the gist immediately.
+
+Preview a category's roadmap order at any time:
+
+```bash
+npm run learning:list -- <category id or slug>
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
