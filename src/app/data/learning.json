@@ -47,7 +47,8 @@
           "QxDnEX2ZTak",
           "4EqdFhmdrBc",
           "JTqK000By5A",
-          "fXDEe1_QAR8"
+          "fXDEe1_QAR8",
+          "X-o-rJ2wn0M"
         ]
       },
       {
@@ -55,7 +56,7 @@
         "slug": "system-design",
         "name": "System Design",
         "blurb": "How real systems scale — caching, storage, delivery and reliability, from first principles.",
-        "videos": ["-wDPfySPMJ0"]
+        "videos": ["-wDPfySPMJ0", "X-o-rJ2wn0M"]
       },
       {
         "id": "build-tools",

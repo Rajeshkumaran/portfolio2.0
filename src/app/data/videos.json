@@ -76,6 +76,13 @@
     "links": [],
     "publishedAt": "2026-07-08"
   },
+  "X-o-rJ2wn0M": {
+    "title": "How Google Authenticator works without internet — TOTP explained",
+    "format": "short",
+    "description": "How does Google Authenticator generate valid codes even without an internet connection? Learn how TOTP (Time-based One-Time Password) works: the shared secret exchanged at setup, why both your phone and the server use the current time, how the HMAC-based code is derived, and why each code expires after 30 seconds — a core two-factor authentication and security concept.",
+    "links": [],
+    "publishedAt": "2026-07-15"
+  },
   "ENFQjNEFT-A": {
     "title": "Why React.js is popular — declarative programming & virtual DOM",
     "format": "short",
