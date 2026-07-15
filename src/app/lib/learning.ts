@@ -20,6 +20,8 @@ export type CatalogVideo = {
   githubUrl?: string;
   description?: string;
   links?: VideoLink[];
+  /** ISO 8601 publish date (e.g. "2025-03-14"), used for VideoObject uploadDate. */
+  publishedAt?: string;
 };
 
 /** A catalog video plus its id (as resolved for a category). */
@@ -192,19 +194,41 @@ export const getCategoryBySlug = (
   slug: string
 ): CategoryGroup | undefined => getTopic(key).groups.find((g) => g.slug === slug);
 
-/** Resolve a single video within a topic/category slug. */
-export const getVideoLocation = (
+/**
+ * Resolve a video by id within a topic. Uses the video's PRIMARY category
+ * (the first category, in declared order, that contains it) for breadcrumb,
+ * "Step N of M", and roadmap prev/next. The video's own URL stays category-free.
+ */
+export const getVideoInTopic = (
   key: TopicKey,
-  slug: string,
   videoId: string
 ):
-  | { topicKey: TopicKey; category: CategoryGroup; video: Video; index: number }
+  | {
+      topicKey: TopicKey;
+      category: CategoryGroup;
+      video: Video;
+      index: number;
+      prev?: Video;
+      next?: Video;
+    }
   | undefined => {
-  const category = getCategoryBySlug(key, slug);
-  if (!category) return undefined;
-  const index = category.videos.findIndex((v) => v.id === videoId);
-  if (index === -1) return undefined;
-  return { topicKey: key, category, video: category.videos[index], index };
+  for (const category of getTopic(key).groups) {
+    const index = category.videos.findIndex((v) => v.id === videoId);
+    if (index !== -1) {
+      return {
+        topicKey: key,
+        category,
+        video: category.videos[index],
+        index,
+        prev: index > 0 ? category.videos[index - 1] : undefined,
+        next:
+          index < category.videos.length - 1
+            ? category.videos[index + 1]
+            : undefined,
+      };
+    }
+  }
+  return undefined;
 };
 
 /** Static params: every (topic, category) pair. */
@@ -213,13 +237,21 @@ export const getAllCategoryParams = () =>
     getTopic(topic).groups.map((g) => ({ topic, category: g.slug }))
   );
 
-/** Static params: every (topic, category, video) triple. */
-export const getAllVideoParams = () =>
-  (Object.keys(DATA) as TopicKey[]).flatMap((topic) =>
-    getTopic(topic).groups.flatMap((g) =>
-      g.videos.map((v) => ({ topic, category: g.slug, video: v.id }))
-    )
-  );
+/** Static params: one canonical (topic, id) page per video (deduped across categories). */
+export const getAllTopicVideoParams = () =>
+  (Object.keys(DATA) as TopicKey[]).flatMap((topic) => {
+    const seen = new Set<string>();
+    const params: { topic: TopicKey; id: string }[] = [];
+    for (const g of getTopic(topic).groups) {
+      for (const v of g.videos) {
+        if (!seen.has(v.id)) {
+          seen.add(v.id);
+          params.push({ topic, id: v.id });
+        }
+      }
+    }
+    return params;
+  });
 
 /** Static params: every topic. */
 export const getAllTopicParams = () =>

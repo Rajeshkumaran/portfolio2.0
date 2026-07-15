@@ -13,7 +13,7 @@ const TOPIC_META: Record<
   { href: string; accent: string; icon: React.ReactNode }
 > = {
   tech: {
-    href: '/learning/tech',
+    href: '/learning-hub/tech',
     accent: 'from-rose-500/15 to-rose-700/5',
     icon: (
       <svg
@@ -32,7 +32,7 @@ const TOPIC_META: Record<
     ),
   },
   finance: {
-    href: '/learning/finance',
+    href: '/learning-hub/finance',
     accent: 'from-rose-500/15 to-rose-700/5',
     icon: (
       <svg

@@ -163,7 +163,7 @@ const MainSection = () => {
             </a>
 
             <Link
-              href="/learning"
+              href="/learning-hub"
               className="glass-chip text-rose-700 hover:text-rose-800 text-sm px-5 py-2.5 flex items-center gap-2 font-medium font-[family-name:var(--font-inter)]"
               onClick={() => trackSocialClick('learning')}
             >

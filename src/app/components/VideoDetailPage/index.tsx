@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import LearningHeader from '../LearningHeader';
 import LearningFooter from '../LearningFooter';
 import {
-  getVideoLocation,
+  getVideoInTopic,
   getTopicMeta,
   youtubeEmbedUrl,
   youtubeWatchUrl,
@@ -47,16 +47,14 @@ const NavThumb = ({ youtubeId, title }: { youtubeId?: string; title: string }) =
 
 const VideoDetailPage = ({
   topicKey,
-  categorySlug,
   videoId,
 }: {
   topicKey: TopicKey;
-  categorySlug: string;
   videoId: string;
 }) => {
   const location = useMemo(
-    () => getVideoLocation(topicKey, categorySlug, videoId),
-    [topicKey, categorySlug, videoId]
+    () => getVideoInTopic(topicKey, videoId),
+    [topicKey, videoId]
   );
 
   useEffect(() => {
@@ -69,27 +67,62 @@ const VideoDetailPage = ({
     }
   }, [location, videoId]);
 
-  const backHref = `/learning/${topicKey}/${categorySlug}`;
-
   if (!location) {
     return (
       <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
-        <LearningHeader backHref={backHref} backLabel="Roadmap" />
+        <LearningHeader />
         <main className="max-w-3xl mx-auto px-6 pt-28 pb-20">
-          <div className="glass-card p-10 text-center">
-            <p className="text-zinc-700 font-medium mb-1">Video not found.</p>
-            <Link href={backHref} className="text-rose-700 text-sm font-medium">
-              Back to roadmap
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="glass-card p-10 sm:p-14 text-center"
+          >
+            <span className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-pink-100 ring-1 ring-rose-200/70">
+              <svg
+                className="h-8 w-8 text-rose-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.8}
+                  d="M15 10l-4 4m0-4l4 4m6-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-extrabold gradient-text font-[family-name:var(--font-inter)] mb-3">
+              Video not found
+            </h1>
+            <p className="text-zinc-600 text-sm sm:text-base leading-relaxed max-w-md mx-auto mb-8">
+              Indha video kaanom — it may have moved or is no longer available.
+              Namma learning hub-ku thirumbi poalaam.
+            </p>
+            <Link
+              href="/learning-hub"
+              onClick={() =>
+                trackSectionClick(ANALYTICS_SECTIONS.LEARNING, 'not_found_return_hub')
+              }
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(190,24,60,0.3)] hover:from-rose-600 hover:to-pink-600 transition-colors font-[family-name:var(--font-inter)]"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Return to learning hub
             </Link>
-          </div>
+          </motion.div>
         </main>
         <LearningFooter />
       </div>
     );
   }
 
-  const { video, category, index } = location;
+  const { video, category, index, prev, next } = location;
   const topicTitle = getTopicMeta(topicKey).title;
+  const backHref = `/learning-hub/${topicKey}/${category.slug}`;
   const isVertical = video.primaryPlatform === 'instagram';
 
   const embedUrl =
@@ -98,10 +131,6 @@ const VideoDetailPage = ({
       : video.primaryPlatform === 'instagram' && video.instagramShortcode
       ? instagramEmbedUrl(video.instagramShortcode)
       : undefined;
-
-  const prev = index > 0 ? category.videos[index - 1] : undefined;
-  const next =
-    index < category.videos.length - 1 ? category.videos[index + 1] : undefined;
 
   const relevantLinks = [
     ...(video.githubUrl
@@ -112,7 +141,7 @@ const VideoDetailPage = ({
 
   return (
     <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
-      <LearningHeader backHref={backHref} backLabel={category.name} />
+      <LearningHeader />
 
       <main className="max-w-4xl mx-auto px-6 lg:px-8 pt-28 pb-20">
         <motion.div
@@ -123,15 +152,15 @@ const VideoDetailPage = ({
           {/* Breadcrumbs + step indicator */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-1.5 text-xs sm:text-[13px] text-zinc-500 font-[family-name:var(--font-inter)]">
+              <ol className="inline-flex flex-wrap items-center gap-1.5 rounded-full border border-rose-200/70 bg-white/60 px-3.5 py-1.5 backdrop-blur-md shadow-[0_2px_12px_rgba(190,24,60,0.08)] text-xs sm:text-[13px] text-zinc-700 font-[family-name:var(--font-inter)]">
                 <li>
-                  <Link href="/learning" className="hover:text-rose-700 transition-colors">
+                  <Link href="/learning-hub" className="hover:text-rose-700 transition-colors">
                     Learning
                   </Link>
                 </li>
                 <li aria-hidden className="text-zinc-300">/</li>
                 <li>
-                  <Link href={`/learning/${topicKey}`} className="hover:text-rose-700 transition-colors">
+                  <Link href={`/learning-hub/${topicKey}`} className="hover:text-rose-700 transition-colors">
                     {topicTitle}
                   </Link>
                 </li>
@@ -142,7 +171,7 @@ const VideoDetailPage = ({
                   </Link>
                 </li>
                 <li aria-hidden className="text-zinc-300">/</li>
-                <li className="text-zinc-700 font-medium truncate max-w-[16rem]" aria-current="page">
+                <li className="text-rose-700 font-semibold truncate max-w-[16rem]" aria-current="page">
                   {video.title}
                 </li>
               </ol>
@@ -238,7 +267,7 @@ const VideoDetailPage = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/50">
             {prev ? (
               <Link
-                href={`/learning/${topicKey}/${categorySlug}/${prev.id}`}
+                href={`/learning-hub/${topicKey}/video/${prev.id}`}
                 className="group glass-card p-3 flex items-center gap-3"
               >
                 <NavThumb youtubeId={prev.youtubeId} title={prev.title} />
@@ -254,7 +283,7 @@ const VideoDetailPage = ({
             )}
             {next ? (
               <Link
-                href={`/learning/${topicKey}/${categorySlug}/${next.id}`}
+                href={`/learning-hub/${topicKey}/video/${next.id}`}
                 className="group glass-card p-3 flex items-center gap-3 sm:flex-row-reverse sm:text-right"
               >
                 <NavThumb youtubeId={next.youtubeId} title={next.title} />

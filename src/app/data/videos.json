@@ -2,247 +2,288 @@
   "2jT0PMDYVkQ": {
     "title": "Introduction to Data Structures",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What is a data structure? Understand terms like Queue, Stack, Graph, and Tree using a relatable BookMyShow ticket-booking example and the FIFO concept. See how real apps rely on them — Instagram and Google Maps use graphs, Ctrl+Z uses a stack, Google Search uses a tree — the backbone of modern software.",
+    "links": [],
+    "publishedAt": "2026-06-08"
   },
   "7mF3fyCmuB4": {
     "title": "What is a Singly Linked List?",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What is a Linked List? Understand this fundamental data structure through a simple train analogy: how it differs from arrays, the contiguous memory concept, how nodes connect using pointers or references, and why linked lists are powerful for dynamic data — a beginner-friendly DSA intro.",
+    "links": [],
+    "publishedAt": "2026-06-13"
   },
   "0aXttHlP_xU": {
     "title": "Learn Singly Linked List — JS implementation",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Implement a Singly Linked List from scratch in JavaScript. Understand the node structure and head pointer, then code insertAtBeginning, insertAtPosition, deleteFromBeginning, and traversal while mastering the pointer manipulation behind how nodes connect — ideal for DSA and interview prep.",
+    "links": [],
+    "publishedAt": "2026-06-13"
   },
   "Oa1GcyPUtzo": {
     "title": "Detect cycle in linked list — Hare & tortoise algorithm",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "How do you detect a loop inside a linked list? Learn Floyd's Cycle Detection Algorithm (the Hare & Tortoise technique) with a simple analogy: what a cycle is, how the slow and fast pointers work, and why they eventually meet — a classic DSA coding interview question.",
+    "links": [],
+    "publishedAt": "2026-06-15"
   },
   "lMIi1KhDexE": {
     "title": "What is a Stack?",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What is a Stack? Understand this fundamental linear data structure and the LIFO (Last In First Out) principle through everyday examples like the browser back button, Ctrl+Z undo, and the JavaScript call stack — plus push, pop, and top operations. Essential DSA for coding interviews.",
+    "links": [],
+    "publishedAt": "2026-06-26"
   },
   "lwDruQLFVmk": {
     "title": "Stack data structure — JS implementation",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Implement the Stack data structure from scratch in JavaScript. Build a fixed-capacity Stack class with a top pointer, code the push and pop operations, handle stack overflow and underflow, and analyze the time and space complexity — a core DSA foundation for coding interviews.",
+    "links": [],
+    "publishedAt": "2026-06-26"
   },
   "mry08d4q52Y": {
     "title": "Queue — JS implementation",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Build a Queue data structure using a linked list in JavaScript. Understand the FIFO (First In First Out) principle, implement enqueue and dequeue with front and rear pointers, analyze the time complexity, and see why queues matter in real-world systems — beginner-friendly DSA.",
+    "links": [],
+    "publishedAt": "2026-06-09"
   },
   "BZGVYEOgxvQ": {
     "title": "Recursion in 2 minutes",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Recursion explained in the simplest way. Instead of memorizing it, understand what actually happens on the function call stack, visualized step by step with power(a, n) — covering the base condition and recursive calls, and the core idea of solving a smaller version of the same problem.",
+    "links": [],
+    "publishedAt": "2026-06-10"
   },
   "Z6TCcmnMeSw": {
     "title": "How algorithms scale as data grows — Time complexity",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Time complexity isn't about how many seconds a program takes — it's about how an algorithm scales as the input grows. Understand Big O, Omega, and Theta notation, see O(1), O(n), and O(2ⁿ) explained simply, and grasp why some algorithms become extremely slow. A core DSA and interview fundamental.",
+    "links": [],
+    "publishedAt": "2026-06-06"
   },
   "zpK3YvX6xrs": {
     "title": "LRU cache explained in 60s",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "LRU (Least Recently Used) cache explained in 60 seconds. See how the cache decides which item gets evicted when it's full through a simple visual example — why the least recently used item goes first — a common system design and coding interview concept.",
+    "links": [],
+    "publishedAt": "2026-07-08"
   },
   "-wDPfySPMJ0": {
     "title": "System Design: LRU cache implementation using JS",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Learn how an LRU (Least Recently Used) cache works and why cache eviction matters when memory fills up, then build one from scratch in JavaScript using a HashMap and a doubly linked list to achieve O(1) get and put operations. A must-know concept for system design and coding interviews.",
+    "links": [],
+    "publishedAt": "2026-07-08"
   },
   "ENFQjNEFT-A": {
     "title": "Why React.js is popular — declarative programming & virtual DOM",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "The real reason developers love React isn't just the Virtual DOM. Understand what the DOM is, why React introduced the Virtual DOM, how diffing and reconciliation work, and how declarative programming lets you update state while React handles the UI — key concepts for frontend interviews.",
+    "links": [],
+    "publishedAt": "2026-07-12"
   },
   "YTJgKGQcp0g": {
     "title": "Is React a library or a framework? — library vs framework",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Library vs framework — what's the real difference, and is React a library or a framework? Understand it simply: how libraries give you flexibility while frameworks control your app's structure (inversion of control). A must-know concept for frontend, backend, and software engineering interviews.",
+    "links": [],
+    "publishedAt": "2026-06-22"
   },
   "cXdeaL_rS6s": {
     "title": "Every developer should know this script tag trick — async vs defer",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Using the script tag the wrong way can slow down your whole website. Learn why a normal script tag blocks HTML parsing, what async and defer actually do, how they differ, and which one to use in real frontend projects — essential knowledge for web performance and interviews.",
+    "links": [],
+    "publishedAt": "2026-07-13"
   },
   "-t3mdAgKjkQ": {
     "title": "Polyfills in JavaScript",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "How do old browsers run modern JavaScript features? That's where polyfills come in. Understand what ECMAScript is, why browser compatibility matters, and how polyfills fill the gaps so newer JS works everywhere — an essential frontend and interview concept.",
+    "links": [],
+    "publishedAt": "2026-06-15"
   },
   "8Mrq-MEqlIQ": {
     "title": "What is a database actually? — Cricbuzz example",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "What is a database, actually? Using everyday apps like Cricbuzz, Instagram, and YouTube as examples, understand from first principles where all that data is stored and how millions of users can use the same app at the same time — databases explained simply for beginners.",
+    "links": [],
+    "publishedAt": "2026-06-01"
   },
   "8RSlNSxPYJI": {
     "title": "How database indexing actually works",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "How does a database find one record among millions in milliseconds? Understand database indexing from the ground up: how data is stored in blocks and pages on disk, why a full table scan makes SQL queries slow, and how an index lets the database jump straight to the row it needs.",
+    "links": [],
+    "publishedAt": "2026-06-03"
   },
   "60Qx70429Jk": {
     "title": "What is Redis — in-memory database introduction",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Why do apps like Instagram, Amazon, and WhatsApp feel so fast? One answer is Redis. Understand what Redis is and why it's so fast, whether keeping data in RAM is a problem, why traditional databases don't just use RAM, and real-world Redis use cases — a beginner intro for backend and system design.",
+    "links": [],
+    "publishedAt": "2026-07-05"
   },
   "l2CUUfWVc84": {
     "title": "Authentication vs Authorization",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Authentication vs Authorization — what's the difference? Using a simple college ID card analogy, understand what happens after you log in, why apps don't ask you to sign in every time, and how applications identify logged-in users — a must-know fundamental for backend and web development.",
+    "links": [],
+    "publishedAt": "2026-07-01"
   },
   "wRsvA0viTTA": {
     "title": "JWT explained",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "How does JWT (JSON Web Token) authentication actually work? Learn it from scratch: session vs JWT authentication, the JWT structure of header, payload, and signature, how an auth server generates a token and a resource server verifies it, public vs private keys, and stateless authentication.",
+    "links": [],
+    "publishedAt": "2026-07-02"
   },
   "YzvlqHmNvUc": {
     "title": "Your password is just a hash",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "How do companies like Google and Microsoft store your password? They don't store the real one. Learn what password hashing is, what a hash function does, why hashes can't be reversed, how attackers try to crack passwords, and why modern apps use bcrypt and Argon2 — a security fundamental.",
+    "links": [],
+    "publishedAt": "2026-07-03"
   },
   "LO9Ou-oiCh8": {
     "title": "What is idempotency? — explained with an Amazon example",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What is idempotency, and how does Amazon prevent duplicate payments? Using a simple order and payment example, learn why GET, PUT, and DELETE are idempotent while POST usually isn't, and how payment APIs use idempotency keys to avoid duplicate charges — essential REST API and backend interview knowledge.",
+    "links": [],
+    "publishedAt": "2026-07-06"
   },
   "-hVX8ippYRY": {
     "title": "IP address in simple terms",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Every device on a network needs an IP address — but what exactly is it? Learn the basics: what an IP address is and why devices need one, the IPv4 format (like 192.168.1.1), how 32 bits form an address, and the difference between public and private IPs. A beginner-friendly networking intro.",
+    "links": [],
+    "publishedAt": "2026-06-23"
   },
   "Sa2xsyIDMBw": {
     "title": "What happens after you type google.com — how the web & DNS work",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What actually happens when you type google.com into a browser? A step-by-step walk through the full workflow: DNS lookup, load balancer and CDN, the server, then how the browser builds the DOM tree, CSSOM, and render tree through layout, paint, and composite — key browser internals for frontend interviews.",
+    "links": [],
+    "publishedAt": "2026-06-12"
   },
   "QxDnEX2ZTak": {
     "title": "How Zee5 streams FIFA to millions without buffering — CDN explained",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "How does Zee5 stream FIFA World Cup matches to millions of viewers at once without buffering? Learn how Content Delivery Networks (CDNs) make live streaming fast and scalable — what edge servers and the origin server do, why low latency matters, and why Netflix and YouTube rely on CDN technology.",
+    "links": [],
+    "publishedAt": "2026-07-13"
   },
   "4EqdFhmdrBc": {
     "title": "LLMs (Large Language Models) — introduction",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What is a Large Language Model (LLM), and how does ChatGPT actually work? A beginner-friendly breakdown without the heavy math: how models like ChatGPT, Claude, and Gemini generate text, what tokens and embeddings are, and how the model predicts the next word using probabilities.",
+    "links": [],
+    "publishedAt": "2026-06-21"
   },
   "JTqK000By5A": {
     "title": "From school vectors to embeddings",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What exactly is a vector in AI? Learn how words, people, and ideas are represented as numbers so AI models can understand meaning and find similarities. Using simple examples like Sachin, Dhoni, and Ronaldo, see why related concepts sit closer in vector space — a core building block of LLMs and embeddings.",
+    "links": [],
+    "publishedAt": "2026-06-20"
   },
   "fXDEe1_QAR8": {
     "title": "How AI agents connect to Gmail, Notion & GitHub — MCP explained",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Model Context Protocol (MCP) explained from scratch with simple analogies: what MCP is, why it was created, and how MCP hosts, clients, and servers work with tools, prompts, and resources. Includes a live demo of a custom MCP server with Claude to see the full request flow in action.",
+    "links": [],
+    "publishedAt": "2026-07-04"
   },
   "MD0ktIwhK4Y": {
     "title": "Webpack vs Vite — build tools",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "What do frontend build tools like Webpack and Vite actually do behind the scenes? Learn why modern web apps need them and understand bundling, code splitting, chunks, tree shaking to remove unused code, and how dev servers with Hot Module Replacement (HMR) speed up React and Next.js development.",
+    "links": [],
+    "publishedAt": "2026-07-09"
   },
   "Bn0QpSxWW2E": {
     "title": "Getting started with Git — SSH setup + basic commands",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Set up Git from scratch and make your first commit to GitHub. Learn to create a repository, generate and configure SSH keys, clone over SSH, then create a branch, stage, commit, and push using the everyday git commands every developer needs.",
+    "links": [],
+    "publishedAt": "2026-06-29"
   },
   "ugXtnH0FKiE": {
     "title": "Git vs GitHub — explained",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Are Git and GitHub the same thing? Not quite. In this short, understand what Git is, what GitHub is, and what version control means — plus a surprising fact about Git at the end. A must-know concept for programming, web development, and software engineering interviews.",
+    "links": [],
+    "publishedAt": "2026-06-17"
   },
   "fFfWCpImsM0": {
     "title": "Git mistake I made early in my career — rebase vs plain pull",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "Why running git pull --no-rebase on a feature branch clutters your Pull Request with merge commits, what git pull --rebase actually does, and when to use rebase to keep a clean, easy-to-follow Git history. A practical workflow for updating feature branches and acing engineering interviews.",
+    "links": [],
+    "publishedAt": "2026-06-30"
   },
   "wnfD2y0c3DE": {
     "title": "How does a computer actually work",
     "format": "long",
-    "description": "",
-    "links": []
+    "description": "How is ordinary sand turned into the silicon chips that power your phone and laptop? Understand how computers really work from the ground up: binary 0s and 1s, what a transistor is, how logic gates compute, and how billions of transistors combine to build a CPU that runs billions of operations per second.",
+    "links": [],
+    "publishedAt": "2026-05-30"
   },
   "RneCFiuqglA": {
     "title": "How torrent actually works",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "BitTorrent isn't just about piracy — it's one of the most successful peer-to-peer (P2P) distributed systems ever built. Learn how it works: client-server vs P2P architecture, torrent files vs magnet links, trackers, the Distributed Hash Table (DHT), seeders vs leechers, and why torrents are so fast.",
+    "links": [],
+    "publishedAt": "2026-07-10"
   },
   "YPy3oKnOJ4g": {
     "title": "Why Netflix built fast.com",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Most of us use Fast.com when the internet feels slow — but did you know Netflix built it? During a 2014 fight with ISPs over buffering and throttling, Netflix created Fast.com to test speed straight from its streaming servers, exposing where traffic was really slowing down.",
+    "links": [],
+    "publishedAt": "2026-06-07"
   },
   "j3I5HPnFrXc": {
     "title": "The OG OnePlus dream",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "A nostalgia trip back to the OG OnePlus days — the invite-code hunt, Cyanogen OS, the flagship-killer era, and college-day dreams that ended with a Moto G3. Not a tech tutorial, just fond memories for anyone who lived through it.",
+    "links": [],
+    "publishedAt": "2026-06-11"
   },
   "R_vmadF-U4k": {
     "title": "The watch that refused to break — G-Shock engineering",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "The story behind the G-Shock, one of the toughest watches ever made. After Casio engineer Kikuo Ibe accidentally broke a watch gifted by his father, he set out to build one that could survive drops and water — and years of failed prototypes ended when a simple rubber ball sparked the idea.",
+    "links": [],
+    "publishedAt": "2026-06-25"
   },
   "gsRDcDF-lBU": {
     "title": "College to Corporate — the journey",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "The move from college to corporate life comes with big changes. A relatable take for freshers and working professionals: why self-learning is key, why Git is mandatory, staying curious, the shift from Sir/Madam to a first-name culture, and the reality of CTC vs in-hand salary.",
+    "links": [],
+    "publishedAt": "2026-06-19"
   },
   "Clv4w1Q1_V4": {
     "title": "Where curiosity takes you — index, Nifty, BSE & NSE",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "A curiosity-driven rabbit hole that started with index funds and led deep into the stock market. Understand what a market index actually is, why the Nifty 50 has 50 companies, the difference between NSE and BSE, why NSE was created, and what SEBI does.",
+    "links": [],
+    "publishedAt": "2026-06-14"
   },
   "ucRtej2tjPI": {
     "title": "What is CAGR — computing your portfolio net worth",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "CAGR (Compound Annual Growth Rate) explained simply. Learn how investments grow at a smooth yearly rate instead of random ups and downs, why CAGR matters, and how to interpret growth over multiple years with a real-life example — a financial fundamental for stock market beginners.",
+    "links": [],
+    "publishedAt": "2026-06-13"
   },
   "e2ALW3GsyvE": {
     "title": "How I use RD for big expenses — a finance trick",
     "format": "short",
-    "description": "",
-    "links": []
+    "description": "Big expenses like health insurance or yearly renewals can suddenly strain your monthly budget. Learn how I use a Recurring Deposit (RD) to plan ahead for these payments without taking an EMI or disturbing my savings — a simple personal finance habit for managing money better.",
+    "links": [],
+    "publishedAt": "2026-06-05"
   }
 }

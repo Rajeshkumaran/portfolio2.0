@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import LearningHeader from '../LearningHeader';
 import LearningFooter from '../LearningFooter';
+import TopicSwitcher from '../TopicSwitcher';
 import {
   getTopicMeta,
   youtubeThumbnail,
@@ -36,7 +37,7 @@ const CategoryRoadmap = ({
 
   return (
     <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
-      <LearningHeader backHref="/learning" backLabel="Learning" />
+      <LearningHeader />
 
       <main className="max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-20">
         <motion.div
@@ -45,7 +46,8 @@ const CategoryRoadmap = ({
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="mb-8 lg:mb-12"
         >
-          <p className="text-rose-700 text-sm font-medium mb-3 font-[family-name:var(--font-inter)]">
+          <TopicSwitcher active={topicKey} />
+          <p className="text-rose-700 text-sm font-medium mb-3 mt-6 font-[family-name:var(--font-inter)]">
             Learning roadmap
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text font-[family-name:var(--font-inter)] mb-3">
@@ -71,7 +73,7 @@ const CategoryRoadmap = ({
                   return (
                     <Link
                       key={group.id}
-                      href={`/learning/${topicKey}/${group.slug}`}
+                      href={`/learning-hub/${topicKey}/${group.slug}`}
                       scroll={false}
                       className={`nav-glass text-left px-3.5 py-2.5 rounded-xl text-sm transition-colors font-[family-name:var(--font-inter)] ${
                         isActive
@@ -97,7 +99,7 @@ const CategoryRoadmap = ({
                 {topic.groups.map((group) => (
                   <Link
                     key={group.id}
-                    href={`/learning/${topicKey}/${group.slug}`}
+                    href={`/learning-hub/${topicKey}/${group.slug}`}
                     scroll={false}
                     className={`glass-chip whitespace-nowrap px-3 py-1.5 text-xs font-medium font-[family-name:var(--font-inter)] ${
                       group.slug === active.slug ? 'text-rose-800' : 'text-zinc-600'
@@ -126,7 +128,7 @@ const CategoryRoadmap = ({
                 </div>
                 {active.videos[0] && (
                   <Link
-                    href={`/learning/${topicKey}/${active.slug}/${active.videos[0].id}`}
+                    href={`/learning-hub/${topicKey}/video/${active.videos[0].id}`}
                     onClick={() =>
                       trackSectionClick(ANALYTICS_SECTIONS.LEARNING, `start_${active.slug}`)
                     }
@@ -163,7 +165,7 @@ const CategoryRoadmap = ({
                     </span>
 
                     <Link
-                      href={`/learning/${topicKey}/${active.slug}/${video.id}`}
+                      href={`/learning-hub/${topicKey}/video/${video.id}`}
                       onClick={() =>
                         trackSectionClick(ANALYTICS_SECTIONS.LEARNING, `roadmap_${video.id}`)
                       }

@@ -3,6 +3,7 @@ import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import Analytics from './components/Analytics';
 import LiquidBackground from './components/LiquidBackground';
+import { SITE_URL, DEFAULT_OG_IMAGE } from './lib/seo';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -17,8 +18,26 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Rajesh K',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Rajesh K',
+    template: '%s',
+  },
   description: 'Personal blog of Rajesh K',
+  openGraph: {
+    title: 'Rajesh K',
+    description: 'Personal blog of Rajesh K',
+    url: `${SITE_URL}/`,
+    siteName: 'Rajesh K',
+    type: 'website',
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Rajesh K',
+    description: 'Personal blog of Rajesh K',
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 export default function RootLayout({

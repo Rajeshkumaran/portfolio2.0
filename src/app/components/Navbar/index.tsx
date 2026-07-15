@@ -73,7 +73,7 @@ const Navbar = () => {
             </a>
           ))}
           <Link
-            href="/learning"
+            href="/learning-hub"
             className="nav-glass relative px-4 py-1.5 text-sm font-medium text-rose-700 hover:text-rose-800 flex items-center gap-1.5 font-[family-name:var(--font-inter)]"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ const Navbar = () => {
                 </a>
               ))}
               <Link
-                href="/learning"
+                href="/learning-hub"
                 className="flex items-center gap-2 text-base text-rose-700 font-medium font-[family-name:var(--font-inter)]"
                 onClick={() => setMenuOpen(false)}
               >

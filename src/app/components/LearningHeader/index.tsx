@@ -6,7 +6,7 @@ import { SOCIAL_LINKS } from '../../lib/constants';
 import { trackSocialClick } from '../../lib/analytics';
 
 const LearningHeader = ({
-  backHref = '/',
+  backHref,
   backLabel = 'Back to portfolio',
 }: {
   backHref?: string;
@@ -16,7 +16,7 @@ const LearningHeader = ({
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/60 backdrop-saturate-150 border-b border-white/50 shadow-[0_4px_30px_rgba(31,38,80,0.08)]">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
         <Link
-          href="/learning"
+          href="/learning-hub"
           className="flex items-center gap-2.5 group"
         >
           <span className="relative w-9 h-9 rounded-full overflow-hidden ring-1 ring-rose-200/70 shadow-[0_2px_10px_rgba(190,24,60,0.2)] group-hover:ring-rose-300 transition-all">
@@ -34,15 +34,17 @@ const LearningHeader = ({
           </span>
         </Link>
         <div className="flex items-center gap-3 sm:gap-4">
-          <Link
-            href={backHref}
-            className="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors font-[family-name:var(--font-inter)]"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span className="hidden sm:inline">{backLabel}</span>
-          </Link>
+          {backHref && (
+            <Link
+              href={backHref}
+              className="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors font-[family-name:var(--font-inter)]"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="hidden sm:inline">{backLabel}</span>
+            </Link>
+          )}
           <a
             href={SOCIAL_LINKS.INSTAGRAM}
             target="_blank"
