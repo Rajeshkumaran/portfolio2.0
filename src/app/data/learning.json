@@ -10,14 +10,16 @@
         "blurb": "Fundamentals, implemented from scratch.",
         "videos": [
           "2jT0PMDYVkQ",
+          "BZGVYEOgxvQ",
+          "Z6TCcmnMeSw",
           "7mF3fyCmuB4",
           "0aXttHlP_xU",
           "Oa1GcyPUtzo",
           "lMIi1KhDexE",
           "lwDruQLFVmk",
           "mry08d4q52Y",
-          "BZGVYEOgxvQ",
-          "Z6TCcmnMeSw",
+
+          "kVv2xt-qvqA",
           "zpK3YvX6xrs",
           "-wDPfySPMJ0"
         ]
@@ -45,45 +47,36 @@
           "-hVX8ippYRY",
           "Sa2xsyIDMBw",
           "QxDnEX2ZTak",
-          "4EqdFhmdrBc",
-          "JTqK000By5A",
-          "fXDEe1_QAR8",
           "X-o-rJ2wn0M"
         ]
       },
       {
-        "id": "system-design",
-        "slug": "system-design",
-        "name": "System Design",
-        "blurb": "How real systems scale — caching, storage, delivery and reliability, from first principles.",
-        "videos": ["-wDPfySPMJ0", "X-o-rJ2wn0M"]
+        "id": "Artificial Intelligence",
+        "slug": "llm-and-AI",
+        "name": "Artificial Intelligence",
+        "blurb": "",
+        "videos": ["4EqdFhmdrBc", "JTqK000By5A", "fXDEe1_QAR8"]
       },
       {
-        "id": "build-tools",
-        "slug": "build-tools",
-        "name": "Build Tools",
-        "blurb": "The tooling that ships your code.",
-        "videos": ["MD0ktIwhK4Y"]
+        "id": "developer-tooling",
+        "slug": "developer-tooling",
+        "name": "Developer Tooling",
+        "blurb": "Build pipelines, version control, and workflow essentials.",
+        "videos": ["MD0ktIwhK4Y", "Bn0QpSxWW2E", "ugXtnH0FKiE", "fFfWCpImsM0"]
       },
-      {
-        "id": "git",
-        "slug": "git-and-github",
-        "name": "Git & GitHub",
-        "blurb": "Version control, the right way.",
-        "videos": ["Bn0QpSxWW2E", "ugXtnH0FKiE", "fFfWCpImsM0"]
-      },
+
       {
         "id": "stories",
         "slug": "tech-stories",
         "name": "Tech Stories",
         "blurb": "The curious 'why' behind the tech we use.",
         "videos": [
-          "wnfD2y0c3DE",
+          "gsRDcDF-lBU",
           "RneCFiuqglA",
           "YPy3oKnOJ4g",
           "j3I5HPnFrXc",
           "R_vmadF-U4k",
-          "gsRDcDF-lBU"
+          "wnfD2y0c3DE"
         ]
       }
     ]

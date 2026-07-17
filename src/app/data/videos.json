@@ -292,5 +292,12 @@
     "description": "Big expenses like health insurance or yearly renewals can suddenly strain your monthly budget. Learn how I use a Recurring Deposit (RD) to plan ahead for these payments without taking an EMI or disturbing my savings — a simple personal finance habit for managing money better.",
     "links": [],
     "publishedAt": "2026-06-05"
+  },
+  "kVv2xt-qvqA": {
+    "title": "Learn Binary Search in 15 Minutes — concept, code & time complexity",
+    "format": "long",
+    "description": "Why is Binary Search so much faster than Linear Search? Learn it from scratch: why the array must be sorted, how it repeatedly halves the search space, a dry run with an example, what the loop exit condition does, and a step-by-step JavaScript implementation — plus why the time complexity is O(log n). Essential DSA for coding interviews.",
+    "links": [],
+    "publishedAt": "2026-07-17"
   }
 }
