@@ -293,6 +293,13 @@
     "links": [],
     "publishedAt": "2026-06-05"
   },
+  "9VHal50DmF4": {
+    "title": "Introduction to Distributed tracing",
+    "format": "short",
+    "description": "How do massive systems like Swiggy, Uber, and Netflix know exactly what happens to a single request as it crosses thousands of containers? A click like \"Place Order\" cascades across API gateways, auth checks, order databases, and payment gateways — and when something fails silently (payment succeeds but the DB write doesn't), traditional logs leave huge blind spots. Learn how distributed tracing and observability fix this: Trace ID vs Span ID, how OpenTelemetry (OTel) instruments and exports data, and how backends like Datadog and Grafana Tempo stitch traces into dependency maps to debug production issues in seconds.",
+    "links": [],
+    "publishedAt": "2026-07-20"
+  },
   "kVv2xt-qvqA": {
     "title": "Learn Binary Search in 15 Minutes — concept, code & time complexity",
     "format": "long",
