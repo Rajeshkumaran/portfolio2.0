@@ -306,5 +306,12 @@
     "description": "Why is Binary Search so much faster than Linear Search? Learn it from scratch: why the array must be sorted, how it repeatedly halves the search space, a dry run with an example, what the loop exit condition does, and a step-by-step JavaScript implementation — plus why the time complexity is O(log n). Essential DSA for coding interviews.",
     "links": [],
     "publishedAt": "2026-07-17"
+  },
+  "JRXc5oIAe2Y": {
+    "title": "Object-Oriented Programming: For Beginners",
+    "format": "long",
+    "description": "Understand Object-Oriented Programming from scratch using real-world examples in Java. Instead of memorizing definitions, learn why OOP exists and the problems it solves, then work through Classes vs Objects, Encapsulation, Inheritance, Polymorphism (compile-time and run-time), and Abstraction with Abstract Classes vs Interfaces — building intuition for clean, maintainable, scalable software.",
+    "links": [],
+    "publishedAt": "2026-07-24"
   }
 }

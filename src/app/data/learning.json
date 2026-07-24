@@ -25,6 +25,13 @@
         ]
       },
       {
+        "id": "cs-fundamentals",
+        "slug": "computer-science-fundamentals",
+        "name": "Computer Science Fundamentals",
+        "blurb": "Core concepts every engineer should know, explained from first principles.",
+        "videos": ["JRXc5oIAe2Y"]
+      },
+      {
         "id": "frontend",
         "slug": "frontend",
         "name": "Frontend",
