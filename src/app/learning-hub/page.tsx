@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import LearningHeader from '../components/LearningHeader';
 import LearningFooter from '../components/LearningFooter';
 import { getTopicSummaries } from '../lib/learning';
-import { LEARNING_INTRO } from '../lib/constants';
+import { LEARNING_INTRO, LEARNING_BADGES } from '../lib/constants';
 import { trackPageView } from '../lib/analytics';
 
 const TOPIC_META: Record<
@@ -72,11 +72,25 @@ export default function LearningHub() {
           className="mb-12 lg:mb-16 max-w-2xl"
         >
           <h1 className="text-4xl sm:text-4xl lg:text-5xl font-extrabold gradient-text font-[family-name:var(--font-inter)] mb-5">
-            Learn with me
+            Learn with me ✨
           </h1>
-          <div className="flex flex-col gap-1 text-zinc-600 leading-relaxed">
-            <p className="text-sm">{LEARNING_INTRO}</p>
-            <p className="text-md ">Aarambikkalaama!</p>
+          <div className="flex flex-col gap-4 text-zinc-600 leading-relaxed">
+            <p className="text-sm sm:text-base">{LEARNING_INTRO}</p>
+
+            <div className="flex flex-wrap gap-2">
+              {LEARNING_BADGES.map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center rounded-full border border-rose-200/70 bg-rose-50/80 px-3 py-1 text-xs font-semibold text-rose-700 shadow-sm font-[family-name:var(--font-inter)]"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-lg sm:text-xl font-bold text-zinc-900 font-[family-name:var(--font-inter)]">
+              Aarambikkalaama! 🚀
+            </p>
           </div>
         </motion.div>
 

@@ -11,7 +11,7 @@ import {
   type TopicKey,
 } from '@/app/lib/learning';
 import { trackPageView, trackSectionClick } from '@/app/lib/analytics';
-import { ANALYTICS_SECTIONS } from '@/app/lib/constants';
+import { ANALYTICS_SECTIONS, LEARNING_REPO_URL } from '@/app/lib/constants';
 
 const CategoryRoadmap = ({
   topicKey,
@@ -56,6 +56,30 @@ const CategoryRoadmap = ({
           <p className="text-zinc-600 text-sm sm:text-base leading-relaxed max-w-xl">
             {topic.tagline}
           </p>
+          {topicKey === 'tech' && (
+            <a
+              href={LEARNING_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackSectionClick(ANALYTICS_SECTIONS.LEARNING, 'github_notes')
+              }
+              className="group mt-5 inline-flex items-center gap-2.5 rounded-full border border-zinc-800/10 bg-gradient-to-br from-zinc-900 to-zinc-700 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(24,24,27,0.25)] hover:shadow-[0_10px_30px_rgba(24,24,27,0.35)] hover:-translate-y-0.5 transition-all font-[family-name:var(--font-inter)]"
+            >
+              <svg
+                className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.31-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0024 12.5C24 5.87 18.63.5 12 .5z" />
+              </svg>
+              Code &amp; notes on GitHub
+              <span className="text-xs font-medium text-white/70 group-hover:translate-x-0.5 transition-transform">
+                ↗
+              </span>
+            </a>
+          )}
         </motion.div>
 
         {topic.groups.length === 0 || !active ? (

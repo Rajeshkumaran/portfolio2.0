@@ -33,4 +33,10 @@ export const PROFILE_SUMMARY =
   "I'm a software engineer with 8+ years of experience building scalable, high-performance web applications and solving complex technical challenges. I focus on writing clean, maintainable code, designing robust architectures, and delivering products that provide real value. When I'm not coding, you'll find me on the badminton court, gaming on PlayStation, or planning my next trip.";
 
 // Learning hub intro (creator-focused)
-export const LEARNING_INTRO = `Naan complicated-a irukkura engineering, finance concepts-ellam simple-a, konjam fun-a break down panni YouTube-layum Instagram-layum share panren. Data structures, system design mudhala, daily-la use panra tech and money epdi work aaguthu-nu ellam pesalaam.`;
+export const LEARNING_INTRO = `Naan complicated-a irukkura engineering & finance concepts-ellam simple-a, konjam fun-a break down panni YouTube 📺 layum Instagram 📸 layum share panren. Data structures, system design mudhala, daily-la use panra tech 💻 and money 💰 epdi work aaguthu-nu ellam pesalaam.`;
+
+// Learning hub highlight badges
+export const LEARNING_BADGES = ['💯 Ellame Free', '✨ No Fluff', '😎 Konjam Fun'];
+
+// Learning hub GitHub repo (code + notes)
+export const LEARNING_REPO_URL = 'https://github.com/Rajeshkumaran/aazh_aayvu_learning';
