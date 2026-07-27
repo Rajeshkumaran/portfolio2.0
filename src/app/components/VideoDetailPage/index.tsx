@@ -1,9 +1,11 @@
 'use client';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import LearningHeader from '../LearningHeader';
 import LearningFooter from '../LearningFooter';
+import TryCodeButton from '../TryCodePanel';
+import CodeRunner from '../CodeRunner';
 import {
   getVideoInTopic,
   getTopicMeta,
@@ -13,6 +15,7 @@ import {
   instagramEmbedUrl,
   instagramPermalink,
   type TopicKey,
+  type CodeSnippet,
 } from '@/app/lib/learning';
 import { trackPageView, trackSectionClick } from '@/app/lib/analytics';
 import { ANALYTICS_SECTIONS } from '@/app/lib/constants';
@@ -56,6 +59,12 @@ const VideoDetailPage = ({
     () => getVideoInTopic(topicKey, videoId),
     [topicKey, videoId]
   );
+
+  const [codeOpen, setCodeOpen] = useState(false);
+
+  useEffect(() => {
+    setCodeOpen(false);
+  }, [videoId]);
 
   useEffect(() => {
     if (location) {
@@ -139,11 +148,174 @@ const VideoDetailPage = ({
     ...(video.links ?? []).map((l) => ({ ...l, code: false })),
   ];
 
+  const codeSnippets: CodeSnippet[] = video.code
+    ? Array.isArray(video.code)
+      ? video.code
+      : [video.code]
+    : [];
+
+  const playerBlock = (
+    <div
+      className={`glass-card overflow-hidden mb-6 ${
+        isVertical ? 'max-w-sm mx-auto' : ''
+      }`}
+    >
+      <div className={`relative w-full ${isVertical ? 'aspect-[9/16]' : 'aspect-video'} bg-zinc-900/5`}>
+        {embedUrl ? (
+          <iframe
+            src={embedUrl}
+            title={video.title}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-zinc-100/60 to-zinc-200/40">
+            <span className="text-sm font-medium text-zinc-500 font-[family-name:var(--font-inter)]">
+              Coming soon
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const headerBlock = (
+    <>
+      <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 leading-snug font-[family-name:var(--font-inter)] mb-3">
+        {video.title}
+      </h1>
+      {video.description ? (
+        <p className="text-zinc-600 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl">
+          {video.description}
+        </p>
+      ) : null}
+    </>
+  );
+
+  const watchLinksBlock = (
+    <div className="flex flex-wrap items-center gap-3 mb-8">
+      {video.youtubeId && (
+        <a
+          href={youtubeWatchUrl(video.youtubeId)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="glass-chip inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
+        >
+          Watch on YouTube
+        </a>
+      )}
+      {video.instagramShortcode && (
+        <a
+          href={instagramPermalink(video.instagramShortcode)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="glass-chip inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
+        >
+          Watch on Instagram
+        </a>
+      )}
+      {codeSnippets.length > 0 && (
+        <TryCodeButton
+          open={codeOpen}
+          onToggle={() => setCodeOpen((v) => !v)}
+          videoId={videoId}
+        />
+      )}
+    </div>
+  );
+
+  const codeBlock =
+    codeSnippets.length > 0 ? (
+      <div className="glass-card p-4 sm:p-5 mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-bold gradient-text font-[family-name:var(--font-inter)]">
+            Try the code
+          </h2>
+          <button
+            onClick={() => setCodeOpen(false)}
+            aria-label="Close code playground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200/70 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-500 hover:text-zinc-900 transition-colors font-[family-name:var(--font-inter)]"
+          >
+            Close
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <CodeRunner snippets={codeSnippets} videoId={videoId} showHeading={false} />
+      </div>
+    ) : null;
+
+  const relevantLinksBlock =
+    relevantLinks.length > 0 ? (
+      <div className="mb-10">
+        <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider mb-3 font-[family-name:var(--font-inter)]">
+          Relevant links
+        </h2>
+        <div className="flex flex-col gap-2">
+          {relevantLinks.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card inline-flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
+            >
+              {link.code ? <CodeIcon /> : <LinkIcon />}
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : null;
+
+  const prevNextBlock = (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/50">
+      {prev ? (
+        <Link
+          href={`/learning-hub/${topicKey}/video/${prev.id}`}
+          className="group glass-card p-3 flex items-center gap-3"
+        >
+          <NavThumb youtubeId={prev.youtubeId} title={prev.title} />
+          <span className="flex flex-col min-w-0">
+            <span className="text-[11px] text-zinc-400 mb-0.5 font-[family-name:var(--font-inter)]">← Previous</span>
+            <span className="text-xs sm:text-[13px] font-semibold text-zinc-900 group-hover:text-rose-700 transition-colors leading-snug line-clamp-2">
+              {prev.title}
+            </span>
+          </span>
+        </Link>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <Link
+          href={`/learning-hub/${topicKey}/video/${next.id}`}
+          className="group glass-card p-3 flex items-center gap-3 sm:flex-row-reverse sm:text-right"
+        >
+          <NavThumb youtubeId={next.youtubeId} title={next.title} />
+          <span className="flex flex-col min-w-0">
+            <span className="text-[11px] text-zinc-400 mb-0.5 font-[family-name:var(--font-inter)]">Next →</span>
+            <span className="text-xs sm:text-[13px] font-semibold text-zinc-900 group-hover:text-rose-700 transition-colors leading-snug line-clamp-2">
+              {next.title}
+            </span>
+          </span>
+        </Link>
+      ) : (
+        <span />
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
       <LearningHeader />
 
-      <main className="max-w-4xl mx-auto px-6 lg:px-8 pt-28 pb-20">
+      <main
+        className={`mx-auto px-6 lg:px-8 pt-28 pb-20 transition-[max-width] duration-300 ${
+          codeOpen ? 'max-w-6xl' : 'max-w-4xl'
+        }`}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -182,122 +354,30 @@ const VideoDetailPage = ({
           </div>
 
           {/* Player */}
-          <div
-            className={`glass-card overflow-hidden mb-6 ${
-              isVertical ? 'max-w-sm mx-auto' : ''
-            }`}
-          >
-            <div className={`relative w-full ${isVertical ? 'aspect-[9/16]' : 'aspect-video'} bg-zinc-900/5`}>
-              {embedUrl ? (
-                <iframe
-                  src={embedUrl}
-                  title={video.title}
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-zinc-100/60 to-zinc-200/40">
-                  <span className="text-sm font-medium text-zinc-500 font-[family-name:var(--font-inter)]">
-                    Coming soon
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 leading-snug font-[family-name:var(--font-inter)] mb-3">
-            {video.title}
-          </h1>
-
-          {video.description ? (
-            <p className="text-zinc-600 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl">
-              {video.description}
-            </p>
-          ) : null}
-
-          {/* Watch on links */}
-          <div className="flex items-center gap-3 mb-8">
-            {video.youtubeId && (
-              <a
-                href={youtubeWatchUrl(video.youtubeId)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-chip inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
-              >
-                Watch on YouTube
-              </a>
-            )}
-            {video.instagramShortcode && (
-              <a
-                href={instagramPermalink(video.instagramShortcode)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-chip inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
-              >
-                Watch on Instagram
-              </a>
-            )}
-          </div>
-
-          {/* Relevant links */}
-          {relevantLinks.length > 0 && (
-            <div className="mb-10">
-              <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider mb-3 font-[family-name:var(--font-inter)]">
-                Relevant links
-              </h2>
-              <div className="flex flex-col gap-2">
-                {relevantLinks.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="glass-card inline-flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:text-rose-700 transition-colors font-[family-name:var(--font-inter)]"
-                  >
-                    {link.code ? <CodeIcon /> : <LinkIcon />}
-                    {link.label}
-                  </a>
-                ))}
+          {codeOpen ? (
+            <div className="lg:grid lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:gap-8 lg:items-start">
+              {/* Left: video stays pinned so it can be watched alongside the code */}
+              <div className="lg:sticky lg:top-24 lg:self-start">
+                {playerBlock}
+                {watchLinksBlock}
+              </div>
+              {/* Right: details + in-page code playground */}
+              <div className="min-w-0">
+                {headerBlock}
+                {codeBlock}
+                {relevantLinksBlock}
+                {prevNextBlock}
               </div>
             </div>
+          ) : (
+            <>
+              {playerBlock}
+              {headerBlock}
+              {watchLinksBlock}
+              {relevantLinksBlock}
+              {prevNextBlock}
+            </>
           )}
-
-          {/* Prev / Next */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/50">
-            {prev ? (
-              <Link
-                href={`/learning-hub/${topicKey}/video/${prev.id}`}
-                className="group glass-card p-3 flex items-center gap-3"
-              >
-                <NavThumb youtubeId={prev.youtubeId} title={prev.title} />
-                <span className="flex flex-col min-w-0">
-                  <span className="text-[11px] text-zinc-400 mb-0.5 font-[family-name:var(--font-inter)]">← Previous</span>
-                  <span className="text-xs sm:text-[13px] font-semibold text-zinc-900 group-hover:text-rose-700 transition-colors leading-snug line-clamp-2">
-                    {prev.title}
-                  </span>
-                </span>
-              </Link>
-            ) : (
-              <span />
-            )}
-            {next ? (
-              <Link
-                href={`/learning-hub/${topicKey}/video/${next.id}`}
-                className="group glass-card p-3 flex items-center gap-3 sm:flex-row-reverse sm:text-right"
-              >
-                <NavThumb youtubeId={next.youtubeId} title={next.title} />
-                <span className="flex flex-col min-w-0">
-                  <span className="text-[11px] text-zinc-400 mb-0.5 font-[family-name:var(--font-inter)]">Next →</span>
-                  <span className="text-xs sm:text-[13px] font-semibold text-zinc-900 group-hover:text-rose-700 transition-colors leading-snug line-clamp-2">
-                    {next.title}
-                  </span>
-                </span>
-              </Link>
-            ) : (
-              <span />
-            )}
-          </div>
         </motion.div>
       </main>
 

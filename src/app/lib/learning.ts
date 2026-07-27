@@ -7,6 +7,32 @@ export type VideoPlatform = 'youtube' | 'instagram';
 
 export type VideoLink = { label: string; url: string };
 
+/** Languages supported by the in-browser code runner. */
+export type CodeLanguage = 'javascript' | 'typescript' | 'python' | 'java';
+
+/**
+ * A runnable code sample tied to a video's concept. References a file in the
+ * learning GitHub repo; the raw content is fetched at runtime (see codeFetch).
+ */
+export type CodeSnippet = {
+  language: CodeLanguage;
+  /** Path to the file within the repo, e.g. "src/DataStructures/Stack.js". */
+  repoPath: string;
+  /** Repo URL; defaults to the learning repo (CODE_REPO_LINK). */
+  repoUrl?: string;
+  /** Branch to read from; defaults to "main". */
+  branch?: string;
+  /** Optional 1-based inclusive line range to display only a slice. */
+  startLine?: number;
+  endLine?: number;
+  /** When false, show code read-only without a Run button. Default true. */
+  runnable?: boolean;
+  /** Optional preset stdin passed to the runner. */
+  stdin?: string;
+  /** Optional label shown on the snippet's tab. */
+  title?: string;
+};
+
 /**
  * A shared video entry in the flat catalog (videos.json). Keyed by the video's
  * YouTube id, so the id itself identifies the video (no separate youtubeUrl).
@@ -20,6 +46,8 @@ export type CatalogVideo = {
   githubUrl?: string;
   description?: string;
   links?: VideoLink[];
+  /** Runnable concept code sample(s) shown on the video page. */
+  code?: CodeSnippet | CodeSnippet[];
   /** ISO 8601 publish date (e.g. "2025-03-14"), used for VideoObject uploadDate. */
   publishedAt?: string;
 };

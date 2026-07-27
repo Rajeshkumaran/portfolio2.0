@@ -24,6 +24,18 @@
  *     [--position N]                  # 1-based slot in the roadmap; default: append
  *     [--instagram <url>]             # for an Instagram-only (non-YouTube) video
  *     [--github <url>] [--youtube <url>]
+ *     [--code-lang javascript|typescript|python|java --code-path <repo/path>]
+ *                                     # attach runnable concept code shown on the
+ *                                     # video page (fetched from the learning repo)
+ *     [--code-branch main] [--code-start N] [--code-end N]
+ *
+ * Code authoring notes:
+ *   - `--code-path` is the file path within the learning GitHub repo
+ *     (aazh_aayvu_learning), e.g. "src/DataStructures/Stack/index.js".
+ *   - JS/TS and Python run fully in the browser; Java needs a configured remote
+ *     runner (CODE_RUNNER_REMOTE_URL) — otherwise it shows read-only with a
+ *     GitHub link. Java single-file programs must contain a `public class Main`.
+ *   - Prefer files that print output (console.log / print) so a Run shows results.
  *
  * After running, rebuild to regenerate pages + sitemap:
  *   npm run build
@@ -118,6 +130,18 @@ if (catalog[id]) {
   if (args.instagram) entry.instagramUrl = args.instagram;
   if (args.github) entry.githubUrl = args.github;
   entry.links = [];
+  if (args['code-path']) {
+    const lang = args['code-lang'];
+    const validLangs = ['javascript', 'typescript', 'python', 'java'];
+    if (!validLangs.includes(lang)) {
+      fail(`--code-path requires --code-lang one of: ${validLangs.join(', ')}.`);
+    }
+    const code = { language: lang, repoPath: args['code-path'] };
+    if (args['code-branch']) code.branch = args['code-branch'];
+    if (args['code-start']) code.startLine = Number(args['code-start']);
+    if (args['code-end']) code.endLine = Number(args['code-end']);
+    entry.code = code;
+  }
   entry.publishedAt = publishedAt;
   catalog[id] = entry;
   writeFileSync(dataPath('videos.json'), JSON.stringify(catalog, null, 2) + '\n');

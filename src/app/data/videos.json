@@ -39,6 +39,10 @@
     "format": "long",
     "description": "Implement the Stack data structure from scratch in JavaScript. Build a fixed-capacity Stack class with a top pointer, code the push and pop operations, handle stack overflow and underflow, and analyze the time and space complexity — a core DSA foundation for coding interviews.",
     "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/DataStructures/Stack/index.js"
+    },
     "publishedAt": "2026-06-26"
   },
   "mry08d4q52Y": {

@@ -7,6 +7,7 @@ export const ANALYTICS_SECTIONS = {
   MAIN_SECTION: 'main_section',
   VIDEOS: 'videos',
   LEARNING: 'learning',
+  CODE_RUN: 'code_run',
 } as const;
 
 export const RESUME_LINK =
@@ -40,3 +41,9 @@ export const LEARNING_BADGES = ['💯 Ellame Free', '✨ No Fluff', '😎 Konjam
 
 // Learning hub GitHub repo (code + notes)
 export const LEARNING_REPO_URL = 'https://github.com/Rajeshkumaran/aazh_aayvu_learning';
+
+// Optional self-hosted remote code runner (Piston-compatible base URL, e.g.
+// "https://piston.example.com"). Leave empty to disable remote execution
+// (Java/compiled languages). The public emkc.org Piston API is NOT used because,
+// as of 2026-02-15, it requires a token not granted to portfolio projects.
+export const CODE_RUNNER_REMOTE_URL: string = '';
