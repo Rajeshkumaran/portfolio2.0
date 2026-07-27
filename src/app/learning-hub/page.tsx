@@ -61,7 +61,7 @@ export default function LearningHub() {
 
   return (
     <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
-      <LearningHeader backHref="/" backLabel="Back to portfolio" />
+      <LearningHeader />
 
       <main className="max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-20">
         {/* Intro */}

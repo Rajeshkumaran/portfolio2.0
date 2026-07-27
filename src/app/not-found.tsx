@@ -40,12 +40,6 @@ export default function NotFound() {
             </svg>
             Return to learning hub
           </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-rose-200/70 bg-white/60 px-6 py-2.5 text-sm font-medium text-rose-700 hover:bg-rose-50 hover:border-rose-300 transition-colors font-[family-name:var(--font-inter)]"
-          >
-            Back to portfolio
-          </Link>
         </div>
       </div>
     </div>

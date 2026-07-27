@@ -313,5 +313,12 @@
     "description": "Understand Object-Oriented Programming from scratch using real-world examples in Java. Instead of memorizing definitions, learn why OOP exists and the problems it solves, then work through Classes vs Objects, Encapsulation, Inheritance, Polymorphism (compile-time and run-time), and Abstraction with Abstract Classes vs Interfaces — building intuition for clean, maintainable, scalable software.",
     "links": [],
     "publishedAt": "2026-07-25"
+  },
+  "FVaEucY1xL8": {
+    "title": "Monolith vs Microservices",
+    "format": "short",
+    "description": "Why did companies like Netflix, Amazon, and Google not start with Microservices? Learn what a Monolith is, why companies eventually move to Microservices, the pros and cons of both architectures, and when to choose one over the other — plus why most successful products start as a Monolith. Architecture is about solving today's problems, not following trends.",
+    "links": [],
+    "publishedAt": "2026-07-27"
   }
 }

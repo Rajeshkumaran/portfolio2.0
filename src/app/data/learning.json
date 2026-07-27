@@ -52,11 +52,15 @@
           "YzvlqHmNvUc",
           "LO9Ou-oiCh8",
           "-hVX8ippYRY",
-          "Sa2xsyIDMBw",
-          "QxDnEX2ZTak",
-          "X-o-rJ2wn0M",
-          "9VHal50DmF4"
+          "X-o-rJ2wn0M"
         ]
+      },
+      {
+        "id": "system-design",
+        "slug": "system-design",
+        "name": "System Design",
+        "blurb": "Architecture trade-offs and how large-scale systems are built.",
+        "videos": ["Sa2xsyIDMBw", "QxDnEX2ZTak", "9VHal50DmF4", "FVaEucY1xL8"]
       },
       {
         "id": "Artificial Intelligence",
