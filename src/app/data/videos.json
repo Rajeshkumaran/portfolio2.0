@@ -18,6 +18,10 @@
     "format": "long",
     "description": "Implement a Singly Linked List from scratch in JavaScript. Understand the node structure and head pointer, then code insertAtBeginning, insertAtPosition, deleteFromBeginning, and traversal while mastering the pointer manipulation behind how nodes connect — ideal for DSA and interview prep.",
     "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/DataStructures/SinglyLinkedList/index.js"
+    },
     "publishedAt": "2026-06-13"
   },
   "Oa1GcyPUtzo": {
@@ -50,6 +54,10 @@
     "format": "long",
     "description": "Build a Queue data structure using a linked list in JavaScript. Understand the FIFO (First In First Out) principle, implement enqueue and dequeue with front and rear pointers, analyze the time complexity, and see why queues matter in real-world systems — beginner-friendly DSA.",
     "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/DataStructures/Queue/index.js"
+    },
     "publishedAt": "2026-06-09"
   },
   "BZGVYEOgxvQ": {
@@ -78,6 +86,10 @@
     "format": "long",
     "description": "Learn how an LRU (Least Recently Used) cache works and why cache eviction matters when memory fills up, then build one from scratch in JavaScript using a HashMap and a doubly linked list to achieve O(1) get and put operations. A must-know concept for system design and coding interviews.",
     "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/SystemDesign/LRUCache/index.js"
+    },
     "publishedAt": "2026-07-08"
   },
   "X-o-rJ2wn0M": {
@@ -309,6 +321,10 @@
     "format": "long",
     "description": "Why is Binary Search so much faster than Linear Search? Learn it from scratch: why the array must be sorted, how it repeatedly halves the search space, a dry run with an example, what the loop exit condition does, and a step-by-step JavaScript implementation — plus why the time complexity is O(log n). Essential DSA for coding interviews.",
     "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/Algorithms/BinarySearch/index.js"
+    },
     "publishedAt": "2026-07-17"
   },
   "BJKx00CVDGU": {
