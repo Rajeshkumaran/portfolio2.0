@@ -37,7 +37,7 @@ export const PROFILE_SUMMARY =
 export const LEARNING_INTRO = `Naan complicated-a irukkura engineering & finance concepts-ellam simple-a, konjam fun-a break down panni YouTube 📺 layum Instagram 📸 layum share panren. Data structures, system design mudhala, daily-la use panra tech 💻 and money 💰 epdi work aaguthu-nu ellam pesalaam.`;
 
 // Learning hub highlight badges
-export const LEARNING_BADGES = ['💯 Ellame Free', '✨ No Fluff', '😎 Konjam Fun'];
+export const LEARNING_BADGES = [];
 
 // Learning hub GitHub repo (code + notes)
 export const LEARNING_REPO_URL = 'https://github.com/Rajeshkumaran/aazh_aayvu_learning';

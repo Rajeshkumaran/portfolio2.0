@@ -340,5 +340,23 @@
     "description": "Why did companies like Netflix, Amazon, and Google not start with Microservices? Learn what a Monolith is, why companies eventually move to Microservices, the pros and cons of both architectures, and when to choose one over the other — plus why most successful products start as a Monolith. Architecture is about solving today's problems, not following trends.",
     "links": [],
     "publishedAt": "2026-07-27"
+  },
+  "emauL9VYwxM": {
+    "title": "Depth First Search (DFS) | Graph Traversal",
+    "format": "long",
+    "description": "Understand Depth First Search (DFS) from scratch using intuitive examples like exploring blog references and solving a maze. Learn graph basics, iterative DFS with a stack, recursive DFS, JavaScript implementation, time and space complexity, and real-world applications.",
+    "links": [],
+    "code": {
+      "language": "javascript",
+      "repoPath": "src/Algorithms/DepthFirstSearch/index.js"
+    },
+    "publishedAt": "2026-08-01"
+  },
+  "MuBwpeThF6c": {
+    "title": "Access Token vs Refresh Token Explained | How Big Tech Handles Authentication",
+    "format": "short",
+    "description": "Understand access tokens and refresh tokens using beginner-friendly real-world examples. Learn why access tokens expire quickly, why refresh tokens exist, and how modern applications keep users signed in securely without repeatedly asking them to log in.",
+    "links": [],
+    "publishedAt": "2026-08-01"
   }
 }

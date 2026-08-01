@@ -3,6 +3,13 @@
     "title": "Tech",
     "tagline": "Concepts, code and curiosities — the engineering I love, explained simply.",
     "categories": [
+         {
+        "id": "cs-fundamentals",
+        "slug": "computer-science-fundamentals",
+        "name": "Computer Science Fundamentals",
+        "blurb": "Core concepts every engineer should know, explained from first principles.",
+        "videos": ["BJKx00CVDGU"]
+      },
       {
         "id": "dsa",
         "slug": "algorithms-and-datastructures",
@@ -18,19 +25,13 @@
           "lMIi1KhDexE",
           "lwDruQLFVmk",
           "mry08d4q52Y",
-
           "kVv2xt-qvqA",
           "zpK3YvX6xrs",
-          "-wDPfySPMJ0"
+          "-wDPfySPMJ0",
+          "emauL9VYwxM"
         ]
       },
-      {
-        "id": "cs-fundamentals",
-        "slug": "computer-science-fundamentals",
-        "name": "Computer Science Fundamentals",
-        "blurb": "Core concepts every engineer should know, explained from first principles.",
-        "videos": ["BJKx00CVDGU"]
-      },
+   
       {
         "id": "frontend",
         "slug": "frontend",
@@ -50,6 +51,7 @@
           "l2CUUfWVc84",
           "wRsvA0viTTA",
           "YzvlqHmNvUc",
+          "MuBwpeThF6c",
           "LO9Ou-oiCh8",
           "-hVX8ippYRY",
           "X-o-rJ2wn0M"
