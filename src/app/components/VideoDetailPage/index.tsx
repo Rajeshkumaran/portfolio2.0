@@ -60,11 +60,11 @@ const VideoDetailPage = ({
     [topicKey, videoId]
   );
 
-  const [codeOpen, setCodeOpen] = useState(false);
+  const [codeOpen, setCodeOpen] = useState(() => Boolean(location?.video.code));
 
   useEffect(() => {
-    setCodeOpen(false);
-  }, [videoId]);
+    setCodeOpen(Boolean(location?.video.code));
+  }, [location]);
 
   useEffect(() => {
     if (location) {
@@ -156,7 +156,7 @@ const VideoDetailPage = ({
 
   const playerBlock = (
     <div
-      className={`glass-card overflow-hidden mb-6 ${
+      className={`glass-card overflow-hidden ${codeOpen ? 'mb-4' : 'mb-6'} ${
         isVertical ? 'max-w-sm mx-auto' : ''
       }`}
     >
@@ -186,7 +186,7 @@ const VideoDetailPage = ({
         {video.title}
       </h1>
       {video.description ? (
-        <p className="text-zinc-600 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl">
+        <p className={`text-zinc-600 text-sm sm:text-base leading-relaxed max-w-2xl ${codeOpen ? 'mb-4' : 'mb-6'}`}>
           {video.description}
         </p>
       ) : null}
@@ -194,7 +194,7 @@ const VideoDetailPage = ({
   );
 
   const watchLinksBlock = (
-    <div className="flex flex-wrap items-center gap-3 mb-8">
+    <div className={`flex flex-wrap items-center gap-3 ${codeOpen ? 'mb-5' : 'mb-8'}`}>
       {video.youtubeId && (
         <a
           href={youtubeWatchUrl(video.youtubeId)}
@@ -227,8 +227,8 @@ const VideoDetailPage = ({
 
   const codeBlock =
     codeSnippets.length > 0 ? (
-      <div className="glass-card p-4 sm:p-5 mb-8">
-        <div className="flex items-center justify-between mb-4">
+      <div className="flex h-full min-h-0 flex-col bg-white/70 backdrop-blur-xl">
+        <div className="flex shrink-0 items-center justify-between border-b border-white/60 px-5 py-3">
           <h2 className="text-base font-bold gradient-text font-[family-name:var(--font-inter)]">
             Try the code
           </h2>
@@ -243,13 +243,20 @@ const VideoDetailPage = ({
             </svg>
           </button>
         </div>
-        <CodeRunner snippets={codeSnippets} videoId={videoId} showHeading={false} />
+        <div className="min-h-0 flex-1">
+          <CodeRunner
+            snippets={codeSnippets}
+            videoId={videoId}
+            showHeading={false}
+            fillHeight
+          />
+        </div>
       </div>
     ) : null;
 
   const relevantLinksBlock =
     relevantLinks.length > 0 ? (
-      <div className="mb-10">
+      <div className={codeOpen ? 'mb-6' : 'mb-10'}>
         <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider mb-3 font-[family-name:var(--font-inter)]">
           Relevant links
         </h2>
@@ -271,7 +278,11 @@ const VideoDetailPage = ({
     ) : null;
 
   const prevNextBlock = (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/50">
+    <div
+      className={`grid grid-cols-1 gap-3 border-t border-white/50 ${
+        codeOpen ? 'pt-4' : 'sm:grid-cols-2 gap-4 pt-6'
+      }`}
+    >
       {prev ? (
         <Link
           href={`/learning-hub/${topicKey}/video/${prev.id}`}
@@ -291,7 +302,9 @@ const VideoDetailPage = ({
       {next ? (
         <Link
           href={`/learning-hub/${topicKey}/video/${next.id}`}
-          className="group glass-card p-3 flex items-center gap-3 sm:flex-row-reverse sm:text-right"
+          className={`group glass-card p-3 flex items-center gap-3 ${
+            codeOpen ? '' : 'sm:flex-row-reverse sm:text-right'
+          }`}
         >
           <NavThumb youtubeId={next.youtubeId} title={next.title} />
           <span className="flex flex-col min-w-0">
@@ -312,9 +325,11 @@ const VideoDetailPage = ({
       <LearningHeader />
 
       <main
-        className={`mx-auto px-6 lg:px-8 pt-28 pb-20 transition-[max-width] duration-300 ${
-          codeOpen ? 'max-w-6xl' : 'max-w-4xl'
-        }`}
+        className={
+          codeOpen
+            ? 'w-full px-6 pt-28 pb-20 lg:w-[35vw] lg:px-6'
+            : 'mx-auto max-w-4xl px-6 lg:px-8 pt-28 pb-20'
+        }
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -322,62 +337,71 @@ const VideoDetailPage = ({
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           {/* Breadcrumbs + step indicator */}
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <nav aria-label="Breadcrumb">
-              <ol className="inline-flex flex-wrap items-center gap-1.5 rounded-full border border-rose-200/70 bg-white/60 px-3.5 py-1.5 backdrop-blur-md shadow-[0_2px_12px_rgba(190,24,60,0.08)] text-xs sm:text-[13px] text-zinc-700 font-[family-name:var(--font-inter)]">
-                <li>
-                  <Link href="/learning-hub" className="hover:text-rose-700 transition-colors">
-                    Learning
-                  </Link>
-                </li>
-                <li aria-hidden className="text-zinc-300">/</li>
-                <li>
-                  <Link href={`/learning-hub/${topicKey}`} className="hover:text-rose-700 transition-colors">
-                    {topicTitle}
-                  </Link>
-                </li>
-                <li aria-hidden className="text-zinc-300">/</li>
-                <li>
-                  <Link href={backHref} className="hover:text-rose-700 transition-colors">
-                    {category.name}
-                  </Link>
-                </li>
-                <li aria-hidden className="text-zinc-300">/</li>
-                <li className="text-rose-700 font-semibold truncate max-w-[16rem]" aria-current="page">
-                  {video.title}
-                </li>
-              </ol>
-            </nav>
-            <p className="shrink-0 text-rose-700 text-xs sm:text-[13px] font-medium font-[family-name:var(--font-inter)]">
-              Step {index + 1} of {category.videos.length}
-            </p>
-          </div>
-
-          {/* Player */}
           {codeOpen ? (
-            <div className="lg:grid lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:gap-8 lg:items-start">
-              {/* Left: video stays pinned so it can be watched alongside the code */}
-              <div className="lg:sticky lg:top-24 lg:self-start">
-                {playerBlock}
-                {watchLinksBlock}
-              </div>
-              {/* Right: details + in-page code playground */}
-              <div className="min-w-0">
-                {headerBlock}
-                {codeBlock}
-                {relevantLinksBlock}
-                {prevNextBlock}
-              </div>
+            <div className="mb-4 flex items-center justify-between gap-3 font-[family-name:var(--font-inter)]">
+              <Link
+                href={backHref}
+                className="glass-chip inline-flex min-w-0 items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-zinc-700 hover:text-rose-700"
+              >
+                <svg className="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span className="truncate">{category.name}</span>
+              </Link>
+              <p className="shrink-0 text-xs font-medium text-rose-700">
+                {index + 1} / {category.videos.length}
+              </p>
             </div>
           ) : (
-            <>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <nav aria-label="Breadcrumb">
+                <ol className="inline-flex flex-wrap items-center gap-1.5 rounded-full border border-rose-200/70 bg-white/60 px-3.5 py-1.5 backdrop-blur-md shadow-[0_2px_12px_rgba(190,24,60,0.08)] text-xs sm:text-[13px] text-zinc-700 font-[family-name:var(--font-inter)]">
+                  <li>
+                    <Link href="/learning-hub" className="hover:text-rose-700 transition-colors">
+                      Learning
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-zinc-300">/</li>
+                  <li>
+                    <Link href={`/learning-hub/${topicKey}`} className="hover:text-rose-700 transition-colors">
+                      {topicTitle}
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-zinc-300">/</li>
+                  <li>
+                    <Link href={backHref} className="hover:text-rose-700 transition-colors">
+                      {category.name}
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-zinc-300">/</li>
+                  <li className="text-rose-700 font-semibold truncate max-w-[16rem]" aria-current="page">
+                    {video.title}
+                  </li>
+                </ol>
+              </nav>
+              <p className="shrink-0 text-rose-700 text-xs sm:text-[13px] font-medium font-[family-name:var(--font-inter)]">
+                Step {index + 1} of {category.videos.length}
+              </p>
+            </div>
+          )}
+
+          <div>
+            {/* The video stays mounted so toggling code does not reload playback. */}
+            <div className="min-w-0">
               {playerBlock}
               {headerBlock}
               {watchLinksBlock}
               {relevantLinksBlock}
               {prevNextBlock}
-            </>
-          )}
+            </div>
+
+            {/* Right: edge-to-edge workspace fixed to the viewport. */}
+            {codeOpen && (
+              <div className="mt-8 min-w-0 h-[720px] lg:mt-0 lg:fixed lg:right-0 lg:top-16 lg:bottom-[45px] lg:z-30 lg:h-auto lg:w-[65vw]">
+                {codeBlock}
+              </div>
+            )}
+          </div>
         </motion.div>
       </main>
 

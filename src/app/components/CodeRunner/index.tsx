@@ -18,6 +18,27 @@ type OutputState =
   | { status: 'running' }
   | { status: 'done'; stdout: string; stderr: string; exitCode: number | null };
 
+const EDITOR_THEMES = {
+  midnight: {
+    label: 'Midnight',
+    className: 'bg-zinc-950 text-zinc-100 caret-rose-400',
+  },
+  dracula: {
+    label: 'Dracula',
+    className: 'bg-[#282a36] text-[#f8f8f2] caret-[#ff79c6]',
+  },
+  solarized: {
+    label: 'Solarized',
+    className: 'bg-[#002b36] text-[#eee8d5] caret-[#b58900]',
+  },
+  light: {
+    label: 'Light',
+    className: 'bg-slate-50 text-slate-900 caret-rose-600',
+  },
+} as const;
+
+type EditorTheme = keyof typeof EDITOR_THEMES;
+
 const PlayIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
     <path d="M8 5v14l11-7z" />
@@ -33,9 +54,15 @@ const GithubIcon = () => (
 const SnippetPanel = ({
   snippet,
   videoId,
+  fillHeight,
+  theme,
+  onThemeChange,
 }: {
   snippet: CodeSnippet;
   videoId: string;
+  fillHeight: boolean;
+  theme: EditorTheme;
+  onThemeChange: (theme: EditorTheme) => void;
 }) => {
   const [code, setCode] = useState<string>('');
   const [original, setOriginal] = useState<string>('');
@@ -46,6 +73,37 @@ const SnippetPanel = ({
   const runnable = snippet.runnable !== false;
   const isRemote = LANGUAGE_ENGINE[snippet.language] === 'remote';
   const gitUrl = sourceUrl(snippet);
+
+  const outputContent =
+    output.status === 'done' ? (
+      <>
+        {output.stdout}
+        {output.stderr && (
+          <span className="text-rose-400">
+            {output.stdout ? '\n' : ''}
+            {output.stderr}
+          </span>
+        )}
+        {!output.stdout && !output.stderr && (
+          <span className="text-zinc-500">(no output)</span>
+        )}
+      </>
+    ) : output.status === 'running' ? (
+      <span className="text-zinc-500">Running code…</span>
+    ) : (
+      <span className="text-zinc-500">Run the code to see its output.</span>
+    );
+
+  const outputStatus =
+    output.status === 'done'
+      ? output.exitCode === 0
+        ? 'Success'
+        : output.exitCode == null
+        ? 'Not run'
+        : `Exit ${output.exitCode}`
+      : output.status === 'running'
+      ? 'Running'
+      : 'Ready';
 
   useEffect(() => {
     let cancelled = false;
@@ -94,13 +152,31 @@ const SnippetPanel = ({
   }, [code, snippet.language, snippet.repoPath, snippet.stdin, videoId]);
 
   return (
-    <div className="glass-card overflow-hidden">
+    <div
+      className={
+        fillHeight
+          ? 'flex min-h-0 flex-1 flex-col overflow-hidden border-l border-white/60 bg-white/70'
+          : 'glass-card overflow-hidden'
+      }
+    >
       {/* Toolbar */}
-      <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-white/50 bg-white/40">
+      <div className="flex shrink-0 items-center justify-between gap-2 px-4 py-2.5 border-b border-white/50 bg-white/40">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-rose-100/70 px-2.5 py-1 text-[11px] font-semibold text-rose-700 font-[family-name:var(--font-inter)]">
             {LANG_LABEL[snippet.language]}
           </span>
+          <select
+            value={theme}
+            onChange={(event) => onThemeChange(event.target.value as EditorTheme)}
+            aria-label="Code editor theme"
+            className="rounded-full border border-zinc-200/80 bg-white/70 px-2.5 py-1 text-[11px] font-medium text-zinc-600 outline-none hover:text-rose-700 font-[family-name:var(--font-inter)]"
+          >
+            {Object.entries(EDITOR_THEMES).map(([value, editorTheme]) => (
+              <option key={value} value={value}>
+                {editorTheme.label}
+              </option>
+            ))}
+          </select>
           {code !== original && loadState === 'ready' && (
             <button
               onClick={() => setCode(original)}
@@ -142,69 +218,72 @@ const SnippetPanel = ({
         </div>
       </div>
 
-      {/* Code */}
-      {loadState === 'loading' ? (
-        <div className="px-4 py-10 text-center text-sm text-zinc-500 font-[family-name:var(--font-inter)]">
-          Loading code…
-        </div>
-      ) : loadState === 'error' ? (
-        <div className="px-4 py-8 text-center text-sm text-zinc-600 font-[family-name:var(--font-inter)]">
-          {loadError}{' '}
-          <a href={gitUrl} target="_blank" rel="noopener noreferrer" className="text-rose-700 underline">
-            View on GitHub
-          </a>
-        </div>
-      ) : (
-        <textarea
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          spellCheck={false}
-          rows={Math.min(Math.max(code.split('\n').length, 6), 24)}
-          className="w-full resize-y bg-zinc-950/95 text-zinc-100 font-mono text-[13px] leading-relaxed p-4 outline-none focus:ring-1 focus:ring-rose-400/40"
-          aria-label={`${LANG_LABEL[snippet.language]} source code`}
-        />
-      )}
+      <div
+        className={
+          fillHeight
+            ? 'grid min-h-0 flex-1 grid-rows-[minmax(0,65fr)_minmax(0,35fr)]'
+            : ''
+        }
+      >
+        {/* Code */}
+        <div className={fillHeight ? 'flex min-h-0 flex-col' : ''}>
+          {loadState === 'loading' ? (
+            <div className={`px-4 py-10 text-center text-sm text-zinc-500 font-[family-name:var(--font-inter)] ${fillHeight ? 'flex flex-1 items-center justify-center' : ''}`}>
+              Loading code…
+            </div>
+          ) : loadState === 'error' ? (
+            <div className={`px-4 py-8 text-center text-sm text-zinc-600 font-[family-name:var(--font-inter)] ${fillHeight ? 'flex flex-1 items-center justify-center' : ''}`}>
+              <span>
+                {loadError}{' '}
+                <a href={gitUrl} target="_blank" rel="noopener noreferrer" className="text-rose-700 underline">
+                  View on GitHub
+                </a>
+              </span>
+            </div>
+          ) : (
+            <textarea
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              spellCheck={false}
+              rows={fillHeight ? undefined : Math.min(Math.max(code.split('\n').length, 6), 24)}
+              className={`w-full font-mono text-[13px] leading-relaxed p-4 outline-none focus:ring-1 focus:ring-rose-400/40 ${EDITOR_THEMES[theme].className} ${
+                fillHeight ? 'min-h-0 flex-1 resize-none overflow-auto' : 'resize-y'
+              }`}
+              aria-label={`${LANG_LABEL[snippet.language]} source code`}
+            />
+          )}
 
-      {/* Runnability note for remote-only langs */}
-      {runnable && isRemote && (
-        <p className="px-4 py-2 text-[11px] text-amber-700 bg-amber-50/60 border-t border-amber-200/50 font-[family-name:var(--font-inter)]">
-          {LANG_LABEL[snippet.language]} runs on a remote runner — output may take a moment.
-        </p>
-      )}
+          {/* Runnability note for remote-only langs */}
+          {runnable && isRemote && (
+            <p className="shrink-0 px-4 py-2 text-[11px] text-amber-700 bg-amber-50/60 border-t border-amber-200/50 font-[family-name:var(--font-inter)]">
+              {LANG_LABEL[snippet.language]} runs on a remote runner — output may take a moment.
+            </p>
+          )}
+        </div>
 
-      {/* Output */}
-      {output.status === 'done' && (
-        <div className="border-t border-white/50">
-          <div className="flex items-center justify-between px-4 py-2 bg-white/40">
+        {/* Output */}
+        <div className={`flex min-h-0 flex-col border-t border-white/50 ${fillHeight || output.status === 'done' ? '' : 'hidden'}`}>
+          <div className="flex shrink-0 items-center justify-between px-4 py-2 bg-white/40">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500 font-[family-name:var(--font-inter)]">
               Output
             </span>
             <span
               className={`text-[11px] font-medium font-[family-name:var(--font-inter)] ${
-                output.exitCode === 0 ? 'text-emerald-600' : 'text-rose-600'
+                output.status === 'done' && output.exitCode === 0
+                  ? 'text-emerald-600'
+                  : output.status === 'done' && output.exitCode !== null
+                  ? 'text-rose-600'
+                  : 'text-zinc-500'
               }`}
             >
-              {output.exitCode === 0
-                ? 'Success'
-                : output.exitCode == null
-                ? 'Not run'
-                : `Exit ${output.exitCode}`}
+              {outputStatus}
             </span>
           </div>
-          <pre className="max-h-64 overflow-auto bg-zinc-950/95 text-zinc-100 font-mono text-[12.5px] leading-relaxed p-4 whitespace-pre-wrap">
-            {output.stdout}
-            {output.stderr && (
-              <span className="text-rose-400">
-                {output.stdout ? '\n' : ''}
-                {output.stderr}
-              </span>
-            )}
-            {!output.stdout && !output.stderr && (
-              <span className="text-zinc-500">(no output)</span>
-            )}
+          <pre className={`${fillHeight ? 'min-h-0 flex-1' : 'max-h-64'} overflow-auto bg-zinc-950/95 text-zinc-100 font-mono text-[12.5px] leading-relaxed p-4 whitespace-pre-wrap`}>
+            {outputContent}
           </pre>
         </div>
-      )}
+      </div>
     </div>
   );
 };
@@ -213,24 +292,27 @@ const CodeRunner = ({
   snippets,
   videoId,
   showHeading = true,
+  fillHeight = false,
 }: {
   snippets: CodeSnippet[];
   videoId: string;
   showHeading?: boolean;
+  fillHeight?: boolean;
 }) => {
   const [active, setActive] = useState(0);
+  const [theme, setTheme] = useState<EditorTheme>('midnight');
   if (snippets.length === 0) return null;
   const current = snippets[Math.min(active, snippets.length - 1)];
 
   return (
-    <div className={showHeading ? 'mb-10' : ''}>
+    <div className={`${showHeading ? 'mb-10' : ''} ${fillHeight ? 'flex h-full min-h-0 flex-col' : ''}`}>
       {showHeading && (
         <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider mb-3 font-[family-name:var(--font-inter)]">
           Try the code
         </h2>
       )}
       {snippets.length > 1 && (
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex shrink-0 flex-wrap gap-2 mb-3">
           {snippets.map((s, i) => (
             <button
               key={`${s.repoPath}-${i}`}
@@ -247,7 +329,14 @@ const CodeRunner = ({
         </div>
       )}
 
-      <SnippetPanel key={`${current.repoPath}-${active}`} snippet={current} videoId={videoId} />
+      <SnippetPanel
+        key={`${current.repoPath}-${active}`}
+        snippet={current}
+        videoId={videoId}
+        fillHeight={fillHeight}
+        theme={theme}
+        onThemeChange={setTheme}
+      />
     </div>
   );
 };
