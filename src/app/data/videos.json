@@ -299,6 +299,7 @@
     "title": "What is CAGR — computing your portfolio net worth",
     "format": "short",
     "description": "CAGR (Compound Annual Growth Rate) explained simply. Learn how investments grow at a smooth yearly rate instead of random ups and downs, why CAGR matters, and how to interpret growth over multiple years with a real-life example — a financial fundamental for stock market beginners.",
+    "interactive": "cagr-calculator",
     "links": [],
     "publishedAt": "2026-06-13"
   },

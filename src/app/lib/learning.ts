@@ -4,6 +4,7 @@ import videosData from '../data/videos.json';
 export type TopicKey = 'tech' | 'finance';
 export type VideoFormat = 'long' | 'short';
 export type VideoPlatform = 'youtube' | 'instagram';
+export type InteractiveTool = 'cagr-calculator';
 
 export type VideoLink = { label: string; url: string };
 
@@ -48,6 +49,8 @@ export type CatalogVideo = {
   links?: VideoLink[];
   /** Runnable concept code sample(s) shown on the video page. */
   code?: CodeSnippet | CodeSnippet[];
+  /** Optional interactive learning tool shown beside the video. */
+  interactive?: InteractiveTool;
   /** ISO 8601 publish date (e.g. "2025-03-14"), used for VideoObject uploadDate. */
   publishedAt?: string;
 };
@@ -284,4 +287,3 @@ export const getAllTopicVideoParams = () =>
 /** Static params: every topic. */
 export const getAllTopicParams = () =>
   (Object.keys(DATA) as TopicKey[]).map((topic) => ({ topic }));
-

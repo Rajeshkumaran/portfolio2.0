@@ -6,6 +6,7 @@ import LearningHeader from '../LearningHeader';
 import LearningFooter from '../LearningFooter';
 import TryCodeButton from '../TryCodePanel';
 import CodeRunner from '../CodeRunner';
+import CagrCalculator from '../CagrCalculator';
 import {
   getVideoInTopic,
   getTopicMeta,
@@ -60,10 +61,12 @@ const VideoDetailPage = ({
     [topicKey, videoId]
   );
 
-  const [codeOpen, setCodeOpen] = useState(() => Boolean(location?.video.code));
+  const [codeOpen, setCodeOpen] = useState(() =>
+    Boolean(location?.video.code || location?.video.interactive)
+  );
 
   useEffect(() => {
-    setCodeOpen(Boolean(location?.video.code));
+    setCodeOpen(Boolean(location?.video.code || location?.video.interactive));
   }, [location]);
 
   useEffect(() => {
@@ -153,6 +156,8 @@ const VideoDetailPage = ({
       ? video.code
       : [video.code]
     : [];
+  const hasCagrCalculator = video.interactive === 'cagr-calculator';
+  const hasWorkspace = codeSnippets.length > 0 || hasCagrCalculator;
 
   const playerBlock = (
     <div
@@ -215,26 +220,27 @@ const VideoDetailPage = ({
           Watch on Instagram
         </a>
       )}
-      {codeSnippets.length > 0 && (
+      {hasWorkspace && (
         <TryCodeButton
           open={codeOpen}
           onToggle={() => setCodeOpen((v) => !v)}
           videoId={videoId}
+          kind={hasCagrCalculator ? 'calculator' : 'code'}
         />
       )}
     </div>
   );
 
-  const codeBlock =
-    codeSnippets.length > 0 ? (
+  const workspaceBlock =
+    hasWorkspace ? (
       <div className="flex h-full min-h-0 flex-col bg-white/70 backdrop-blur-xl">
         <div className="flex shrink-0 items-center justify-between border-b border-white/60 px-5 py-3">
           <h2 className="text-base font-bold gradient-text font-[family-name:var(--font-inter)]">
-            Try the code
+            {hasCagrCalculator ? 'CAGR calculator' : 'Try the code'}
           </h2>
           <button
             onClick={() => setCodeOpen(false)}
-            aria-label="Close code playground"
+            aria-label={`Close ${hasCagrCalculator ? 'CAGR calculator' : 'code playground'}`}
             className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200/70 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-500 hover:text-zinc-900 transition-colors font-[family-name:var(--font-inter)]"
           >
             Close
@@ -244,12 +250,16 @@ const VideoDetailPage = ({
           </button>
         </div>
         <div className="min-h-0 flex-1">
-          <CodeRunner
-            snippets={codeSnippets}
-            videoId={videoId}
-            showHeading={false}
-            fillHeight
-          />
+          {hasCagrCalculator ? (
+            <CagrCalculator />
+          ) : (
+            <CodeRunner
+              snippets={codeSnippets}
+              videoId={videoId}
+              showHeading={false}
+              fillHeight
+            />
+          )}
         </div>
       </div>
     ) : null;
@@ -398,7 +408,7 @@ const VideoDetailPage = ({
             {/* Right: edge-to-edge workspace fixed to the viewport. */}
             {codeOpen && (
               <div className="mt-8 min-w-0 h-[720px] lg:mt-0 lg:fixed lg:right-0 lg:top-16 lg:bottom-[45px] lg:z-30 lg:h-auto lg:w-[65vw]">
-                {codeBlock}
+                {workspaceBlock}
               </div>
             )}
           </div>
