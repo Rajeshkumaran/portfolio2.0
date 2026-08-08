@@ -56,7 +56,7 @@
     "links": [],
     "code": {
       "language": "javascript",
-      "repoPath": "src/DataStructures/Queue/index.js"
+      "repoPath": "src/DataStructures/Queue/demoQueue.js"
     },
     "publishedAt": "2026-06-09"
   },
@@ -343,7 +343,7 @@
     "publishedAt": "2026-07-27"
   },
   "emauL9VYwxM": {
-    "title": "Depth First Search (DFS) | Graph Traversal",
+    "title": "Depth First Search (DFS)",
     "format": "long",
     "description": "Understand Depth First Search (DFS) from scratch using intuitive examples like exploring blog references and solving a maze. Learn graph basics, iterative DFS with a stack, recursive DFS, JavaScript implementation, time and space complexity, and real-world applications.",
     "links": [],
@@ -359,5 +359,12 @@
     "description": "Understand access tokens and refresh tokens using beginner-friendly real-world examples. Learn why access tokens expire quickly, why refresh tokens exist, and how modern applications keep users signed in securely without repeatedly asking them to log in.",
     "links": [],
     "publishedAt": "2026-08-01"
+  },
+  "puxCwnxJ9tc": {
+    "title": "Breadth First Search (BFS)",
+    "format": "long",
+    "description": "Breadth First Search (BFS) explained in Tamil/Tanglish with an intuitive restaurant graph example and a JavaScript implementation. Learn how BFS explores a graph level by level using a queue, why FIFO and a visited set preserve traversal order and handle cycles, how BFS differs from DFS, and why its time complexity is O(V + E) with O(V) space.",
+    "links": [],
+    "publishedAt": "2026-08-08"
   }
 }
