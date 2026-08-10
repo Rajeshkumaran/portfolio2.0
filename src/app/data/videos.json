@@ -366,5 +366,12 @@
     "description": "Breadth First Search (BFS) explained in Tamil/Tanglish with an intuitive restaurant graph example and a JavaScript implementation. Learn how BFS explores a graph level by level using a queue, why FIFO and a visited set preserve traversal order and handle cycles, how BFS differs from DFS, and why its time complexity is O(V + E) with O(V) space.",
     "links": [],
     "publishedAt": "2026-08-08"
+  },
+  "LHYaheGSraM": {
+    "title": "Be a Better Engineer | E1: How to Make PR Reviews Better",
+    "format": "short",
+    "description": "Practical Pull Request best practices that make code easier to understand, review, and maintain. Learn how to choose meaningful branch names and commit messages, write a clear PR description, provide reviewer context, handle feedback without becoming defensive, communicate effectively, and follow up without creating unnecessary pressure.",
+    "links": [],
+    "publishedAt": "2026-08-09"
   }
 }
