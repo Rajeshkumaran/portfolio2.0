@@ -373,5 +373,12 @@
     "description": "Practical Pull Request best practices that make code easier to understand, review, and maintain. Learn how to choose meaningful branch names and commit messages, write a clear PR description, provide reviewer context, handle feedback without becoming defensive, communicate effectively, and follow up without creating unnecessary pressure.",
     "links": [],
     "publishedAt": "2026-08-09"
+  },
+  "Ze83FAfMMLQ": {
+    "title": "Be a Better Engineer | E2: Be a Better Code Reviewer 🚀",
+    "format": "short",
+    "description": "Being a good code reviewer isn’t just about finding bugs.\n\nA good reviewer should understand the code, identify logical issues and edge cases, avoid becoming a comment-generating machine, give useful suggestions with context, distinguish important issues from minor nit comments, and most importantly — review with empathy.\n\nIn this short, we’ll look at 6 practical code review best practices that can help you become a better reviewer and, ultimately, a better software engineer.\n\nIn this Short:\n\n✅ Review the code properly\n✅ Don’t become a comment-generating machine\n✅ Don’t just identify problems — explain why\n✅ Use “nit” for minor comments\n✅ Dedicate focused time for PR reviews\n✅ Be empathetic and respectful\n\n#CodeReview #SoftwareEngineering #Programming #DeveloperTips #tamiltech #beabetteryou #beabetterengineer #itprofessionals #seniorengineer",
+    "links": [],
+    "publishedAt": "2026-08-12"
   }
 }
