@@ -380,5 +380,12 @@
     "description": "Being a good code reviewer isn’t just about finding bugs.\n\nA good reviewer should understand the code, identify logical issues and edge cases, avoid becoming a comment-generating machine, give useful suggestions with context, distinguish important issues from minor nit comments, and most importantly — review with empathy.\n\nIn this short, we’ll look at 6 practical code review best practices that can help you become a better reviewer and, ultimately, a better software engineer.\n\nIn this Short:\n\n✅ Review the code properly\n✅ Don’t become a comment-generating machine\n✅ Don’t just identify problems — explain why\n✅ Use “nit” for minor comments\n✅ Dedicate focused time for PR reviews\n✅ Be empathetic and respectful\n\n#CodeReview #SoftwareEngineering #Programming #DeveloperTips #tamiltech #beabetteryou #beabetterengineer #itprofessionals #seniorengineer",
     "links": [],
     "publishedAt": "2026-08-12"
+  },
+  "6fYN60eMEkg": {
+    "title": "Why do We need the New HTTP QUERY Method?",
+    "format": "long",
+    "description": "Why does HTTP need a new QUERY method when GET and POST already exist? Learn how oversized search and filtering parameters can lead to 414 URI Too Long errors, why POST is a poor semantic fit for read-only requests, and how QUERY combines request-body support with safe, idempotent semantics that can work better with proxies, gateways, and caching infrastructure.",
+    "links": [],
+    "publishedAt": "2026-08-13"
   }
 }
