@@ -387,5 +387,13 @@
     "description": "Why does HTTP need a new QUERY method when GET and POST already exist? Learn how oversized search and filtering parameters can lead to 414 URI Too Long errors, why POST is a poor semantic fit for read-only requests, and how QUERY combines request-body support with safe, idempotent semantics that can work better with proxies, gateways, and caching infrastructure.",
     "links": [],
     "publishedAt": "2026-08-13"
+  },
+  "C0vHjBS7xyE": {
+    "title": "CORS Explained 🔥 | What is CORS & Why Does the Browser Block Requests?",
+    "format": "long",
+    "description": "Development panumpothu almost everyone has faced this:\n\n“CORS policy blocked this request” 😵‍💫\n\nBut who is actually blocking the request? Why does the browser do this? What happens when www.bank.com tries to call api.bank.com? And why does the browser sometimes send an OPTIONS request before the actual API call?\n\nIn this video, we break down CORS (Cross-Origin Resource Sharing) with a real-world example and understand what actually happens inside the browser.\n\nIn this video:\n\n- What is CORS?\n- Why does the browser enforce CORS?\n- Same-Origin Policy vs CORS\n- www.bank.com → api.bank.com example\n- How cookies behave in cross-origin requests\n- Access-Control-Allow-Origin\n- Access-Control-Allow-Methods\n- What is a CORS preflight request?\n- Why does the browser send an OPTIONS request?\n- Simple requests vs preflighted requests\n- GET vs POST/PUT/DELETE CORS behavior\n- Why CORS is a browser security mechanism\n- Why CORS is NOT an API firewall\n- CORS issues during local development\n- localhost:3000 → localhost:5000\n- Development proxy as a solution\n- Why disabling CORS using browser extensions isn't a real solution\n\nThe goal is to build a proper mental model of what the browser, server and JavaScript are each responsible for when making cross-origin requests.\n\nIf you're a software engineer or learning web development, this is one concept you definitely want to understand properly.\n\n#CORS #WebDevelopment #HTTP #SoftwareEngineering #JavaScript #programmingforstudents #programmingforbeginners #itprofessionals",
+    "youtubeUrl": "https://youtu.be/C0vHjBS7xyE",
+    "links": [],
+    "publishedAt": "2026-08-18"
   }
 }
