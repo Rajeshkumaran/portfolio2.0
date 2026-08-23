@@ -402,5 +402,13 @@
     "description": "RSUs and stock options may both be part of a job offer, but they work very differently. Learn how RSUs, vesting, exercise or strike prices, exercise periods, and stock option risk and reward work—and how private startup shares may become sellable through an IPO, acquisition, company buyback, or secondary sale.",
     "links": [],
     "publishedAt": "2026-08-20"
+  },
+  "DUBA-mcjar8": {
+    "title": "Introduction to OSI Model 🌐 | How Data Travels Across a Network #networkprotocols #osimodel",
+    "format": "short",
+    "description": "OSI Model explained with a real-world HTTP request! 🌐\n\nHTTP, TCP, IP, MAC address, NIC, Wi-Fi… we hear these terms all the time when talking about networking. But how do they actually work together?\n\nIn this video, we use the OSI (Open Systems Interconnection) model to understand how data travels from one machine to another.\n\nWe’ll take a simple example:\n\nGET /users/1\n\nand follow what happens as the request moves through the networking stack.\n\nWe’ll understand:\n\n🔹 What is the OSI Model?\n🔹 Why was networking divided into different layers?\n🔹 What are the 7 layers of the OSI Model?\n🔹 How does HTTP fit into the Application Layer?\n🔹 How does HTTPS/TLS encrypt the data?\n🔹 What does TCP actually do?\n🔹 What information is present in a TCP header?\n🔹 How does IP identify the destination?\n🔹 What is the difference between an IP address and a MAC address?\n🔹 Why does the destination MAC address point to the router?\n🔹 How does a packet move from your laptop → router → ISP → server?\n🔹 What does a NIC actually do?\n🔹 How does data finally become radio, electrical, or optical signals?\n🔹 What is encapsulation?\n\nWe’ll also understand an important point: the OSI model is a conceptual model, and real-world networking implementations don’t necessarily map one-to-one with all seven OSI layers.\n\nThe basic journey\n\nHTTP → TLS → TCP → IP → Wi-Fi/Ethernet → Physical signals\n\nBy the end of the video, you should have a clear mental model of how these different networking protocols and layers work together.\n\nIf you’re learning HTTP, networking, backend development, system design, or distributed systems, this is an important foundation.\n\nLearning. Building. Sharing.\n\n#OSIMode​​l #Networking #http #tcp #quic",
+    "youtubeUrl": "https://youtube.com/shorts/DUBA-mcjar8",
+    "links": [],
+    "publishedAt": "2026-08-23"
   }
 }
