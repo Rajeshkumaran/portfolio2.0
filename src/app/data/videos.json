@@ -410,5 +410,13 @@
     "youtubeUrl": "https://youtube.com/shorts/DUBA-mcjar8",
     "links": [],
     "publishedAt": "2026-08-23"
+  },
+  "8yDz0xAfXSI": {
+    "title": "Bloom Filter Explained in Tamil",
+    "format": "short",
+    "description": "Learn how Bloom Filters save memory and reduce unnecessary database queries using a simple username availability example.",
+    "youtubeUrl": "https://youtube.com/shorts/8yDz0xAfXSI",
+    "links": [],
+    "publishedAt": "2026-08-28"
   }
 }
