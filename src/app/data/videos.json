@@ -458,5 +458,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/8Dc51K7pN9w",
     "links": [],
     "publishedAt": "2026-09-21"
+  },
+  "5-50iaK3uHE": {
+    "title": "Docker Containers Explained in Tamil: Images and Dockerfiles",
+    "format": "short",
+    "description": "Docker containers dependency-um environment-um consistent-a isolate panna epdi help pannuthu-nu learn pannunga. Dockerfile-la irundhu image build panni container run panradhu, VM difference, registry, orchestration basics varaikkum paakalaam.",
+    "youtubeUrl": "https://www.youtube.com/shorts/5-50iaK3uHE",
+    "links": [],
+    "publishedAt": "2026-09-25"
   }
 }
