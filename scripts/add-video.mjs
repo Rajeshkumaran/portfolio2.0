@@ -24,6 +24,7 @@
  *     [--position N]                  # 1-based slot in the roadmap; default: append
  *     [--instagram <url>]             # for an Instagram-only (non-YouTube) video
  *     [--github <url>] [--youtube <url>]
+ *     [--video-url <url>]              # generic HTTPS link shown as "Watch video"
  *     [--code-lang javascript|typescript|python|java --code-path <repo/path>]
  *                                     # attach runnable concept code shown on the
  *                                     # video page (fetched from the learning repo)
@@ -48,6 +49,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataPath = (p) => join(root, 'src/app/data', p);
 
 const YT_ID_RE = /^[\w-]{11}$/;
+const EXTERNAL_ID_RE = /^[a-z0-9][a-z0-9_-]*$/;
 
 /** Parse `--key value` / `--key=value` / boolean `--key` flags. */
 function parseArgs(argv) {
@@ -76,6 +78,21 @@ function fail(msg) {
   process.exit(1);
 }
 
+function requireHttpsUrl(value, flag) {
+  if (!value) return;
+
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    fail(`${flag} must be an absolute HTTPS URL.`);
+  }
+
+  if (url.protocol !== 'https:') {
+    fail(`${flag} must use HTTPS.`);
+  }
+}
+
 const args = parseArgs(process.argv.slice(2));
 
 const id = args.id;
@@ -93,10 +110,20 @@ if (!catRef) fail('Missing --category (a category id or slug).');
 if (format && format !== 'short' && format !== 'long') {
   fail(`Invalid --format "${format}". Use "short" or "long".`);
 }
-if (!YT_ID_RE.test(id) && !args.instagram) {
+requireHttpsUrl(args.youtube, '--youtube');
+requireHttpsUrl(args.instagram, '--instagram');
+requireHttpsUrl(args.github, '--github');
+requireHttpsUrl(args['video-url'], '--video-url');
+if (!YT_ID_RE.test(id) && !args.instagram && !args['video-url']) {
   fail(
     `--id "${id}" is not a valid 11-char YouTube id. For an Instagram-only video, ` +
-      'pass a non-YouTube id and supply --instagram <url>.'
+      'pass --instagram <url>; for another platform, pass --video-url <url>.'
+  );
+}
+if (args['video-url'] && !EXTERNAL_ID_RE.test(id)) {
+  fail(
+    `--id "${id}" must be a lowercase URL-safe id when --video-url is used ` +
+      '(letters, numbers, underscores, and hyphens).'
   );
 }
 
@@ -130,6 +157,9 @@ if (catalog[id]) {
   if (args.instagram) entry.instagramUrl = args.instagram;
   if (args.github) entry.githubUrl = args.github;
   entry.links = [];
+  if (args['video-url']) {
+    entry.links.push({ label: 'Watch video', url: args['video-url'] });
+  }
   if (args['code-path']) {
     const lang = args['code-lang'];
     const validLangs = ['javascript', 'typescript', 'python', 'java'];

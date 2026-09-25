@@ -50,7 +50,7 @@ Then regenerate the static output:
 npm run build
 ```
 
-Extra flags: `--position N` places the video at a 1-based step in the roadmap (default: append); `--instagram`, `--youtube`, and `--github` add links. For an Instagram-only video, pass a non-YouTube id together with `--instagram <url>`.
+Extra flags: `--position N` places the video at a 1-based step in the roadmap (default: append); `--instagram`, `--youtube`, and `--github` add platform links. For an Instagram-only video, pass a non-YouTube id together with `--instagram <url>`. For another HTTPS video platform, pass a lowercase URL-safe id with `--video-url <url>`; this adds an external **Watch video** link rather than an inline player.
 
 The `description` feeds both the page's `<meta description>` (clamped to 160 characters) and the JSON-LD `VideoObject.description` (full text) — write a unique, keyword-led summary so crawlers grasp the gist immediately.
 
@@ -59,6 +59,20 @@ Preview a category's roadmap order at any time:
 ```bash
 npm run learning:list -- <category id or slug>
 ```
+
+### Add video skill
+
+The repository includes an `add-video` skill that collects a video link, title, and description; rewrites the copy for a professional educational audience; recommends a category and roadmap position; and shows previews before making or committing changes.
+
+Install the published skill globally:
+
+```bash
+npx skills add Rajeshkumaran/portfolio2.0@add-video -g -y
+```
+
+Invoke it as `/add-video` from any directory. It targets only a verified `Rajeshkumaran/portfolio2.0` clone, resolving the repository from `PORTFOLIO_REPO`, a matching current worktree, or the default local path documented in the skill. The skill requires approval before editing and again before committing or pushing.
+
+Refresh an installed copy with `npx skills update`. If the skill manager cannot install a branch-only skill, merge it to the repository's default branch first. The `npm run video:add -- ...` command above remains the direct CLI fallback.
 
 ## Learn More
 
