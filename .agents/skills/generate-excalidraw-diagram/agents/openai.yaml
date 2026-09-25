@@ -1,0 +1,5 @@
+interface:
+  display_name: "Generate Excalidraw Diagram"
+  short_description: "Create and validate editable Excalidraw diagrams"
+  default_prompt: "Create or revise an editable Excalidraw diagram, render the exact scene to PNG, validate it, and iterate until I approve the preview."
+

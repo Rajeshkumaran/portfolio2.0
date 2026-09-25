@@ -1,0 +1,36 @@
+{
+  "name": "@portfolio-skill/generate-excalidraw-diagram",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "build": "tsc --noEmit",
+    "check": "tsx scripts/src/cli.ts check",
+    "validate:ir": "tsx scripts/src/cli.ts validate-ir",
+    "generate": "tsx scripts/src/cli.ts generate",
+    "render": "tsx scripts/src/cli.ts render",
+    "validate:scene": "tsx scripts/src/cli.ts validate-scene",
+    "test": "tsx --test scripts/tests/*.test.ts",
+    "test:golden": "UPDATE_GOLDEN=1 tsx --test scripts/tests/render.test.ts"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "3.1.1",
+    "@excalidraw/excalidraw": "0.18.1",
+    "@excalidraw/mermaid-to-excalidraw": "2.2.2",
+    "playwright": "1.63.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.5.2",
+    "esbuild": "0.25.10",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2"
+  },
+  "license": "MIT"
+}
+

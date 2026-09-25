@@ -1,0 +1,14 @@
+{
+  "mode": "light",
+  "background": "#ffffff",
+  "accent": "#4f46e5",
+  "text": "#1f2937",
+  "muted": "#64748b",
+  "surface": "#eef2ff",
+  "surfaceAlt": "#ecfeff",
+  "boundary": "#94a3b8",
+  "warning": "#b45309",
+  "font": "hand",
+  "density": "comfortable",
+  "roughness": 1
+}
