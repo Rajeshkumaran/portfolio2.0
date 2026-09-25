@@ -204,23 +204,19 @@ audience, and disliked wording.
 
 Continue until approved.
 
-## Prepare the branch
+## Prepare `main`
 
-After preview approval, prepare a safe branch.
+After preview approval, ensure the repository is on the local `main` branch.
+Do not create or use a content or feature branch for this workflow.
 
-When on the default branch, create:
+If the repository is on another branch, switch to `main` only when doing so is
+safe and will not overwrite or conflict with existing work. Stop and ask for
+guidance when tracked changes, unpushed commits, or branch conflicts make the
+switch unsafe.
 
-```text
-content/add-video-<id>
-```
-
-If the branch already exists locally or remotely, inspect whether it contains
-the same video and ask before resuming it. Otherwise propose a numeric suffix
-such as `content/add-video-<id>-2`.
-
-Use an existing non-default branch only when it is safe and clearly related to
-the requested change. Do not switch branches when doing so would overwrite or
-conflict with existing work.
+Before editing, require the fetched remote state to show that local `main` is
+not behind or diverged from its upstream. Never pull, merge, rebase, reset,
+stash, cherry-pick, or discard changes without explicit approval.
 
 ## Apply the change
 
@@ -289,19 +285,18 @@ return to preview approval.
 Stage only the approved files and use:
 
 ```text
-content: add video <id>
+content: add video <approved title> - <id>
 ```
 
 Follow active repository and environment requirements for commit trailers.
 Never amend, squash, reset, or discard an existing commit unless explicitly
 requested.
 
-Push the approved content branch to its configured upstream remote. Never
-force-push.
+Push `main` to its configured upstream remote. Never force-push.
 
 Retry once only when a push failure is clearly transient. Otherwise preserve
-the local commit and report the branch, commit SHA, exact failure, and safe
-recovery action. Do not claim that publication succeeded.
+the local commit and report the commit SHA, exact failure, and safe recovery
+action. Do not claim that publication succeeded.
 
 Do not open or merge a pull request unless explicitly requested.
 
@@ -314,7 +309,7 @@ Report:
 - Topic and category
 - Roadmap position
 - Inline-playable or external-link behavior
-- Branch name
+- Branch name (`main`)
 - Commit SHA
 - Validation result
 - Push result
