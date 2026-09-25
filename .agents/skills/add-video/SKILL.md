@@ -288,15 +288,39 @@ Stage only the approved files and use:
 content: add video <approved title> - <id>
 ```
 
-Follow active repository and environment requirements for commit trailers.
+Do not add Copilot co-author, session, or other automated attribution trailers.
 Never amend, squash, reset, or discard an existing commit unless explicitly
 requested.
 
-Push `main` to its configured upstream remote. Never force-push.
+Before pushing, verify that the configured SSH host alias resolves correctly
+and that the current shell has an SSH identity available:
 
-Retry once only when a push failure is clearly transient. Otherwise preserve
-the local commit and report the commit SHA, exact failure, and safe recovery
-action. Do not claim that publication succeeded.
+```bash
+ssh -G github-personal
+ssh-add -l
+ssh -o BatchMode=yes -T git@github-personal
+```
+
+Require `ssh -G` to resolve `github-personal` to `github.com`, `ssh-add -l` to
+list at least one identity, and the authentication test to identify the
+expected personal GitHub account. GitHub's successful SSH authentication test
+may exit non-zero because it does not provide shell access; evaluate its
+message rather than the exit code alone.
+
+Do not inspect private-key contents, add SSH files to the repository, change
+the configured remote, or fall back to HTTPS credentials. Starting another
+shell does not fix a missing SSH alias or identity.
+
+Run the push from the resolved portfolio repository:
+
+```bash
+git -C "<resolved-repository-path>" push origin main
+```
+
+Never force-push. Retry once only when a push failure is clearly transient.
+When SSH preflight or push fails, preserve the local commit and report the
+commit SHA, exact failure, and the same manual push command. Do not claim that
+publication succeeded.
 
 Do not open or merge a pull request unless explicitly requested.
 
