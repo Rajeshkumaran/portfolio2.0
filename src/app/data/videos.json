@@ -450,5 +450,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/9NZQOFFcEtg",
     "links": [],
     "publishedAt": "2026-09-13"
+  },
+  "8Dc51K7pN9w": {
+    "title": "How Harness Engineering Powers Reliable AI Agents",
+    "format": "short",
+    "description": "Harness engineering connects an LLM with tools, MCP, memory, RAG, orchestration, guardrails, and observability. Learn how this surrounding system enables reliable multi-step AI agents beyond text generation.",
+    "youtubeUrl": "https://www.youtube.com/shorts/8Dc51K7pN9w",
+    "links": [],
+    "publishedAt": "2026-09-21"
   }
 }
