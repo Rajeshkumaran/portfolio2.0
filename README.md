@@ -64,15 +64,20 @@ npm run learning:list -- <category id or slug>
 
 The repository includes an `add-video` skill that collects a video link, title, and description; rewrites the copy for a professional educational audience; recommends a category and roadmap position; and shows previews before making or committing changes.
 
-Install the published skill globally:
+Install the published skill for your Copilot CLI user account from an
+interactive session:
 
-```bash
-npx skills add Rajeshkumaran/portfolio2.0@add-video -g -y
+```text
+/skills add https://raw.githubusercontent.com/Rajeshkumaran/portfolio2.0/main/.agents/skills/add-video/SKILL.md
+/skills reload
+/skills info add-video
 ```
 
 Invoke it as `/add-video` from any directory. It targets only a verified `Rajeshkumaran/portfolio2.0` clone, resolving the repository from `PORTFOLIO_REPO`, a matching current worktree, or the default local path documented in the skill. The skill requires approval before editing and again before committing or pushing.
 
-Refresh an installed copy with `npx skills update`. If the skill manager cannot install a branch-only skill, merge it to the repository's default branch first. The `npm run video:add -- ...` command above remains the direct CLI fallback.
+To refresh an installed copy, remove it with `/skills remove add-video`, run the
+add command again, and reload skills. The `npm run video:add -- ...` command
+above remains the direct CLI fallback.
 
 ## Learn More
 
