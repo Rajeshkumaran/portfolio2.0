@@ -482,5 +482,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/h4_e4F3cyGo",
     "links": [],
     "publishedAt": "2026-09-29"
+  },
+  "_vOJhff_ubY": {
+    "title": "ACID Database Transactions: Reliability Explained",
+    "format": "short",
+    "description": "Learn how Atomicity, Consistency, Isolation, and Durability make database transactions reliable. Explore money-transfer and concurrency examples, plus the roles of locking, MVCC, transaction logs, and write-ahead logging.",
+    "youtubeUrl": "https://www.youtube.com/shorts/_vOJhff_ubY",
+    "links": [],
+    "publishedAt": "2026-09-29"
   }
 }
