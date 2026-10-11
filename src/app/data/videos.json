@@ -474,5 +474,13 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=T7I_Yz8q3sc",
     "links": [],
     "publishedAt": "2026-09-26"
+  },
+  "h4_e4F3cyGo": {
+    "title": "Row vs Column-Oriented Databases: When to Use Each",
+    "format": "short",
+    "description": "Compare how row-oriented and column-oriented databases store and scan data. Learn why row storage suits transactional OLTP workloads, while columnar systems such as ClickHouse improve analytical OLAP queries and compression.",
+    "youtubeUrl": "https://www.youtube.com/shorts/h4_e4F3cyGo",
+    "links": [],
+    "publishedAt": "2026-09-29"
   }
 }
