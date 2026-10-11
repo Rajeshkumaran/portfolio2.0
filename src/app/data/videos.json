@@ -490,5 +490,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/_vOJhff_ubY",
     "links": [],
     "publishedAt": "2026-09-29"
+  },
+  "FUx2YYdh1-M": {
+    "title": "ETags for HTTP Caching and Optimistic Concurrency",
+    "format": "short",
+    "description": "Learn how ETags prevent lost updates through optimistic concurrency control and stale-write detection. See how conditional requests use 412 Precondition Failed for updates and 304 Not Modified to reduce repeated HTTP payloads.",
+    "youtubeUrl": "https://www.youtube.com/shorts/FUx2YYdh1-M",
+    "links": [],
+    "publishedAt": "2026-10-08"
   }
 }
