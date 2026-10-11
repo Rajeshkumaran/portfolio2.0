@@ -498,5 +498,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/FUx2YYdh1-M",
     "links": [],
     "publishedAt": "2026-10-08"
+  },
+  "g8cxS1cxmTU": {
+    "title": "Presigned URLs for Scalable Direct File Uploads",
+    "format": "short",
+    "description": "Learn how presigned URLs let clients upload files directly to object storage such as Amazon S3 or Azure Blob Storage. See how this removes application-server bottlenecks and enables asynchronous processing through storage events.",
+    "youtubeUrl": "https://www.youtube.com/shorts/g8cxS1cxmTU",
+    "links": [],
+    "publishedAt": "2026-10-11"
   }
 }
