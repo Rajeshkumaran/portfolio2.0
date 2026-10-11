@@ -466,5 +466,13 @@
     "youtubeUrl": "https://www.youtube.com/shorts/5-50iaK3uHE",
     "links": [],
     "publishedAt": "2026-09-25"
+  },
+  "T7I_Yz8q3sc": {
+    "title": "Containerize a React App with Docker and Vite",
+    "format": "long",
+    "description": "Containerize a React and Vite application using a Dockerfile. Learn how to install dependencies, create a production build, map host and container ports, and run multiple isolated containers from one image.",
+    "youtubeUrl": "https://www.youtube.com/watch?v=T7I_Yz8q3sc",
+    "links": [],
+    "publishedAt": "2026-09-26"
   }
 }
