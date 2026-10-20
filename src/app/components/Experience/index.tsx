@@ -1,6 +1,4 @@
 'use client';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 import AnimatedSection from '../AnimatedSection';
 
 const experiences = [
@@ -54,98 +52,57 @@ const experiences = [
 
 const TimelineItem = ({
   experience,
-  index,
-  isLast,
 }: {
   experience: (typeof experiences)[0];
-  index: number;
-  isLast: boolean;
 }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
-
   return (
-    <div ref={ref} className="relative flex gap-4 sm:gap-6 lg:gap-8">
-      {/* Timeline line + dot */}
-      <div className="flex flex-col items-center flex-shrink-0">
-        <motion.div
-          className="w-3 h-3 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 ring-4 ring-rose-400/10 z-10"
-          initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-        />
-        {!isLast && (
-          <motion.div
-            className="w-[1px] flex-1 bg-gradient-to-b from-rose-400/30 to-transparent"
-            initial={{ scaleY: 0, originY: 0 }}
-            animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-          />
-        )}
+    <article className="portfolio-experience">
+      <div>
+        <p className="portfolio-eyebrow mb-2">{experience.period}</p>
+        <p className="text-sm text-zinc-600">{experience.location}</p>
       </div>
-
-      {/* Content card */}
-      <motion.div
-        className="glass-card p-4 sm:p-5 mb-6 sm:mb-8 flex-1"
-        initial={{ opacity: 0, x: -20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-        transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
-      >
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4 mb-3">
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 font-[family-name:var(--font-inter)]">
-              {experience.role}
-            </h3>
-            <p className="text-sm text-rose-600 font-medium font-[family-name:var(--font-inter)]">
-              {experience.company}
-              {experience.subtitle && (
-                <span className="text-zinc-500 font-normal">
-                  {' '}
-                  &middot; {experience.subtitle}
-                </span>
-              )}
-            </p>
-          </div>
-          <div className="flex flex-col sm:items-end">
-            <span className="text-xs text-zinc-500 font-[family-name:var(--font-inter)] whitespace-nowrap">
-              {experience.period}
-            </span>
-            <span className="text-xs text-zinc-400 font-[family-name:var(--font-inter)]">
-              {experience.location}
-            </span>
-          </div>
+      <div>
+        <div className="mb-4">
+          <h3 className="text-lg sm:text-xl font-medium text-zinc-900 mb-1">
+            {experience.role}
+          </h3>
+          <p className="text-sm text-rose-600 font-medium font-[family-name:var(--font-inter)]">
+            {experience.company}
+            {experience.subtitle && (
+              <span className="text-zinc-500 font-normal">
+                {' '}
+                &middot; {experience.subtitle}
+              </span>
+            )}
+          </p>
         </div>
         <ul className="space-y-2">
           {experience.highlights.map((highlight, i) => (
             <li
               key={i}
-              className="text-xs sm:text-sm text-zinc-600 leading-relaxed flex gap-2"
+              className="text-sm text-zinc-600 leading-7 flex gap-3"
             >
-              <span className="text-rose-500/70 mt-1 flex-shrink-0">
+              <span aria-hidden="true" className="text-rose-500 flex-shrink-0">
                 &bull;
               </span>
               <span>{highlight}</span>
             </li>
           ))}
         </ul>
-      </motion.div>
-    </div>
+      </div>
+    </article>
   );
 };
 
 const Experience = () => {
   return (
     <AnimatedSection>
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-zinc-900 mb-6 sm:mb-8 font-[family-name:var(--font-inter)]">
-        Experience
-      </h2>
-      <div className="ml-1">
-        {experiences.map((experience, index) => (
+      <h2>Experience</h2>
+      <div>
+        {experiences.map((experience) => (
           <TimelineItem
             key={`${experience.company}-${experience.role}`}
             experience={experience}
-            index={index}
-            isLast={index === experiences.length - 1}
           />
         ))}
       </div>

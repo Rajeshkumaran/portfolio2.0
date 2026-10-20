@@ -6,36 +6,36 @@ import Blogs from './components/Blogs';
 import Patents from './components/Patents';
 import Projects from './components/Projects';
 import Hobbies from './components/Hobbies';
-import CursorSpotlight from './components/CursorSpotlight';
 import BackToTop from './components/BackToTop';
 import Footer from './components/Footer';
+import './portfolio.css';
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-[family-name:var(--font-poppins)] text-zinc-900 pb-16">
-      <CursorSpotlight />
+    <div className="portfolio min-h-screen">
+      <a href="#main-content" className="portfolio-skip-link">Skip to content</a>
       <BackToTop />
       <Navbar />
-      <main className="max-w-6xl mx-auto px-6 lg:px-8">
+      <main id="main-content">
         <section id="about">
           <MainSection />
         </section>
-        <section id="experience" className="py-12 sm:py-16 lg:py-28">
+        <section id="experience" className="portfolio-section">
           <Experience />
         </section>
-        <section id="skills" className="py-12 sm:py-16 lg:py-28">
+        <section id="skills" className="portfolio-section">
           <Skills />
         </section>
-        <section id="blogs" className="py-12 sm:py-16 lg:py-28">
+        <section id="blogs" className="portfolio-section">
           <Blogs />
         </section>
-        <section id="patents" className="py-12 sm:py-16 lg:py-28">
+        <section id="patents" className="portfolio-section">
           <Patents />
         </section>
-        <section id="projects" className="py-12 sm:py-16 lg:py-28">
+        <section id="projects" className="portfolio-section">
           <Projects />
         </section>
-        <section id="hobbies" className="py-12 sm:py-16 lg:py-28">
+        <section id="hobbies" className="portfolio-section">
           <Hobbies />
         </section>
       </main>

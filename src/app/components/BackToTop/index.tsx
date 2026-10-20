@@ -1,9 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/app/lib/hooks';
 
 const BackToTop = () => {
   const [show, setShow] = useState(false);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => setShow(window.scrollY > 500);
@@ -18,9 +20,9 @@ const BackToTop = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-full bg-white/70 backdrop-blur-md backdrop-saturate-150 border border-white/60 shadow-[0_4px_20px_rgba(31,38,80,0.12)] flex items-center justify-center text-zinc-600 hover:text-rose-600 hover:border-rose-400/40 transition-colors cursor-pointer"
+          transition={{ duration: reduced ? 0 : 0.2 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })}
+          className="portfolio-back-to-top"
           aria-label="Back to top"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

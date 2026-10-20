@@ -1,186 +1,73 @@
 'use client';
 import Image from 'next/image';
-import { useRef } from 'react';
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValue,
-} from 'framer-motion';
+import AnimatedSection from '../AnimatedSection';
 import {
   RESUME_LINK,
   SOCIAL_LINKS,
   PROFILE_SUMMARY,
 } from '@/app/lib/constants';
-import Photo from '../../assets/photo2.png';
+import Photo from '../../assets/profilePhoto.jpeg';
 import { trackSocialClick } from '../../lib/analytics';
-import { usePrefersReducedMotion, useIsDesktop } from '@/app/lib/hooks';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.5, delay: i * 0.15, ease: 'easeOut' as const },
-  }),
-};
 
 const MainSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const prefersReduced = usePrefersReducedMotion();
-  const isDesktop = useIsDesktop();
-  const interactive = isDesktop && !prefersReduced;
-
-  // Scroll-driven parallax for the photo
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-  const photoScrollY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-
-  // Pointer-driven tilt/parallax for the photo
-  const pointerX = useMotionValue(0.5);
-  const pointerY = useMotionValue(0.5);
-  const rotateX = useSpring(useTransform(pointerY, [0, 1], [8, -8]), {
-    stiffness: 150,
-    damping: 18,
-  });
-  const rotateY = useSpring(useTransform(pointerX, [0, 1], [-8, 8]), {
-    stiffness: 150,
-    damping: 18,
-  });
-
-  const handlePointerMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!interactive) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    pointerX.set((e.clientX - rect.left) / rect.width);
-    pointerY.set((e.clientY - rect.top) / rect.height);
-  };
-
-  const handlePointerLeave = () => {
-    pointerX.set(0.5);
-    pointerY.set(0.5);
-  };
-
   return (
-    <div ref={sectionRef} className="min-h-screen flex items-center pt-16">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 w-full py-12">
-        {/* Photo - shows on top on mobile */}
-        <motion.div
-          className="lg:order-2 flex-shrink-0"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={interactive ? { y: photoScrollY } : undefined}
-        >
-          <motion.div
-            className="relative"
-            onMouseMove={handlePointerMove}
-            onMouseLeave={handlePointerLeave}
-            style={
-              interactive
-                ? {
-                    rotateX,
-                    rotateY,
-                    transformPerspective: 900,
-                    transformStyle: 'preserve-3d',
-                  }
-                : undefined
-            }
-          >
-            <Image
-              src={Photo}
-              alt="Rajesh K"
-              className="relative w-[140px] h-[140px] lg:w-[340px] lg:h-[340px] rounded-full object-cover ring-1 ring-white/60 shadow-[0_20px_50px_rgba(31,38,80,0.18)]"
-            />
-          </motion.div>
-        </motion.div>
-
-        {/* Content */}
-        <div className="lg:order-1 flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-5">
-          <motion.p
-            className="text-zinc-600 text-sm font-[family-name:var(--font-inter)]"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-          >
+    <div className="portfolio-hero">
+      <div className="portfolio-portrait">
+        <Image
+          src={Photo}
+          alt="Rajesh K"
+          fill
+          sizes="(max-width: 767px) 100vw, 66vw"
+          priority
+        />
+      </div>
+      <div className="portfolio-hero-inner">
+        <AnimatedSection className="portfolio-hero-copy">
+          <p className="portfolio-eyebrow">
             Hey there!
-          </motion.p>
+          </p>
 
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold gradient-text font-[family-name:var(--font-inter)]"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={1}
-          >
+          <h1>
             Rajesh K
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            className="flex items-center gap-3"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-          >
-            <span className="inline-block w-8 h-[2px] bg-rose-500" />
-            <span className="text-base sm:text-lg text-zinc-700 font-[family-name:var(--font-inter)]">
+          <div className="flex items-center gap-3 mb-6">
+            <span aria-hidden="true" className="inline-block w-8 h-px bg-[var(--rose)]" />
+            <span className="text-lg text-zinc-700">
               Software Engineer
             </span>
-          </motion.div>
+          </div>
 
-          <motion.p
-            className="text-zinc-600 text-sm leading-relaxed max-w-md"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-          >
+          <p className="text-zinc-600 text-base leading-8 max-w-lg">
             {PROFILE_SUMMARY}
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4 mt-2"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={4}
-          >
+          <div className="flex flex-wrap items-center gap-7 mt-8">
             <a
               href={RESUME_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-rose-500 to-rose-700 hover:from-rose-400 hover:to-rose-600 text-white text-sm px-6 py-2.5 rounded-full transition-all hover:shadow-[0_0_20px_rgba(225,29,72,0.35)] font-medium font-[family-name:var(--font-inter)]"
+              className="portfolio-primary-link"
               onClick={() => trackSocialClick('resume')}
             >
               View Resume
+              <span aria-hidden="true">&rarr;</span>
             </a>
 
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-1 text-zinc-600">
-                <span className="text-3xl font-bold text-zinc-900 font-[family-name:var(--font-inter)]">
+                <span className="text-4xl font-[family-name:var(--font-editorial)] text-[var(--ink)]">
                   8
                 </span>
-                <span className="text-lg text-rose-500 font-bold">+</span>
+                <span className="text-lg text-rose-500">+</span>
                 <span className="text-xs ml-1 max-w-[60px] leading-tight">
                   Years of experience
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="flex items-center gap-5 mt-4"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={5}
-          >
+          <div className="flex items-center gap-6 mt-9">
             {[
               {
                 platform: 'linkedin',
@@ -222,39 +109,23 @@ const MainSection = () => {
                 ),
               },
             ].map(({ link, platform, icon }) => (
-              <button
+              <a
                 key={platform}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-zinc-500 hover:text-rose-600 transition-colors cursor-pointer"
                 onClick={() => {
                   trackSocialClick(platform);
-                  window.open(link);
                 }}
                 aria-label={platform}
               >
                 {icon}
-              </button>
+              </a>
             ))}
-          </motion.div>
-        </div>
+          </div>
+        </AnimatedSection>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        style={interactive ? { opacity: indicatorOpacity } : undefined}
-      >
-        <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-[family-name:var(--font-inter)]">
-          Scroll
-        </span>
-        <motion.div
-          className="w-[1px] h-6 bg-gradient-to-b from-rose-400/60 to-transparent"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </motion.div>
     </div>
   );
 };

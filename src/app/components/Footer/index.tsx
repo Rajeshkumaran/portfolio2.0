@@ -30,31 +30,30 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-xl bg-white/55 backdrop-saturate-150 border-t border-white/50 shadow-[0_-4px_30px_rgba(31,38,80,0.06)]">
-      <div className="px-6 lg:px-8 py-2.5 flex items-center justify-between gap-4">
+    <footer className="portfolio-footer">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 py-8 pr-20 lg:pr-8 flex items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 min-w-0">
           <p className="text-xs sm:text-sm text-zinc-500 truncate font-[family-name:var(--font-inter)]">
             &copy; {year} Rajesh K.
           </p>
-          <p className="hidden sm:block text-[11px] text-zinc-400 truncate font-[family-name:var(--font-inter)]">
-            &middot; Design inspired by Apple
-          </p>
         </div>
         <div className="flex items-center gap-4 shrink-0">
           {socials.map(({ platform, link, icon }) => (
-            <button
+            <a
               key={platform}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-zinc-900 hover:text-rose-600 transition-colors cursor-pointer"
               onClick={() => {
                 trackSocialClick(platform);
-                window.open(link);
               }}
               aria-label={platform}
             >
               <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                 {icon}
               </svg>
-            </button>
+            </a>
           ))}
         </div>
       </div>

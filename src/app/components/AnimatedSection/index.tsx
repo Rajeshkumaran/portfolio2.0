@@ -1,6 +1,7 @@
 'use client';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { usePrefersReducedMotion } from '../../lib/hooks';
 
 const AnimatedSection = ({
   children,
@@ -12,15 +13,16 @@ const AnimatedSection = ({
   delay?: number;
 }) => {
   const ref = useRef(null);
+  const reduced = usePrefersReducedMotion();
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      initial={false}
+      animate={reduced || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+      transition={{ duration: reduced ? 0 : 0.35, delay: reduced ? 0 : delay, ease: 'easeOut' }}
     >
       {children}
     </motion.div>

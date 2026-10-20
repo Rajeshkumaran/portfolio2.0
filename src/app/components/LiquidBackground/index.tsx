@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { usePrefersReducedMotion } from '@/app/lib/hooks';
 
 type Blob = {
@@ -45,6 +46,9 @@ const orbs = [
  */
 const LiquidBackground = () => {
   const prefersReduced = usePrefersReducedMotion();
+  const pathname = usePathname();
+
+  if (pathname === '/') return null;
 
   return (
     <div

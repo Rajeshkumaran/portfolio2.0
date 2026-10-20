@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Instrument_Serif, Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import Analytics from './components/Analytics';
 import LiquidBackground from './components/LiquidBackground';
@@ -15,6 +15,14 @@ const poppins = Poppins({
   variable: '--font-poppins',
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-editorial',
+  weight: '400',
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -68,7 +76,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased`}
+        className={`${inter.variable} ${poppins.variable} ${instrumentSerif.variable} antialiased`}
       >
         <Analytics />
         <LiquidBackground />
