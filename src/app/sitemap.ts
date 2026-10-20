@@ -6,13 +6,16 @@ import {
   getVideoInTopic,
 } from './lib/learning';
 import { absUrl } from './lib/seo';
+import journeyData from './data/journey.json';
+import { parseJourneyContent } from './lib/journey';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticPages = ['/', '/learning-hub'].map((path) => ({
+  const hasJourney = parseJourneyContent(journeyData).moments.length > 0;
+  const staticPages = ['/', '/learning-hub', ...(hasJourney ? ['/journey'] : [])].map((path) => ({
     url: absUrl(path),
     lastModified: now,
     changeFrequency: 'monthly' as const,

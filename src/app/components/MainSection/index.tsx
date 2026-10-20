@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import AnimatedSection from '../AnimatedSection';
 import {
   RESUME_LINK,
@@ -53,6 +54,11 @@ const MainSection = () => {
               View Resume
               <span aria-hidden="true">&rarr;</span>
             </a>
+
+            <Link href="/journey/" className="portfolio-secondary-link">
+              Take a detour
+              <span aria-hidden="true">{'\u2197'}</span>
+            </Link>
 
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-1 text-zinc-600">

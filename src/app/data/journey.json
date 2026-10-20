@@ -1,0 +1,335 @@
+{
+  "title": "Along the Way",
+  "subtitle": "Milestones, detours, and the moments that shaped my journey.",
+  "categories": [
+    {
+      "id": "milestone",
+      "label": "Milestones",
+      "icon": "trophy"
+    },
+    {
+      "id": "detour",
+      "label": "Detours",
+      "icon": "turn"
+    },
+    {
+      "id": "discovery",
+      "label": "Learning",
+      "icon": "book"
+    },
+    {
+      "id": "work",
+      "label": "Work",
+      "icon": "briefcase"
+    },
+    {
+      "id": "building",
+      "label": "Building",
+      "icon": "code"
+    },
+    {
+      "id": "writing",
+      "label": "Writing",
+      "icon": "book"
+    },
+    {
+      "id": "life",
+      "label": "Life",
+      "icon": "heart"
+    },
+    {
+      "id": "travel",
+      "label": "Travel",
+      "icon": "plane"
+    }
+  ],
+  "moments": [
+    {
+      "id": "tenth-standard-results",
+      "date": "2012",
+      "category": "milestone",
+      "title": "Third in school, my first milestone",
+      "story": "Finished 10th standard ranked third in my school—one of the first milestones in a journey that was still unfolding.",
+      "published": true
+    },
+    {
+      "id": "twelfth-standard-results",
+      "date": "2014",
+      "category": "milestone",
+      "title": "Third again, with new possibilities ahead",
+      "story": "Finished 12th standard ranked third in my school once again, with a cut-off score of 198 out of 200.",
+      "published": true
+    },
+    {
+      "id": "joining-ssn",
+      "date": "2014",
+      "category": "discovery",
+      "title": "A new chapter at SSN",
+      "story": "Joined SSN to study Information Technology, taking my first steps toward a career in software.",
+      "published": true
+    },
+    {
+      "id": "learning-to-code",
+      "date": "2014",
+      "category": "discovery",
+      "icon": "code",
+      "title": "Turning ideas into code",
+      "story": "Started learning to code and discovered the joy of building things of my own.",
+      "published": true
+    },
+    {
+      "id": "smart-india-hackathon",
+      "date": "2017",
+      "category": "milestone",
+      "title": "A finalist at the inaugural Smart India Hackathon",
+      "story": "Reached the finalist stage of the first Smart India Hackathon.",
+      "published": true
+    },
+    {
+      "id": "first-flight",
+      "date": "2017",
+      "category": "travel",
+      "title": "My first flight—for a hackathon",
+      "story": "Flew to Allahabad for a hackathon—my first time on a plane, all for the chance to build something.",
+      "published": true
+    },
+    {
+      "id": "personal-assistant-app",
+      "date": "2017",
+      "category": "building",
+      "title": "Building a personal assistant",
+      "story": "Built an Android personal assistant with a chat interface and voice commands. Using text recognition and parsing, it could play music from Google Music, announce calendar events, and handle everyday requests.",
+      "published": true
+    },
+
+    {
+      "id": "caratlane-campus-placement",
+      "date": "2018",
+      "category": "detour",
+      "title": "A yes after a series of rejections",
+      "story": "After several rejections, landed a campus placement offer from CaratLane. It was the break that gave my career a place to begin.",
+      "published": true
+    },
+    {
+      "id": "joining-caratlane",
+      "date": "2018-05-05",
+      "category": "work",
+      "title": "Starting my career at CaratLane",
+      "story": "Joined CaratLane on May 5, 2018, and began my professional journey as a software engineer.",
+      "published": true
+    },
+    {
+      "id": "first-npm-packages",
+      "date": "2018-12",
+      "category": "building",
+      "title": "Publishing my first two npm packages",
+      "story": "Published my first two npm packages and shared my work with the open-source community.",
+      "published": true
+    },
+    {
+      "id": "first-portfolio",
+      "date": "2019",
+      "category": "building",
+      "title": "My first portfolio on the web",
+      "story": "Built the first version of my personal portfolio website—a home for my work and projects.",
+      "published": true
+    },
+    {
+      "id": "building-2048",
+      "date": "2019",
+      "category": "building",
+      "title": "Building and sharing a little game",
+      "story": "Built and published a 2048 web app, adding another project to a growing collection of things I wanted to make.",
+      "published": true
+    },
+    {
+      "id": "caratlane-hackathon",
+      "date": "2019-07",
+      "category": "milestone",
+      "title": "From hackathon win to real-world impact",
+      "story": "Won CaratLane's hackathon with an idea for omnichannel customer analysis and received an Amazon voucher worth 8K. The idea later went into production and launched across multiple CaratLane stores.",
+      "published": true
+    },
+    {
+      "id": "pandemic-detour",
+      "date": "2020",
+      "category": "detour",
+      "title": "A year that changed the world around us",
+      "story": "The COVID-19 pandemic reshaped everyday life. Against that backdrop, 2020 also brought a new chapter in my career.",
+      "published": true
+    },
+    {
+      "id": "caratlane-promotion",
+      "date": "2020-04",
+      "category": "work",
+      "icon": "flag",
+      "title": "Promoted to Software Engineer II",
+      "story": "Promoted to Software Engineer II at CaratLane—a meaningful step forward in my engineering career.",
+      "published": true
+    },
+    {
+      "id": "joining-ally",
+      "date": "2020-12",
+      "category": "work",
+      "title": "A new chapter at Ally.io",
+      "story": "Joined Ally.io in December, beginning the next chapter of my career after CaratLane.",
+      "published": true
+    },
+    {
+      "id": "first-personal-blog",
+      "date": "2021-05-23",
+      "category": "writing",
+      "title": "Sharing a personal story through writing",
+      "story": "Published my first blog, “My Pursuit of Happiness Moment,” and wrote about something beyond code.",
+      "links": [
+        {
+          "label": "Read the story",
+          "href": "https://rajeshkumaran1996.medium.com/my-pursuit-of-happiness-moment-62735b75e286"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "joining-microsoft",
+      "date": "2021-11",
+      "category": "work",
+      "title": "From Ally.io to Microsoft",
+      "story": "Following Microsoft's acquisition of Ally.io, joined Microsoft as a Software Engineer at level 60.",
+      "published": true
+    },
+    {
+      "id": "first-motorbike",
+      "date": "2022-01-21",
+      "category": "life",
+      "icon": "motorbike",
+      "title": "My first bike: a Royal Enfield",
+      "story": "Bought my first bike, a Royal Enfield Meteor 350—a memorable milestone beyond the world of work.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/bike.jpeg",
+          "alt": "Royal enfield meteor 350",
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "first-technical-blog",
+      "date": "2022-07-21",
+      "category": "writing",
+      "title": "Making Git more approachable",
+      "story": "Published my first technical blog, “Git Basics for Beginners,” to help people take their first steps with Git.",
+      "links": [
+        {
+          "label": "Read the Git guide",
+          "href": "https://rajeshkumaran1996.medium.com/git-basics-for-beginners-fcf762304bcc"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "microsoft-okr-coach-hackathon",
+      "date": "2022-09",
+      "category": "milestone",
+      "title": "Winning a Microsoft hackathon with OKR Coach",
+      "story": "Won a Microsoft hackathon with OKR Coach, a machine-learning idea for improving OKRs in Viva Goals. It provided recommendations and quality scores as people wrote objectives and key results, helping automate reviews and leaving more time to focus on business goals.",
+      "published": true
+    },
+    {
+      "id": "alappuzha-friends-trip",
+      "date": "2023-01-29",
+      "category": "travel",
+      "icon": "compass",
+      "title": "A getaway with friends in Alappuzha",
+      "story": "Travelled to Alappuzha with friends, taking a break from the everyday to spend time together.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/kerala2023.jpeg",
+          "alt": "A moment on a boat with houseboats and the Alappuzha backwaters in the background",
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "microsoft-promotion-l61",
+      "date": "2023-03",
+      "category": "work",
+      "icon": "flag",
+      "title": "Growing at Microsoft",
+      "story": "Promoted to Software Engineer II at level 61.",
+      "published": true
+    },
+    {
+      "id": "okr-generation-patent",
+      "date": "2024",
+      "category": "milestone",
+      "icon": "star",
+      "title": "From hackathon idea to patent",
+      "story": "In 2024, the OKR Coach idea reached another milestone with a patent related to machine-learning-based OKR generation.",
+      "links": [
+        {
+          "label": "View the patent document",
+          "href": "https://drive.google.com/file/d/1ZXqwcZvVUhIgL3ubeEWo-HlLX70CC-k5/view?usp=sharing"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "sisters-cma-graduation",
+      "date": "2024-05-23",
+      "category": "life",
+      "title": "Celebrating my sister's CMA graduation",
+      "story": "Travelled to Kolkata with my family for my sister's CMA graduation ceremony. A milestone for her and a special day to share together.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/kolkataTrip.jpeg",
+          "alt": "A sunlit road winding through green forest in Parambikulam",
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "microsoft-promotion-l62",
+      "date": "2024-09",
+      "category": "work",
+      "icon": "flag",
+      "title": "Another step forward at Microsoft",
+      "story": "Advanced to level 62 as a Software Engineer II at Microsoft.",
+      "published": true
+    },
+    {
+      "id": "parambikulam-trip",
+      "date": "2024-11-09",
+      "category": "travel",
+      "icon": "compass",
+      "title": "Into the green at Parambikulam",
+      "story": "A trip to Parambikulam, captured along a sunlit road through the trees.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/parambikulam.jpeg",
+          "alt": "A sunlit road winding through green forest in Parambikulam",
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "first-car",
+      "date": "2025-12-07",
+      "category": "life",
+      "icon": "car",
+      "title": "My first car: a Skoda Kushaq",
+      "story": "Bought my first car, a Skoda Kushaq Sportline—another personal first to remember.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/skoda.jpeg",
+          "alt": "Skoda Kushaq sportline",
+          "orientation": "portrait"
+        }
+      ]
+    }
+  ]
+}

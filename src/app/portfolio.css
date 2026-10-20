@@ -5,7 +5,7 @@
   --rule: #dedad4;
   --rose: #a63850;
   position: relative;
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-inter), sans-serif;
 }
@@ -197,6 +197,24 @@
 .portfolio-primary-link:hover {
   background: var(--rose);
   border-color: var(--rose);
+}
+
+.portfolio-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.25rem;
+  background: rgb(250 249 246 / 65%);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.portfolio-secondary-link:hover {
+  border-color: var(--rose);
+  color: var(--rose);
 }
 
 .portfolio-experience {

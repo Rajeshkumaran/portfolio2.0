@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { usePrefersReducedMotion } from '@/app/lib/hooks';
+import './background.css';
 
 type Blob = {
   className: string;
@@ -47,8 +48,19 @@ const orbs = [
 const LiquidBackground = () => {
   const prefersReduced = usePrefersReducedMotion();
   const pathname = usePathname();
-
-  if (pathname === '/') return null;
+  const isJourney = pathname === '/journey' || pathname.startsWith('/journey/');
+  if (pathname === '/' || isJourney) {
+    return (
+      <div
+        className="portfolio-atmosphere"
+        data-appearance="paper"
+        data-motion="off"
+        aria-hidden="true"
+      >
+        <div className="portfolio-paper-grain" />
+      </div>
+    );
+  }
 
   return (
     <div

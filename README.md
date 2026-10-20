@@ -20,6 +20,111 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Journey content
+
+The **Journey** navigation item and **Take a detour** button beside the resume
+open `/journey/`, titled **Along the Way**. Its content lives in
+`src/app/data/journey.json`; no layout changes are needed to add stories.
+
+Configure the page title, subtitle, category ids/labels, and `moments` array.
+Each published moment needs a unique lowercase, hyphenated `id`, a `date`
+(`YYYY`, `YYYY-MM`, or `YYYY-MM-DD`), a configured `category`, a `title`, a
+`story`, and an explicit `published: true`. Reflections, images, icons, and
+links are optional. Keep a separate moment for each event; reuse category ids
+rather than duplicating category labels in stories. For example, replace this
+draft's placeholder text with your own:
+
+```json
+{
+  "id": "a-new-chapter",
+  "date": "2026-10",
+  "category": "milestone",
+  "title": "Your own title",
+  "story": "What happened, in your own words.",
+  "reflection": "What stayed with you afterward.",
+  "icon": "book",
+  "links": [
+    { "label": "Read the story", "href": "https://example.com/my-story" }
+  ],
+  "published": false
+}
+```
+
+For photographs, put the files in `public/journey/` and add an `images` array
+to the moment in `src/app/data/journey.json`. Each moment supports up to three
+frames, displayed in array order:
+
+```json
+"images": [
+  {
+    "src": "/journey/a-moment.jpg",
+    "alt": "A meaningful description of the first photograph",
+    "orientation": "portrait"
+  },
+  {
+    "src": "/journey/another-view.jpg",
+    "alt": "A meaningful description of the second photograph",
+    "orientation": "landscape"
+  }
+]
+```
+
+Set each photo's `orientation` to `portrait` for a 4:5 frame or `landscape`
+for a wider 3:2 frame; orientations can be mixed within a moment. Omitting
+it defaults to portrait. Images crop to fill their frame. Frames share a row
+when space allows and wrap on smaller screens. Omit `images` or use an empty
+array for text-only moments. The legacy single `image` object still works,
+but do not configure both `image` and `images` on the same moment.
+The `src` starts with `/journey/`, not `/public/journey/`.
+Local JPEG, PNG, WebP, and AVIF files
+are supported. More than three frames, missing published images, and invalid published entries fail the
+build with an explicit error. The page sorts moments, groups years, and
+generates category filters automatically. The journey always reads from the
+beginning, in chronological order.
+
+Use only the date precision you know, rather than inventing a month or day.
+Moments with identical dates keep their order in the JSON array. Link labels are required,
+and destinations must be absolute HTTPS URLs without embedded credentials.
+
+The scenic route has two parallel lanes, mountains, and icon checkpoints.
+Checkpoints use Lucide icons. Set an optional `"icon"` on a category to choose its default, or
+on an individual moment to override it. Available icons are `pin`, `flag`,
+`turn`, `compass`, `heart`, `mountain`, `briefcase`, `book`, `star`, `plane`,
+`dumbbell`, `trophy`, `bike`, `motorbike`, `car`, and `code`.
+Without either setting, the checkpoint uses `pin`. For example, add
+`"icon": "book"` to a story about learning. Use `motorbike` for a motorcycle
+and `bike` for a bicycle. Checkpoint and title buttons expand or collapse stories.
+
+Large sticky year headings organize a compact title-first timeline. On
+desktop-width devices with a hover-capable fine pointer, hovering or focusing
+a moment reveals its story. Clicking a title or checkpoint explicitly toggles
+the details; Escape closes them and returns focus from the story to its title.
+On mobile and touch-first devices, details start expanded. Without JavaScript,
+the stories remain readable. Optional photographs appear in configurable
+portrait or landscape white frames with date/category captions; moments without images reveal text
+only, with no placeholder frame.
+
+Lane markings, story reveals, and scroll entrances animate subtly; visitors
+can turn motion off, and their system's reduced-motion preference disables it
+automatically.
+
+Unpublished entries are filtered on the server before anything is sent to the
+page. **This is not private storage:** do not commit sensitive stories or
+photos, even with `published: false`. An empty published timeline shows a
+clearly labeled layout preview, not an invented biography. The preview is
+`noindex` and omitted from the sitemap; publishing a real moment replaces all
+examples and enables normal indexing. Rebuild and deploy to publish changes.
+
+Validate the content rules with `npm run test:journey`, and regenerate the
+static output with `npm run build`.
+
+The homepage and Journey share a neutral paper-white background with a fine
+grain texture. Styling lives in
+`src/app/components/LiquidBackground/background.css`; the portrait's ivory fade
+is preserved. The background is static; Journey's motion control pauses the
+road, which also respects reduced-motion preferences. Learning hub backgrounds
+are unchanged.
+
 ## Learning hub content
 
 Videos live in two data files under `src/app/data/`:
