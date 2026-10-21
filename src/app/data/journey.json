@@ -228,6 +228,22 @@
       "published": true
     },
     {
+      "id": "goa-trip-2022",
+      "date": "2022-07-30",
+      "category": "travel",
+      "icon": "compass",
+      "title": "A getaway to Goa",
+      "story": "Travelled to Goa for a change of pace, with an evening by the beach to remember.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/goaTrip2022.jpeg",
+          "alt": "People and beachside venues lit up at night in Goa",
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
       "id": "microsoft-okr-coach-hackathon",
       "date": "2022-09",
       "category": "milestone",

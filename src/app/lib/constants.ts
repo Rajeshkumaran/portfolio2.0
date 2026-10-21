@@ -11,7 +11,7 @@ export const ANALYTICS_SECTIONS = {
 } as const;
 
 export const RESUME_LINK =
-  'https://drive.google.com/file/d/1_ETJ3k9HqGv30W2x80d60fph3_zDydAi/view?usp=sharing';
+  'https://drive.google.com/file/d/19ODDWStk4itlJXpqTGafg7NoNVMyr6iD/view?usp=sharing';
 
 // Repo containing data-structure & algorithm implementation code
 export const CODE_REPO_LINK =

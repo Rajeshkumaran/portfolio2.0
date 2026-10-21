@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
+import postcss from 'postcss';
 import ts from 'typescript';
 
 const source = readFileSync(new URL('../src/app/lib/journey.ts', import.meta.url), 'utf8');
@@ -264,4 +265,45 @@ test('the checked-in configuration validates and returns only its published mome
   const content = parseJourneyContent(raw);
   assert.ok(content.title.length > 0);
   assert.equal(content.moments.length, raw.moments.filter((entry) => entry.published === true).length);
+});
+
+const journeyStyles = postcss.parse(readFileSync(new URL('../src/app/journey/journey.css', import.meta.url), 'utf8'));
+const styleValues = (container, selector) => {
+  const rule = container.nodes.find((node) => node.type === 'rule' && node.selectors.includes(selector));
+  assert.ok(rule, `Missing style rule for ${selector}`);
+  return Object.fromEntries(rule.nodes.filter((node) => node.type === 'decl').map((node) => [node.prop, node.value]));
+};
+
+test('keeps the alternating journey layout strictly desktop-only', () => {
+  let alternatingRules = 0;
+  journeyStyles.walkRules((rule) => {
+    if (!rule.selector.includes('.journey-stop:nth-child(')) return;
+    alternatingRules++;
+    assert.equal(rule.parent.type, 'atrule', `${rule.selector} must not override the mobile layout`);
+    assert.equal(rule.parent.name, 'media');
+    assert.equal(rule.parent.params, '(min-width: 768px)');
+  });
+  assert.ok(alternatingRules > 0);
+});
+
+test('mobile journey dates and stories share the content column without character wrapping', () => {
+  const mobile = journeyStyles.nodes.find((node) => node.type === 'atrule'
+    && node.name === 'media' && node.params === '(max-width: 767px)');
+  assert.ok(mobile);
+  const meta = styleValues(mobile, '.journey-stop-meta');
+  const story = styleValues(mobile, '.journey-stop .journey-story');
+  assert.equal(meta['grid-column'], '2');
+  assert.equal(meta['grid-row'], '1');
+  assert.equal(meta['flex-direction'], 'row');
+  assert.equal(meta['flex-wrap'], 'wrap');
+  assert.equal(meta['text-align'], 'left');
+  assert.equal(story['grid-column'], '2');
+  assert.equal(story['grid-row'], '2');
+  assert.equal(story['text-align'], 'left');
+  assert.equal(styleValues(journeyStyles, '.journey-stop-meta')['overflow-wrap'], 'normal');
+  journeyStyles.walkRules((rule) => {
+    if (!rule.selectors.includes('.journey-stop-meta > *')) return;
+    const minimum = rule.nodes.find((node) => node.type === 'decl' && node.prop === 'min-width');
+    assert.ok(!minimum || minimum.value === '0', 'Date labels must not force a fixed minimum width');
+  });
 });
