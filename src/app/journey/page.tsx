@@ -141,7 +141,7 @@ export default function JourneyPage() {
         <footer className="journey-closing">
           <p>There is more to a person than a list of things they have built.</p>
           <Link href="/" className="journey-follow-link">
-            Back to the work <span aria-hidden="true">&rarr;</span>
+            Back to the grind <span aria-hidden="true">&rarr;</span>
           </Link>
         </footer>
       </main>

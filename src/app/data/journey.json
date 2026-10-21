@@ -48,7 +48,7 @@
       "id": "tenth-standard-results",
       "date": "2012",
       "category": "milestone",
-      "title": "Third in school, my first milestone",
+      "title": "3rd in school, my first milestone",
       "story": "Finished 10th standard ranked third in my school—one of the first milestones in a journey that was still unfolding.",
       "published": true
     },
@@ -56,7 +56,7 @@
       "id": "twelfth-standard-results",
       "date": "2014",
       "category": "milestone",
-      "title": "Third again, with new possibilities ahead",
+      "title": "3rd again, with new possibilities ahead",
       "story": "Finished 12th standard ranked third in my school once again, with a cut-off score of 198 out of 200.",
       "published": true
     },
@@ -148,8 +148,15 @@
       "category": "milestone",
       "title": "From hackathon win to real-world impact",
       "story": "Won CaratLane's hackathon with an idea for omnichannel customer analysis and received an Amazon voucher worth 8K. The idea later went into production and launched across multiple CaratLane stores.",
-      "published": true
-    },
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/caratLaneHackathonTrophy.jpeg",
+          "alt": "Winner's trophy from the 2019 CaratLane Hackfest",
+          "orientation": "portrait"
+        }
+      ]
+      },
     {
       "id": "pandemic-detour",
       "date": "2020",
@@ -227,7 +234,7 @@
       ],
       "published": true
     },
-    {
+     {
       "id": "goa-trip-2022",
       "date": "2022-07-30",
       "category": "travel",
@@ -249,7 +256,14 @@
       "category": "milestone",
       "title": "Winning a Microsoft hackathon with OKR Coach",
       "story": "Won a Microsoft hackathon with OKR Coach, a machine-learning idea for improving OKRs in Viva Goals. It provided recommendations and quality scores as people wrote objectives and key results, helping automate reviews and leaving more time to focus on business goals.",
-      "published": true
+      "published": true,
+      "images":[
+        {
+          "src":"/journey/okrCoachPatent.jpeg",
+          "alt": "Microsoft Patent Award medallion on a black marble plaque for the OKR Coach patent.",
+          "orientation":"portrait"
+        }
+      ]
     },
     {
       "id": "alappuzha-friends-trip",
@@ -275,6 +289,21 @@
       "title": "Growing at Microsoft",
       "story": "Promoted to Software Engineer II at level 61.",
       "published": true
+    },  
+    {
+      "id": "first-playstation-5",
+      "date": "2023-04-07",
+      "category": "life",
+      "title": "My first PlayStation 5",
+      "story": "Bought my first PlayStation 5, making room for a little more play beyond work.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/psController.jpeg",
+          "alt": "Red and white PlayStation 5 controllers on a dark surface",
+          "orientation": "portrait"
+        }
+      ]
     },
     {
       "id": "okr-generation-patent",
@@ -289,7 +318,14 @@
           "href": "https://drive.google.com/file/d/1ZXqwcZvVUhIgL3ubeEWo-HlLX70CC-k5/view?usp=sharing"
         }
       ],
-      "published": true
+      "published": true,
+       "images": [
+        {
+          "src": "/journey/okrCoachPatent.jpeg",
+          "alt": "Microsoft Patent Award medallion on a black marble plaque for the OKR Coach patent",
+          "orientation": "portrait"
+        }
+      ]
     },
     {
       "id": "sisters-cma-graduation",
@@ -343,6 +379,21 @@
         {
           "src": "/journey/skoda.jpeg",
           "alt": "Skoda Kushaq sportline",
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "microsoft-team-collaboration-award",
+      "date": "2026-06",
+      "category": "milestone",
+      "title": "Recognized for collaboration at Microsoft",
+      "story": "Received a Microsoft Spot Award for Team Collaboration, recognizing teamwork toward a shared goal.",
+      "published": true,
+      "images": [
+        {
+          "src": "/journey/microsoftAward.jpeg",
+          "alt": "Microsoft Spot Award plaque recognizing Team Collaboration",
           "orientation": "portrait"
         }
       ]
