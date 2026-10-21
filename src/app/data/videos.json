@@ -506,5 +506,29 @@
     "youtubeUrl": "https://www.youtube.com/shorts/g8cxS1cxmTU",
     "links": [],
     "publishedAt": "2026-10-11"
+  },
+  "sQnpUqcrkwI": {
+    "title": "Object Storage Explained: AWS S3 vs. PostgreSQL",
+    "format": "short",
+    "description": "Compare object storage with PostgreSQL for application images and backup trade-offs. Explore AWS S3, Azure Blob Storage, TOAST for large database values, and a product-review architecture using object keys and image references.",
+    "youtubeUrl": "https://www.youtube.com/shorts/sQnpUqcrkwI",
+    "links": [],
+    "publishedAt": "2026-10-12"
+  },
+  "BM-sHVWsvwA": {
+    "title": "CAP Theorem Explained: Consistency vs. Availability",
+    "format": "short",
+    "description": "Explore consistency, availability, and network partitions through BookMyShow and Instagram examples. Learn how CP and AP approaches make different trade-offs and why requirements can vary across application features.",
+    "youtubeUrl": "https://www.youtube.com/shorts/BM-sHVWsvwA",
+    "links": [],
+    "publishedAt": "2026-10-14"
+  },
+  "rZgk1Ha3D50": {
+    "title": "Database Sharding Explained: Scaling Beyond One Server",
+    "format": "short",
+    "description": "Compare database sharding with vertical scaling to understand how data and workload spread across servers. Explore shard keys, userId-based modulo hashing, and why adding shards can require data redistribution.",
+    "youtubeUrl": "https://www.youtube.com/shorts/rZgk1Ha3D50",
+    "links": [],
+    "publishedAt": "2026-10-18"
   }
 }
